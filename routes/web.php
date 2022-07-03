@@ -1,18 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShowPostController;
+use App\Http\Controllers\ListPostsController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::view('/', 'home')->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/blog', ListPostsController::class)->name('posts.index');
+Route::get('/blog/show', ShowPostController::class)->name('posts.show');
+
+Route::get('/test', function () {
+    dispatch(fn () => sleep(3))->afterResponse();
+
+    return 'Hello, World!';
 });
