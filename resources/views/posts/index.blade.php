@@ -5,9 +5,11 @@
         </x-slot:title>
 
         <div class="grid md:grid-cols-2 gap-8 mt-8">
-            @foreach (range(1, 10) as $i)
-                <x-post />
+            @foreach ($posts as $post)
+                <x-post :post="$post" />
             @endforeach
         </div>
+
+        {{ $posts->links() }}
     </x-section>
 </x-app>

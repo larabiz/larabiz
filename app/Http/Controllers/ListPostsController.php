@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 
 class ListPostsController extends Controller
 {
-    public function __invoke(Request $request) : View
+    public function __invoke() : View
     {
-        return view('posts.index');
+        return view('posts.index')->with([
+            'posts' => Post::simplePaginate(10),
+        ]);
     }
 }

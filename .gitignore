@@ -12,6 +12,7 @@
 /public/storage
 /storage/*.key
 /vendor
+auth.json
 Homestead.json
 Homestead.yaml
 phpunit.xml

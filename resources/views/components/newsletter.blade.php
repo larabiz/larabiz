@@ -7,7 +7,7 @@
         <strong class="bg-purple-200">Tous les lundis</strong>, Larabiz vous envoie <strong class="bg-purple-200">gratuitement</strong> les dernières opportunités.
     </p>
 
-    <x-form method="POST" action="#" class="md:max-w-screen-sm mt-8 mx-auto">
+    <x-form method="POST" action="{{ route('subscribers.store') }}" class="md:max-w-screen-sm mt-8 mx-auto">
         <div class="flex flex-wrap sm:flex-nowrap items-stretch gap-2 rounded">
             <p class="flex-grow">
                 <label for="email" class="sr-only">E-mail :</label>

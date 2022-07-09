@@ -3,28 +3,16 @@
         <x-icon-larabiz class="h-8" />
     </a>
 
-    <ul class="flex items-center gap-8 font-semibold text-indigo-900">
+    <ul class="flex items-center gap-8 font-semibold">
         <li>
-            <a href="#" class="hover:text-indigo-400 transition-colors">
-                Offres
+            <a href="{{ route('home') }}" class="@if (Route::is('home')) text-indigo-400 @else hover:text-indigo-400 transition-colors @endif">
+                <x-heroicon-o-home class="w-5 h-5 -translate-y-[0.5px]" />
             </a>
         </li>
 
         <li>
             <a href="{{ route('posts.index') }}" class="@if (Route::is('posts.index') || Route::is('posts.show')) text-indigo-400 @else hover:text-indigo-400 transition-colors @endif">
                 Blog
-            </a>
-        </li>
-
-        <li>
-            <a href="#" class="hover:text-indigo-400 transition-colors">
-                Discussions
-            </a>
-        </li>
-
-        <li>
-            <a href="https://twitter.com/Larabiz_" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-400 transition-colors">
-                Twitter
             </a>
         </li>
     </ul>

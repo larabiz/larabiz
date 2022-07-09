@@ -29,4 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
+
+    'fathom' => [
+        'api_token' => env('FATHOM_API_TOKEN'),
+        'site_id' => env('FATHOM_SITE_ID'),
+    ],
 ];
