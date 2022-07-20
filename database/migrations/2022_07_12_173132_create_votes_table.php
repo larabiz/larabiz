@@ -9,7 +9,7 @@ use Illuminate\Database\Migrations\Migration;
 return new class extends Migration {
     public function up() : void
     {
-        Schema::create('selections', function (Blueprint $table) {
+        Schema::create('votes', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->nullable()->constrained();
             $table->foreignIdFor(Choice::class)->constrained();
@@ -21,6 +21,6 @@ return new class extends Migration {
 
     public function down() : void
     {
-        Schema::dropIfExists('selections');
+        Schema::dropIfExists('votes');
     }
 };

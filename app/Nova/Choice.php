@@ -29,7 +29,7 @@ class Choice extends Resource
             Text::make('Choice')
                 ->rules('required'),
 
-            Text::make('Selections Count')
+            Text::make('Votes Count')
                 ->sortable(),
         ];
     }

@@ -12,15 +12,15 @@ class Choice extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $withCount = ['selections'];
+    protected $withCount = ['votes'];
 
     public function poll() : BelongsTo
     {
         return $this->belongsTo(Poll::class);
     }
 
-    public function selections() : HasMany
+    public function votes() : HasMany
     {
-        return $this->hasMany(Selection::class);
+        return $this->hasMany(Vote::class);
     }
 }

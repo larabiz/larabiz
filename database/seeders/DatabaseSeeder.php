@@ -5,10 +5,10 @@ namespace Database\Seeders;
 use App\Models\Poll;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Vote;
 use App\Models\Reply;
 use App\Models\Choice;
 use App\Models\Comment;
-use App\Models\Selection;
 use App\Models\Discussion;
 use App\Models\Subscriber;
 use Illuminate\Database\Seeder;
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
                 ->for($poll)
                 ->create()
                 ->each(function (Choice $choice) {
-                    Selection::factory(mt_rand(1, 10))
+                    Vote::factory(mt_rand(1, 10))
                         ->for(User::inRandomOrder()->first())
                         ->for($choice)
                         ->create();

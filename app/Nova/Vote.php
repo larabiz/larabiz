@@ -6,11 +6,11 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Selection extends Resource
+class Vote extends Resource
 {
     public static $group = 'Polls';
 
-    public static $model = \App\Models\Selection::class;
+    public static $model = \App\Models\Vote::class;
 
     public static $title = 'id';
 
