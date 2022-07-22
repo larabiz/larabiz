@@ -1,4 +1,4 @@
-<section {{ $attributes->merge(['class' => 'container py-16']) }}>
+<section {{ $attributes->merge(['class' => 'container py-8 sm:py-16']) }}>
     @if (! empty($header))
         <header class="mb-6">{{ $header }}</header>
     @elseif(! empty($title))

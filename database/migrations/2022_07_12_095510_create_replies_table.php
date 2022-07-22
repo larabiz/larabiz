@@ -13,8 +13,6 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(User::class)->constrained();
             $table->foreignIdFor(Discussion::class)->constrained();
-            $table->unsignedBigInteger('reply_to')->nullable();
-            $table->foreign('reply_to')->references('id')->on('replies');
             $table->text('content');
             $table->timestamps();
             $table->softDeletes();

@@ -9,12 +9,14 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Comment extends Resource
 {
+    public static $group = 'Blog';
+
     public static $model = \App\Models\Comment::class;
 
-    public static $title = 'id';
+    public static $title = 'content';
 
     public static $search = [
-        'id',
+        'content',
     ];
 
     public function fields(NovaRequest $request) : array
@@ -22,11 +24,9 @@ class Comment extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('User')
-                ->rules('required'),
+            BelongsTo::make('User'),
 
-            BelongsTo::make('Post')
-                ->rules('required'),
+            BelongsTo::make('Post'),
 
             Textarea::make('Content')
                 ->rules('required'),

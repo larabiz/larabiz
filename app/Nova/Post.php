@@ -6,13 +6,17 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Post extends Resource
 {
+    public static $group = 'Blog';
+
     public static $model = \App\Models\Post::class;
 
     public static $title = 'title';
@@ -27,6 +31,11 @@ class Post extends Resource
             ID::make(),
 
             BelongsTo::make('User')
+                ->rules('required'),
+
+            Images::make('Illustration', 'illustration')
+                ->conversionOnIndexView('thumbnail')
+                ->showStatistics()
                 ->rules('required'),
 
             Text::make('Title')
@@ -47,7 +56,17 @@ class Post extends Resource
 
             Number::make('Certified for Laravel')
                 ->rules('nullable', 'min:1')
-                ->placeholder('e.g. 9'),
+                ->placeholder('e.g. 9')
+                ->hideFromIndex(),
+
+            Text::make('Comments Count')
+                ->exceptOnForms(),
+
+            HasMany::make('Comments'),
+
+            Images::make('Images', 'images')
+                ->showStatistics()
+                ->hideFromIndex(),
         ];
     }
 

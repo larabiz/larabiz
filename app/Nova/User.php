@@ -13,10 +13,10 @@ class User extends Resource
 {
     public static $model = \App\Models\User::class;
 
-    public static $title = 'name';
+    public static $title = 'username';
 
     public static $search = [
-        'id', 'name', 'email',
+        'id', 'username', 'email',
     ];
 
     public function fields(NovaRequest $request) : array
@@ -26,7 +26,7 @@ class User extends Resource
 
             Gravatar::make()->maxWidth(50),
 
-            Text::make('Name')
+            Text::make('Username')
                 ->sortable()
                 ->rules('required', 'max:255'),
 

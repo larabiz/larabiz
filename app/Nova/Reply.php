@@ -3,22 +3,33 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Reply extends Resource
 {
+    public static $group = 'Discussions';
+
     public static $model = \App\Models\Reply::class;
 
-    public static $title = 'id';
+    public static $title = 'content';
 
     public static $search = [
-        'id',
+        'content',
     ];
 
     public function fields(NovaRequest $request) : array
     {
         return [
             ID::make()->sortable(),
+
+            BelongsTo::make('User'),
+
+            BelongsTo::make('Discussion'),
+
+            Textarea::make('Content')
+                ->rules('required'),
         ];
     }
 

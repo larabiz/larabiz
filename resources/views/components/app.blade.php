@@ -10,7 +10,7 @@
 
         @googlefonts
 
-        @if (app()->isProduction() && auth()->guest())
+        @if (app()->isProduction() && auth()->id() !== 1)
             <script defer src="https://enlightenment.larabiz.fr/script.js" data-site="{{ config('services.fathom.site_id') }}"></script>
         @endif
     </head>

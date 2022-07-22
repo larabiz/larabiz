@@ -43,7 +43,7 @@
 
         <div class="italic">
             <figure class="float-right mb-8 ml-8 text-center">
-                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5('hello@benjamincrozat.com') }}?s=144" width="150" height="150" alt="Photo de Benjamin." class="inline rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px]">
+                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5('benjamincrozat@me.com') }}?s=144" width="150" height="150" alt="Photo de Benjamin." class="inline rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px]">
             </figure>
 
             <p>Prendre des conseils d'étrangers sur internet n'est pas vraiment une chose facile. Laissez-moi me présenter.</p>

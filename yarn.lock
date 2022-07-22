@@ -76,9 +76,9 @@ acorn@^7.0.0:
   integrity sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==
 
 alpinejs@^3.10.2:
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.10.2.tgz#bf3a12b8c3793f346bc9794038bb6e09341600e4"
-  integrity sha512-P6DTX78J94FgsskS3eS23s26hfb0NWQZUidBnkUK7fId1x64/kLm5E79lL3HNItUmHDCKOHvfP8EAcuCVab89w==
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/alpinejs/-/alpinejs-3.10.3.tgz#4072c5ec01adf58b31a0e8e13e4ccb1382c1d112"
+  integrity sha512-nt/w4hLq9pPaexCsHmO5zV5Alvq4yu9n0Iclti6aV0HmiqLWH/axUb0pn8z3XVuVNcj8EOXOQw+WpwPzMzLBWg==
   dependencies:
     "@vue/reactivity" "~3.1.1"
 
@@ -135,9 +135,9 @@ camelcase-css@^2.0.1:
   integrity sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==
 
 caniuse-lite@^1.0.30001335, caniuse-lite@^1.0.30001366:
-  version "1.0.30001367"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001367.tgz#2b97fe472e8fa29c78c5970615d7cd2ee414108a"
-  integrity sha512-XDgbeOHfifWV3GEES2B8rtsrADx4Jf+juKX2SICJcaUhjYBO3bR96kvEIHa15VU6ohtOhBZuPGGYGbXMRn0NCw==
+  version "1.0.30001369"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001369.tgz#58ca6974acf839a72a02003258a005cbb0cb340d"
+  integrity sha512-OY1SBHaodJc4wflDIKnlkdqWzJZd1Ls/2zbVJHBSv3AT7vgOJ58yAhd2CN4d57l2kPJrgMb7P9+N1Mhy4tNSQA==
 
 chokidar@^3.5.3:
   version "3.5.3"
@@ -189,9 +189,9 @@ dlv@^1.1.3:
   integrity sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==
 
 electron-to-chromium@^1.4.188:
-  version "1.4.192"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.192.tgz#fac050058b3e0713b401a1088cc579e14c2ab165"
-  integrity sha512-8nCXyIQY9An88NXAp+PuPy5h3/w5ZY7Iu2lag65Q0XREprcat5F8gKhoHsBUnQcFuCRnmevpR8yEBYRU3d2HDw==
+  version "1.4.199"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.199.tgz#e0384fde79fdda89880e8be58196a9153e04db3b"
+  integrity sha512-WIGME0Cs7oob3mxsJwHbeWkH0tYkIE/sjkJ8ML2BYmuRcjhRl/q5kVDXG7W9LOOKwzPU5M0LBlXRq9rlSgnNlg==
 
 esbuild-android-64@0.14.49:
   version "0.14.49"
@@ -417,9 +417,9 @@ is-number@^7.0.0:
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
 laravel-vite-plugin@0.*:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/laravel-vite-plugin/-/laravel-vite-plugin-0.5.0.tgz#08c215f9bfc1091e9c0d598ecaca5a581789ca1a"
-  integrity sha512-SDH7uiJqFv3SvMypCLQOzU7hqbO2xmjXIVVD/h7jiyhYkxSQCz14G3Wdrbp6yJIY+szCQAmvhQG339iwohlfhg==
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/laravel-vite-plugin/-/laravel-vite-plugin-0.5.2.tgz#5b16ef189d8eab09ebd468f26d1b618b29f89c2b"
+  integrity sha512-6ufssMvfF3IK/t1hRiYApTB6MHnpIAEZxte+V89aOt5T4CP8OVCPY5qvFBGwddW+yoVEOH5lnojSAD5YzM5T1w==
   dependencies:
     vite-plugin-full-reload "^1.0.1"
 
@@ -662,9 +662,9 @@ to-regex-range@^5.0.1:
     is-number "^7.0.0"
 
 update-browserslist-db@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.4.tgz#dbfc5a789caa26b1db8990796c2c8ebbce304824"
-  integrity sha512-jnmO2BEGUjsMOe/Fg9u0oczOe/ppIDZPebzccl1yDWGLFP16Pa1/RM5wEoKYPG2zstNcDuAStejyxsOuKINdGA==
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/update-browserslist-db/-/update-browserslist-db-1.0.5.tgz#be06a5eedd62f107b7c19eb5bcefb194411abf38"
+  integrity sha512-dteFFpCyvuDdr9S/ff1ISkKt/9YZxKjI9WlRR99c180GaztJtRa/fn18FdxGVKVsnPY7/a/FDN68mcvUmP4U7Q==
   dependencies:
     escalade "^3.1.1"
     picocolors "^1.0.0"
@@ -675,9 +675,9 @@ util-deprecate@^1.0.2:
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
 vite-plugin-full-reload@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vite-plugin-full-reload/-/vite-plugin-full-reload-1.0.1.tgz#9cd8bfebf923a2b6177a6e9b1fa516302bff8c8d"
-  integrity sha512-G/IXcDjuhfDAK4zEzWTM/kL0DiAVv0+Dox+zGZeJyUWhwtg34Q9XtJkNXveku+mTSKE20TMp3TF8D7bFEhmvfA==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/vite-plugin-full-reload/-/vite-plugin-full-reload-1.0.3.tgz#67997c0243b783c3b7e97159543acdf5c0224bc0"
+  integrity sha512-owIZz/tGXFyUzIDzbu4KBpxrpd08BO+tuWqZABCug5C2laNTwOS4mcDMsMKnXT7B7WR8oRd+BI6a2kVDtsan3w==
   dependencies:
     picocolors "^1.0.0"
     picomatch "^2.3.1"

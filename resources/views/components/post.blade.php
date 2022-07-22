@@ -1,5 +1,7 @@
 <a href="{{ route('posts.show', [$post->id, $post->slug]) }}" class="bg-white bg-opacity-[.35] flex flex-col rounded-3xl shadow-lg shadow-indigo-200/50">
-    <div class="bg-black aspect-video object-cover rounded-3xl"></div>
+    @if ($url = $post->getFirstMediaUrl('illustration', 'large'))
+        <img src="{{ $url }}" alt="" class="aspect-video object-cover rounded-3xl" />
+    @endif
 
     <div class="flex flex-col flex-grow p-6">
         <div class="font-bold leading-tight text-indigo-900 text-xl">
@@ -11,7 +13,7 @@
         </div>
 
         <div class="mt-6 text-indigo-900/50">
-            par <strong class="text-indigo-900">{{ $post->user->name }}</strong> le <strong class="text-indigo-900">{{ $post->updated_at->isoFormat('ll') }}</strong>
+            par <strong class="text-indigo-900">{{ $post->user->username }}</strong> le <strong class="text-indigo-900">{{ $post->updated_at->isoFormat('ll') }}</strong>
         </div>
     </div>
 </a>

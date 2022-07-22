@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,5 +19,19 @@ class PostFactory extends Factory
             'excerpt' => fake()->paragraph(),
             'certified_for_laravel' => 9,
         ];
+    }
+
+    public function withIllustration() : static
+    {
+        return $this
+            ->afterMaking(fn (Post $post) => $this->addMedia($post))
+            ->afterCreating(fn (Post $post) => $this->addMedia($post));
+    }
+
+    public function addMedia(Post $post) : void
+    {
+        $post
+            ->addMediaFromUrl('https://source.unsplash.com/random')
+            ->toMediaCollection('illustration');
     }
 }
