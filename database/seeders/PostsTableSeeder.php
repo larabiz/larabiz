@@ -599,7 +599,7 @@ EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-05 13:36:48',
         ])
-            ->addMediaFromUrl('https:// user-images.githubusercontent.com/3613731/180869775-216c0437-0627-47ce-999a-f12160d59814.jpg')
+            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180869775-216c0437-0627-47ce-999a-f12160d59814.jpg')
             ->toMediaCollection('illustration');
 
         Post::create([
