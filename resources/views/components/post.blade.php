@@ -1,4 +1,4 @@
-<a href="{{ route('posts.show', [$post->id, $post->slug]) }}" class="bg-white bg-opacity-[.35] flex flex-col rounded-3xl shadow-lg shadow-indigo-200/50">
+<a href="{{ route('posts.show', [$post->random_id, $post->slug]) }}" class="bg-white bg-opacity-[.35] flex flex-col rounded-3xl shadow-lg shadow-indigo-200/50">
     @if ($url = $post->getFirstMediaUrl('illustration', 'large'))
         <img src="{{ $url }}" alt="" class="aspect-video object-cover rounded-3xl" />
     @endif

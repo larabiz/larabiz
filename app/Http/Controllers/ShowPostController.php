@@ -8,18 +8,18 @@ use Illuminate\Http\RedirectResponse;
 
 class ShowPostController extends Controller
 {
-    public function __invoke(string $id, ?string $slug = null) : View|RedirectResponse
+    public function __invoke(string $randomId, ?string $slug = null) : View|RedirectResponse
     {
-        $post = Post::find($id);
+        $post = Post::whereRandomId($randomId)->firstOrFail();
 
         if ($slug !== $post->slug) {
-            return to_route('posts.show', [$id, $post->slug]);
+            return to_route('posts.show', [$randomId, $post->slug]);
         }
 
         return view('posts.show')->with([
             'post' => $post,
             'others' => Post::latest()
-                ->whereNotIn('id', [$id])
+                ->whereNotIn('id', [$randomId])
                 ->limit(6)
                 ->get(),
         ]);

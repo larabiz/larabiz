@@ -15,7 +15,7 @@ class ShowPostControllerTest extends TestCase
         $post = $posts->random();
 
         $response = $this
-            ->get(route('posts.show', [$post->id, $post->slug]))
+            ->get(route('posts.show', [$post->random_id, $post->slug]))
             ->assertOk()
             ->assertViewIs('posts.show')
         ;
@@ -29,8 +29,8 @@ class ShowPostControllerTest extends TestCase
         $post = Post::factory()->forUser()->create();
 
         $this
-            ->get(route('posts.show', [$post->id, 'foo']))
-            ->assertRedirect(route('posts.show', [$post->id, $post->slug]))
+            ->get(route('posts.show', [$post->random_id, 'foo']))
+            ->assertRedirect(route('posts.show', [$post->random_id, $post->slug]))
         ;
     }
 }

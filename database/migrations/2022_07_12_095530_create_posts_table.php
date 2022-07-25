@@ -10,6 +10,7 @@ return new class extends Migration {
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('random_id')->index();
             $table->foreignIdFor(User::class)->constrained();
             $table->string('title');
             $table->string('slug');

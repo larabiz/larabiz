@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Traits\BelongsToUser;
@@ -17,6 +18,13 @@ class Post extends Model implements HasMedia
     use BelongsToUser, HasFactory, InteractsWithMedia, SoftDeletes;
 
     protected $withCount = ['comments'];
+
+    public static function booted() : void
+    {
+        self::creating(function (self $post) {
+            $post->random_id = Str::random(6);
+        });
+    }
 
     public function comments() : HasMany
     {
