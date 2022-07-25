@@ -21,7 +21,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             );
 
             $menu->prepend(
-                MenuItem::externalLink('Go to ' . config('app.name'), config('app.url'))
+                MenuItem::externalLink('Go to Horizon', url(config('horizon.path')))
+            );
+
+            $menu->prepend(
+                MenuItem::externalLink('Go to ' . config('app.name'), url('/'))
             );
 
             return $menu;
