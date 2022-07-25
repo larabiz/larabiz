@@ -12,7 +12,7 @@
             </h1>
 
             <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
-                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user->email) }}?s=144" alt="Avatar de {{ $post->user->username }}." width="42" height="42" class="relative top-[-.0625rem] object-cover rounded-full">
+                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user->email) }}?s=144" alt="Avatar de {{ $post->user->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
 
                 <div>
                     <p>Mis à jour le <time datetime="{{ $post->updated_at->toDateString() }}" class="font-bold">{{ $post->updated_at->isoFormat('ll') }}</time> par <span class="font-bold">{{ $post->user->username }}</span></p>
@@ -28,7 +28,7 @@
             </div>
 
             @if ($url = $post->getFirstMediaUrl('illustration', 'large'))
-                <img src="{{ $url }}" alt="" class="aspect-video mt-8 object-cover" />
+                <img src="{{ $url }}" alt="" class="mt-8" />
             @endif
 
             <div class="break-words prose prose-a:bg-indigo-100 prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-200 prose-blockquote:text-indigo-900 prose-blockquote:text-opacity-75 prose-h3:leading-tight prose-img:my-0 prose-figure:mx-auto prose-figure:text-center prose-figure:sm:w-2/3 prose-figure:md:w-1/2 !max-w-none mt-8">

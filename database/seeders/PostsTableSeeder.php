@@ -499,7 +499,7 @@ EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-05 11:35:10',
         ])
-            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180865302-4e74c0db-292d-47c1-ac3e-7346b5d9dd39.png')
+            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180869791-63e4cce8-c529-4fd6-97cc-f777f9a28f86.jpg')
             ->toMediaCollection('illustration');
 
         Post::create([
@@ -599,7 +599,7 @@ EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-05 13:36:48',
         ])
-            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180865772-2469f030-8198-4a34-afca-b245ef0c2ebe.png')
+            ->addMediaFromUrl('https:// user-images.githubusercontent.com/3613731/180869775-216c0437-0627-47ce-999a-f12160d59814.jpg')
             ->toMediaCollection('illustration');
 
         Post::create([
