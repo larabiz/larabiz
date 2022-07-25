@@ -17,7 +17,9 @@
                 <div>
                     <p>Mis à jour le <time datetime="{{ $post->updated_at->toDateString() }}" class="font-bold">{{ $post->updated_at->isoFormat('ll') }}</time> par <span class="font-bold">{{ $post->user->username }}</span></p>
 
-                    <p>Article certifié pour <strong>Laravel {{ $post->certifiedForLaravelVersion }}</strong></p>
+                    @if ($post->certified_for_laravel)
+                        <p>Article certifié pour <strong>Laravel {{ $post->certified_for_laravel }}</strong></p>
+                    @endif
                 </div>
             </div>
 
