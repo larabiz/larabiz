@@ -12,6 +12,8 @@ class Vote extends Model
 {
     use BelongsToUser, HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     public function choice() : BelongsTo
     {
         return $this->belongsTo(Choice::class);

@@ -17,6 +17,8 @@ class Post extends Model implements HasMedia
 {
     use BelongsToUser, HasFactory, InteractsWithMedia, SoftDeletes;
 
+    protected $guarded = [];
+
     protected $withCount = ['comments'];
 
     public static function booted() : void

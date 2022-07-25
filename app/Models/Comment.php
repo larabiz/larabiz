@@ -12,6 +12,8 @@ class Comment extends Model
 {
     use BelongsToUser, HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     public function post() : BelongsTo
     {
         return $this->belongsTo(Post::class);

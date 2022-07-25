@@ -11,6 +11,8 @@ class Poll extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     protected $withCount = ['choices'];
 
     public function choices() : HasMany

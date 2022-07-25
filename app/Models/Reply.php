@@ -12,6 +12,8 @@ class Reply extends Model
 {
     use BelongsToUser, HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     public function discussion() : BelongsTo
     {
         return $this->belongsTo(Discussion::class);

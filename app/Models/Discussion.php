@@ -12,6 +12,8 @@ class Discussion extends Model
 {
     use BelongsToUser, HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     protected $withCount = ['replies'];
 
     public function replies() : HasMany

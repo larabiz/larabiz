@@ -12,6 +12,8 @@ class Choice extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = [];
+
     protected $withCount = ['votes'];
 
     public function poll() : BelongsTo
