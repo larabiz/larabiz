@@ -499,7 +499,7 @@ EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-05 11:35:10',
         ])
-            ->addMediaFromUrl('https://larabiz.fr/storage/T0vG9RCo11er3DOMV3WFnTgq2tX4rS9hyrowYZMq.jpg')
+            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180865302-4e74c0db-292d-47c1-ac3e-7346b5d9dd39.png')
             ->toMediaCollection('illustration');
 
         Post::create([
@@ -599,7 +599,7 @@ EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-05 13:36:48',
         ])
-            ->addMediaFromUrl('https://larabiz.fr/storage/dCDJlO9L6vf1UXHjt5qkx03TmQJRW81pkYA2MedJ.jpg')
+            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180865772-2469f030-8198-4a34-afca-b245ef0c2ebe.png')
             ->toMediaCollection('illustration');
 
         Post::create([
@@ -832,7 +832,7 @@ EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-10 17:35:24',
         ])
-            ->addMediaFromUrl('https://larabiz.fr/storage/xJnxBPTPtFJWqpi1Xg0Rtj4FPZruGjMLyhK1SHIx.jpg')
+            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180867152-3cf6bd45-3443-4072-95a9-5d6022af15ae.jpg')
             ->toMediaCollection('illustration');
 
         Post::create([
@@ -1161,7 +1161,7 @@ EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-04-18 16:04:34',
         ])
-            ->addMediaFromUrl('https://larabiz.fr/storage/v1kre7l4nzKWboXKNrEAf6tG1FELNN4Yg8Xk1RTX.jpg')
+            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180867647-2a5dfd43-b9df-4461-948b-9384612c14f4.png')
             ->toMediaCollection('illustration');
 
         Post::create([
