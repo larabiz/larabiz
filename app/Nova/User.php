@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\Text;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
@@ -29,6 +30,9 @@ class User extends Resource
             Text::make('Username')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            Textarea::make('Biography')
+                ->rules('nullable', 'max:255'),
 
             Text::make('Email')
                 ->sortable()
