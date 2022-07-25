@@ -17,6 +17,7 @@
         "spatie/laravel-collection-macros": "^7.11",
         "spatie/laravel-google-fonts": "^1.2",
         "spatie/laravel-medialibrary": "^10.4",
+        "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1",
         "torchlight/torchlight-commonmark": "^0.5.5",
         "torchlight/torchlight-laravel": "^0.5.11"
