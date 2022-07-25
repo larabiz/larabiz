@@ -10,7 +10,7 @@ class ListPostsController extends Controller
     public function __invoke() : View
     {
         return view('posts.index')->with([
-            'posts' => Post::simplePaginate(10),
+            'posts' => Post::latest()->simplePaginate(10),
         ]);
     }
 }
