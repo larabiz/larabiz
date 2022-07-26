@@ -10,6 +10,6 @@ class SubscribersCount extends Value
 {
     public function calculate(NovaRequest $request) : ValueResult
     {
-        return $this->count($request, Subscriber::class);
+        return $this->count($request, Subscriber::whereNotNull('confirmed_at'));
     }
 }
