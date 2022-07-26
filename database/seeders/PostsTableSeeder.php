@@ -1547,7 +1547,7 @@ EOT,
 
 Lorsque je suis devenu développeur employé en 2013, j'ai débuté une période très arrogante à la suite de quelques succès.
 
-Par exemple, lors de mon entretien d'embauche dans une agence de communication, il m'a fallu modifier un projet existant en respectant un cahier des charges. Plus tard, j'ai appris que le développeur ayant passé son entretien après moi s'était simplement contenté de copier/coller mon travail.
+Par exemple, lors de mon entretien d'embauche dans une agence de communication, il m'a fallu modifier un projet existant en respectant un cahier des charges. Rien d'exceptionnel, il s'agit d'une tâche potentiellement très simple. Ceci étant dit, j'ai appris plus tard que le développeur ayant passé son entretien après moi s'était simplement contenté de copier/coller mon travail. J'y ai vu là une confirmation de ma supériorité par rapport aux autres développeurs de niveau équivalent (ce qui est puéril).
 
 Ajoutez à ça le fait j'étais entièrement autodidacte, ou que mon arrivé dans l'agence nous a permis de basculer sur WordPress, ce qui a grandement amélioré notre productivité. (Ils avaient pour habitude de réinventer la roue à chaque projet.)  Par conséquent, je contribuais à la montée en compétences du responsable du pôle web de l'entreprise (plus âgé et plus expérimenté) et on venait souvent me demander lorsqu'il y avait une question technique.
 
