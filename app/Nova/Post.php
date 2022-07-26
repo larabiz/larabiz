@@ -30,12 +30,12 @@ class Post extends Resource
         return [
             ID::make(),
 
-            BelongsTo::make('Author', 'user', User::class)
-                ->rules('required'),
-
             Images::make('Image', 'illustration')
                 ->conversionOnIndexView('thumbnail')
                 ->showStatistics()
+                ->rules('required'),
+
+            BelongsTo::make('Author', 'user', User::class)
                 ->rules('required'),
 
             Text::make('Title')
