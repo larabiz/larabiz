@@ -19,7 +19,7 @@ class ShowPostController extends Controller
         return view('posts.show')->with([
             'post' => $post,
             'others' => Post::latest()
-                ->whereNotIn('id', [$randomId])
+                ->whereNotIn('random_id', [$randomId])
                 ->limit(6)
                 ->get(),
         ]);

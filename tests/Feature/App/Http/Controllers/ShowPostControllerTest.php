@@ -20,8 +20,10 @@ class ShowPostControllerTest extends TestCase
             ->assertViewIs('posts.show')
         ;
 
+        /* @var \Illuminate\Support\Collection */
         $this->assertInstanceOf(Collection::class, $latest = $response->viewData('others'));
         $this->assertCount(6, $latest);
+        $this->assertTrue($latest->doesntContain('id', $post->id));
     }
 
     public function test_it_redirects_when_slug_is_wrong() : void
