@@ -9,7 +9,7 @@ class PostsTableSeeder extends Seeder
 {
     public function run() : void
     {
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => '4 astuces pour un code propre et solide sur le long terme',
             'slug' => 'astuces-tutoriel-code-propre-laravel',
@@ -25,7 +25,7 @@ class PostsTableSeeder extends Seeder
 
 ### Utilisez des packages open source
 
-Croyez-en mon expérience : utiliser du code testé et éprouvé par la communauté donnera presque toujours de bien meilleurs résultats que ce que vous aurez vous-même pondu. Pourquoi ?
+Croyez-en mon expérience : utiliser du code testé et éprouvé par la communauté donnera presque toujours de bien meilleurs résultats que ce que vous aurez vous-même pondu. Pourquoi ?
 
 - Un package open source est développé par une multitude de personnes très intelligentes ;
 - Il est testé et éprouvé par la communauté. Selon la popularité du package, le nombre d'individus se chiffre en dizaines de milliers ;
@@ -58,7 +58,7 @@ Ensuite, créez votre fichier de configuration ([servez-vous du mien ici](https:
 
 Si l'extension est bien configurée, alors votre code sera formaté à chaque fois que vous sauvegarderez votre document.
 
-L'avantage d'avoir fait tout ça ? Vos collaborateurs aussi pourront en profiter.
+L'avantage d'avoir fait tout ça ? Vos collaborateurs aussi pourront en profiter.
 
 ### Commentez votre code
 
@@ -81,7 +81,7 @@ Prenons plutôt un bon exemple tout droit sorti de la codebase de Larabiz :
 Subscriber::create($input)->notify(new ConfirmSubscription);
 ```
 
-Ça coule de source, non ? Ce code n'a absolument pas besoin d'être commenté.
+Ça coule de source, non ? Ce code n'a absolument pas besoin d'être commenté.
 
 Maintenant, prenons du code issu d'un autre de mes projets :
 
@@ -117,7 +117,7 @@ Il s'agit d'un test automatisé. Il est très compliqué de rendre lisible ce ge
 
 ### Respectez les conventions de Laravel
 
-*Sortir des sentiers battus est une excellente chose* et je vous encourage vivement à le faire. Mais comme je l'ai dit plus haut, tout dépend du contexte.
+*Sortir des sentiers battus est une excellente chose* et je vous encourage vivement à le faire. Mais comme je l'ai dit plus haut, tout dépend du contexte.  
 Ici, le mieux est de coller au maximum avec ce que vous préconise Laravel. Ne chamboulez pas sa [structure](https://laravel.com/docs/structure) et **utilisez au maximum** toutes les fonctionnalités qu'il vous offre. Ainsi, vous pourrez :
 
 1. Faciliter la collaboration avec les développeurs qui connaissent Laravel aussi bien que vous ; (Eh oui, car vous aurez à nouveau la flemme de documenter tous les trucs farfelus que vous aurez inventés !)
@@ -133,11 +133,25 @@ Il y a encore bien plus que vous pourriez faire pour faciliter votre vie de dév
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-03 21:36:18',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/ZjfzeaNKpYWkZpl3VBeeYUzAXHIbXemFHnnWADUk.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/13/f335fff99ef05af6c0203d52809af2f91433be0a.jpg')
+            ->toMediaCollection('images');
+
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/14/3136a520b9cb3c8da985c0d7623dc6ec59458796.jpg')
+            ->toMediaCollection('images');
+
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/15/2974c234a1e6132cb86f8ec71370de5645463db8.jpg')
+            ->toMediaCollection('images');
+
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment créer une page avec Laravel',
             'slug' => 'comment-creer-page-laravel',
@@ -161,7 +175,7 @@ Et voilà ! C'est un tel plaisir de constater de l'avancement lorsqu'on se forme
 
 ![Capture d'écran de notre nouvelle page.](https://larabiz.fr/storage/5/conversions/eefc2ff24d1653b863dc68866c4c42550263b545-large.jpg)
 
-Bien sûr, ce n'est pas en faisant des pages de cette qualité que vous arrivez à lancer le projet de vos rêves.
+Bien sûr, ce n'est pas en faisant des pages de cette qualité que vous arrivez à lancer le projet de vos rêves.  
 Il est tout à fait possible d'écrire le HTML requis pour créer une vraie page web dans le callback, mais je pense que nous serons tous d'accord pour dire que c'est une solution abominable.
 
 Créeons plutôt une vue :
@@ -200,21 +214,31 @@ Actualisez votre page et admirez le résultat. 🤙
 
 ![Capture d'écran de notre page avec un minimum de CSS.](https://larabiz.fr/storage/6/conversions/fa1e490dded4d1de1c4ebf218299b0e827943db3-large.jpg)
 
-Maintenant que votre page est créée, pourquoi ne pas [apprendre à créer des formulaires](https://larabiz.fr/blog/comment-creer-formulaire-laravel) ? Il vous faudra aussi les styliser et j'ai écrit deux articles à propos de l'[intégration de Tailwind CSS](https://larabiz.fr/blog/comment-tailwind-css-3-laravel) et [Bootstrap](https://larabiz.fr/blog/comment-bootstrap-5-laravel) dans un projet Laravel.
+Maintenant que votre page est créée, pourquoi ne pas [apprendre à créer des formulaires](https://larabiz.fr/blog/comment-creer-formulaire-laravel) ? Il vous faudra aussi les styliser et j'ai écrit deux articles à propos de l'[intégration de Tailwind CSS](https://larabiz.fr/blog/comment-tailwind-css-3-laravel) et [Bootstrap](https://larabiz.fr/blog/comment-bootstrap-5-laravel) dans un projet Laravel.
 
 Bonne chance dans votre apprentissage et à bientôt sur Larabiz. 👋
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-03 21:40:51',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/w2txfZFXQ0Dvraig533tB64R3CBwX2eevvVVHDLy.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/5/conversions/eefc2ff24d1653b863dc68866c4c42550263b545-large.jpg')
+            ->toMediaCollection('images');
+
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/6/conversions/fa1e490dded4d1de1c4ebf218299b0e827943db3-large.jpg')
+            ->toMediaCollection('images');
+
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment créer un nouveau projet avec Laravel',
             'slug' => 'comment-creer-nouveau-projet-laravel',
-            'excerpt' => "Saviez-vous qu'il y a un installeur officiel Laravel ? Ou qu'il est possible de passer tout un tas d'options lors de la création d'un nouveau projet ?",
+            'excerpt' => "Saviez-vous qu'il y a un installeur officiel Laravel ? Ou qu'il est possible de passer tout un tas d'options lors de la création d'un nouveau projet ?",
             'content' => <<<'EOT'
 ## Créer un nouveau projet Laravel simple
 
@@ -246,7 +270,7 @@ Set up a fresh Laravel app
 
 ## Créer un nouveau projet Laravel avec un dépôt Git initialisé et poussé sur GitHub
 
-Celle-ci, c'est ma préférée. Il faudra d'abord installer le [CLI officiel de GitHub](https://github.com/cli/cli#installation) par contre.
+Celle-ci, c'est ma préférée. Il faudra d'abord installer le [CLI officiel de GitHub](https://github.com/cli/cli#installation) par contre.  
 Une fois installé et authentifié, exécutez la commande suivante :
 
 ```bash
@@ -277,11 +301,13 @@ laravel new mon-super-site --dev
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-03 21:41:57',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/o3IbbaKgpgXPTy2m1FxLd1xDogNcVJwHKf62GX8a.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment créer un formulaire avec Laravel',
             'slug' => 'comment-creer-formulaire-laravel',
@@ -297,8 +323,8 @@ Afin d'être capable de suivre ce tutoriel, je vous recommande d'être au point 
 
 ### Création des routes
 
-Dans `routes/web.php`, créons la route permettant d'afficher le formulaire en se rendant sur la page */mon-super-formulaire*.
-On utilisera la méthode `Route::view`, permettant de directement lier une vue à une page. Pourquoi ? Cela nous permet d'écrire moins de code. Donc, plutôt que d'écrire ceci :
+Dans `routes/web.php`, créons la route permettant d'afficher le formulaire en se rendant sur la page */mon-super-formulaire*.  
+On utilisera la méthode `Route::view`, permettant de directement lier une vue à une page. Pourquoi ? Cela nous permet d'écrire moins de code. Donc, plutôt que d'écrire ceci :
 
 ```php
 Route::get('/mon-super-formulaire', function () {
@@ -386,11 +412,21 @@ Il est désormais impossible d'envoyer le formulaire sans l'avoir rempli avant. 
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-03 22:34:08',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/F3avlqxOElk4JT2y8rasBY8CdtAKVhPMYxc0CVIl.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/3/conversions/6bb42ead1f8e6ddf07dbaf652eb4da1666a00bc1-large.jpg')
+            ->toMediaCollection('images');
+
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/4/conversions/82cff83c78368491513aff454cc2110c96362d9b-large.jpg')
+            ->toMediaCollection('images');
+
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment installer Tailwind CSS 3 dans un projet Laravel',
             'slug' => 'comment-tailwind-css-3-laravel',
@@ -498,11 +534,13 @@ En coulisse, Laravel Mix ajoutera une query string à la fin de l'URL de votre f
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-05 11:35:10',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180869791-63e4cce8-c529-4fd6-97cc-f777f9a28f86.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment installer Bootstrap 5 dans un projet Laravel',
             'slug' => 'comment-bootstrap-5-laravel',
@@ -510,7 +548,7 @@ EOT,
             'content' => <<<'EOT'
 ## Installer le package
 
-Plutôt que d'utiliser le CDN de Bootstrap, nous allons utiliser Webpack (à travers Laravel Mix). Cela nous permettra plus tard d'inclure seulement les briques que vous utilisez. Mais nous verrons cela plus tard.
+Plutôt que d'utiliser le CDN de Bootstrap, nous allons utiliser Webpack (à travers Laravel Mix). Cela nous permettra plus tard d'inclure seulement les briques que vous utilisez. Mais nous verrons cela plus tard.  
 Pour le moment, exécutez la commande suivante :
 
 ```bash
@@ -520,7 +558,7 @@ npm install bootstrap @popperjs/core
 
 ## Configuration de Laravel Mix
 
-Laravel Mix est une abstraction autour de Webpack. Si vous avez déjà essayé d'utiliser Webpack, vous apprécierez le gain de temps et d'énergie que cet outil vous fera gagner. Et à mon avis, il serait bête de s'en priver.
+Laravel Mix est une abstraction autour de Webpack. Si vous avez déjà essayé d'utiliser Webpack, vous apprécierez le gain de temps et d'énergie que cet outil vous fera gagner. Et à mon avis, il serait bête de s'en priver.  
 Dans votre fichier `webpack.mix.js`, assurez-vous d'avoir ceci :
 
 ```js
@@ -598,17 +636,19 @@ Dans le cas où vous préfèreriez un framework CSS moins "couteau Suisse", je v
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-05 13:36:48',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180869775-216c0437-0627-47ce-999a-f12160d59814.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Découvrez 13 nouveautés et changements dans Laravel 9',
             'slug' => '13-nouveautes-changements-laravel-9',
             'excerpt' => "Laravel 9, la dernière version en date du framework, est truffée de nouveautés et changements divers importants. Je vous présente 13 d'entre eux.",
             'content' => <<<'EOT'
-Laravel est mis à jour toute l'année à travers des versions mineures. La différence avec Laravel 9 qui est une version majeure, c'est que de potentiels "breaking changes" ont été introduits et sont susceptibles d'affecter votre code.
+Laravel est mis à jour toute l'année à travers des versions mineures. La différence avec Laravel 9 qui est une version majeure, c'est que de potentiels "breaking changes" ont été introduits et sont susceptibles d'affecter votre code.  
 Dans le cas où votre code est testé, vous n'aurez absolument aucun mal à répérer où ça casse et corriger le tir.
 
 ## 1. PHP 8.0 minimum est requis
@@ -721,7 +761,7 @@ return new Attribute(
 
 ## 7. Les groupes de routes sous l'égide d'un seul contrôleur
 
-Avez-vous des routes utilisant toutes le même contrôleur ? Il est maintenant possible de les regrouper afin d'éviter de se répéter.
+Avez-vous des routes utilisant toutes le même contrôleur ? Il est maintenant possible de les regrouper afin d'éviter de se répéter.
 
 ```php
 Route::controller(PostController::class)->group(function () {
@@ -809,7 +849,7 @@ return redirect()->to('foo'); // [tl! --]
 return to_route('foo'); // [tl! ++]
 ```
 
-Quel intérêt ? C'est tout simplement plus simple à lire.
+Quel intérêt ? C'est tout simplement plus simple à lire.
 
 ## Bonus : un nouveau [laravel.com](https://laravel.com)
 
@@ -825,19 +865,37 @@ Il ne s'agit pas d'une nouveauté ayant un vrai rapport avec Laravel 9, mais il 
 <figcaption>Après.</figcaption>
 </figure>
 
-D'ailleurs, saviez-vous que [laravel.com](https://laravel.com) est open source ? Vous pouvez retrouver le dépôt sur [GitHub](https://github.com/laravel/laravel.com).
+D'ailleurs, saviez-vous que [laravel.com](https://laravel.com) est open source ? Vous pouvez retrouver le dépôt sur [GitHub](https://github.com/laravel/laravel.com).
 
 À vos clavier, je vous donne rendez-vous dans le [guide de mise à jour](https://laravel.com/docs/9.x/upgrade) officiel de Laravel ! 🥳
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-02-10 17:35:24',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180867152-3cf6bd45-3443-4072-95a9-5d6022af15ae.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/21/3ca4c7ee9269f09f50032c09aa485de65681c58d.jpg')
+            ->toMediaCollection('images');
+
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/18/56052845673eab56d1b5ec6a9f164ed1eead1bee.jpg')
+            ->toMediaCollection('images');
+
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/17/48f18889a1a64b511fc01db9aba6fe2846fc9c06.jpg')
+            ->toMediaCollection('images');
+
+        $post
+            ->addMediaFromUrl('https://larabiz.fr/storage/20/2670de6252f231496b565a3e4f061af1d20cb4bb.jpg')
+            ->toMediaCollection('images');
+
+        $post = Post::create([
             'user_id' => 1,
-            'title' => 'Laravel VS. Lumen en 2022 : lequel utiliser pour des performances optimales ?',
+            'title' => 'Laravel VS. Lumen en 2022 : lequel utiliser pour des performances optimales ?',
             'slug' => 'laravel-vs-lumen-2022',
             'excerpt' => "Avec le temps, les choses changent. Les microframeworks n'échappent pas à cette règle et leur pertinence s'amoindrit. Découvrez pourquoi avec Laravel et Lumen.",
             'content' => <<<'EOT'
@@ -867,17 +925,19 @@ Pour des performances et une productivité accrues, utilisez Laravel + Octane. L
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-03-03 17:20:03',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/2bNSUy4X0IKUbtaqtTO5Nuj4GSYC9prgWwaGXOMe.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
-            'title' => 'Pourquoi utiliser Laravel en 2022 ? Voici 5 raisons.',
+            'title' => 'Pourquoi utiliser Laravel en 2022 ? Voici 5 raisons.',
             'slug' => 'pourquoi-laravel-2022-5-raisons',
             'excerpt' => "Débuter en PHP n'est pas évident. L'écosystème est énorme et il est difficile de se décider sur un framework. Découvrez pourquoi choisir Laravel en 2022.",
             'content' => <<<'EOT'
-Le but de cet article n'est pas d'énoncer toutes les fonctionnalités de Laravel (pour ça, vous avez la [documentation officielle](https://laravel.com/docs)).
+Le but de cet article n'est pas d'énoncer toutes les fonctionnalités de Laravel (pour ça, vous avez la [documentation officielle](https://laravel.com/docs)).  
 Je suis plutôt là pour vous soulager du fardeau du choix en vous présentant les possibilités du framework *dans les grandes lignes* afin que vous ayez une vision claire des bénéfices.
 
 Avant de commencer, je pense qu'il est utile de rappeler pourquoi vous êtes confrontés au choix d'un framework :
@@ -947,21 +1007,23 @@ L'écriture de tests automatisés est un sujet énorme en programmation. **Larav
 - Écrire des tests prévient les bugs. Bien sûr, tout cela dépendra de la couverture de vos tests, mais vous obtiendrez des résultats *toujours* meilleurs ;
 - Couplez vos tests à de l'intégration continue. Commitez, pushez et seulement si vos tests passent, alors le code sera déployé en production.
 
-Il y a plein d'autres avantages à écrire des tests. Et il en existe plusieurs types. Mais pour ceux qui n'ont pas d'expérience en la matière, je pense vous avoir donné suffisamment d'éléments pour vous donner envie de creuser le sujet.
+Il y a plein d'autres avantages à écrire des tests. Et il en existe plusieurs types. Mais pour ceux qui n'ont pas d'expérience en la matière, je pense vous avoir donné suffisamment d'éléments pour vous donner envie de creuser le sujet.  
 Plus d'informations sur [la documentation officielle des tests](https://laravel.com/docs/testing).
 
 ## Conclusion
 
-Laravel est un framework accessible de par son approche pragmatique du code. Il est performant, extensible, soutenu par une large communauté et vous aidera à atteindre vos objectifs.
+Laravel est un framework accessible de par son approche pragmatique du code. Il est performant, extensible, soutenu par une large communauté et vous aidera à atteindre vos objectifs.  
 Investir dans l'apprentissage de ce framework vous permettra d'améliorer la satisfaction de votre employeur, de vos clients ou de contribuer au succès de votre startup.
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-03-08 00:19:18',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/uKh5vPr2BHWZ53bT9khO63u6SU3p3wMU0jw2sfTq.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment créer un contrôleur avec Laravel',
             'slug' => 'comment-creer-controleur-laravel-artisan',
@@ -1032,7 +1094,7 @@ Route::post('/posts', [StorePostController::class, 'store']); // [tl! --]
 Route::post('/posts', StorePostController::class); // [tl! ++]
 ```
 
-Pratique, n'est-il pas ? 🇬🇧
+Pratique, n'est-il pas ? 🇬🇧
 
 ## Créer un contrôleur pour une ressource
 
@@ -1160,11 +1222,13 @@ Ouvrez votre Terminal et exécutez la commande `php artisan help make:controller
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-04-18 16:04:34',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/180867647-2a5dfd43-b9df-4461-948b-9384612c14f4.png')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment créer un modèle, une migration et plus encore avec Artisan',
             'slug' => 'comment-creer-modele-migration-laravel-artisan',
@@ -1180,7 +1244,7 @@ php artisan make:model Post
 
 ## Créer un modèle accompagné d'une migration
 
-Savez-vous qu'il est aussi possible de générer une migration correspondant au modèle ?
+Savez-vous qu'il est aussi possible de générer une migration correspondant au modèle ?
 
 *Peuh, trop facile, il suffit de faire ça !*
 
@@ -1198,7 +1262,7 @@ Rendez-vous dans *database/migrations*. 👍
 
 ## Créer un modèle, une migration et une factory
 
-Maintenant que nous avons le modèle et la migration, nous pouvons avancer dans le développement de notre projet.
+Maintenant que nous avons le modèle et la migration, nous pouvons avancer dans le développement de notre projet.  
 Mais si vous souhaitez avoir un environnement de développement local optimal, je vous conseille d'utiliser les factories.
 
 Cet article n'est pas là pour vous aider à comprendre à quoi elles servent, mais pour résumer en deux phrases, les factories permettent de générer en quantité illimitée des modèles en base de donnée. Il est même possible d'utiliser [Faker](https://github.com/FakerPHP/Faker) (accessible depuis les factories) pour injecter de la fake data générée aléatoirement, tels que des noms, adresses e-mails, adresses postales, et j'en passe.
@@ -1213,7 +1277,7 @@ Vous trouverez la factory fraîchement créée dans *database/factories*.
 
 ## Créer un modèle, une migration, une factory, une policy, un controller et plus encore
 
-Vous l'aurez compris, la commande `php artisan make:model` peut recevoir une flopée d'options. Options visibles avec la commande `php artisan help make:model`.
+Vous l'aurez compris, la commande `php artisan make:model` peut recevoir une flopée d'options. Options visibles avec la commande `php artisan help make:model`.  
 En voici la liste dans le cas où vous ne seriez pas devant votre ordinateur :
 
 ```bash
@@ -1264,17 +1328,19 @@ Plus d'informations sur [la documentation officielle](https://laravel.com/docs/9
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-05-23 07:51:56',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/FIhHrH9SzaWHnvfG4V4a2WuZlX5h5QtJsYCfID5U.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => 'Comment installer Laravel sur Mac sans avoir recours à Docker grâce à Valet',
             'slug' => 'comment-installer-laravel-mac-valet-docker',
             'excerpt' => "Laravel Valet permet de déployer un environnement de développement sur votre machine en moins de temps qu'il n'en faut pour le dire. Découvrez comment faire.",
             'content' => <<<'EOT'
-Étant partisan du pragmatisme et ayant beaucoup de mal à supporter les contraintes d'un environnement basé sur Docker, je prêche régulièrement les bienfaits de [Laravel Valet](https://laravel.com/docs/valet). Cet outil officiel vous permet de mettre en place un environnement de développement Laravel (voir même Symfony ou WordPress) d'un simple claquement de doigts. En fonction de la vitesse de votre connexion internet et de votre machine, cela peut être réglé en l'espace de￼ 5 minutes.
+Étant partisan du pragmatisme et ayant beaucoup de mal à supporter les contraintes d'un environnement basé sur Docker, je prêche régulièrement les bienfaits de [Laravel Valet](https://laravel.com/docs/valet). Cet outil officiel vous permet de mettre en place un environnement de développement Laravel (voir même Symfony ou WordPress) d'un simple claquement de doigts. En fonction de la vitesse de votre connexion internet et de votre machine, cela peut être réglé en l'espace de 5 minutes.
 
 ## Installer le gestionnaire de packages Homebrew
 
@@ -1327,7 +1393,7 @@ La variable d'environnement `PATH` contient une liste de dossiers (séparés par
 echo $PATH
 ```
 
-Dans notre cas, nous souhaitons dire au terminal d'également prendre en compte le dossier `~/.composer/vendor/bin` (où se trouvent les binaires `valet` et `laravel`).
+Dans notre cas, nous souhaitons dire au terminal d'également prendre en compte le dossier `~/.composer/vendor/bin` (où se trouvent les binaires `valet` et `laravel`).  
 Pour cela, nous allons ajouter le dossier à notre PATH comme ceci :
 
 ```bash
@@ -1415,11 +1481,13 @@ valet unisolate --site hello-world
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-06-28 12:42:17',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/LTFRCPtx77VN3JzU0fU5pKDsTqG8dbk1DdK82Yzw.jpg')
             ->toMediaCollection('illustration');
 
-        Post::create([
+        $post = Post::create([
             'user_id' => 1,
             'title' => "Avant d'utiliser le système de files d'attente de Laravel, essayez dispatchAfterResponse()",
             'slug' => 'files-attente-queues-laravel-dispatch-after-response',
@@ -1434,7 +1502,7 @@ Prenons un formulaire d'abonnement à une newsletter comme exemple :
 - Il est quasi-instantanément redirigé vers une page lui demandant surveiller sa boîte de réception pour l'e-mail de confirmation ;
 - L'envoi de l'e-mail est déclenché juste après, ce qui permet de ne pas avoir une latence d'une à deux secondes avant d'afficher la page mentionnée à l'étape précédente.
 
-Comment arrive-t-on a un tel résultat sans utiliser les queues ? Tout simplement en utilisant la méthode `dispatchAfterResponse()ˋ.
+Comment arrive-t-on a un tel résultat sans utiliser les queues ? Tout simplement en utilisant la méthode `dispatchAfterResponse()ˋ.
 Imaginons notre contrôleur :
 
 ```php
@@ -1463,8 +1531,63 @@ Pour des besoins plus avancés, utiliser le système de queues de Laravel vous p
 EOT,
             'certified_for_laravel' => 9,
             'created_at' => '2022-07-06 09:14:37',
-        ])
+        ]);
+
+        $post
             ->addMediaFromUrl('https://larabiz.fr/storage/e10e48cd9bd3cc3c461da73b6f0b0d11ef66eb18.jpg')
+            ->toMediaCollection('illustration');
+
+        $post = Post::create([
+            'user_id' => 1,
+            'title' => 'Devenir développeur web PHP en 2022 : 4 points importants après votre première embauche',
+            'slug' => 'devenir-developpeur-web-php-2022-4-points-importants-embauche-emploi',
+            'excerpt' => "Être un développeur apprécié et respecté fera de vous une personne hautement employable. Voici quelques conseils de la part de quelqu'un n'ayant jamais rien fait pour que cela lui arrive.",
+            'content' => <<<'EOT'
+## Soyez modestes
+
+Lorsque je suis devenu développeur employé en 2013, j'ai débuté une période très arrogante à la suite de quelques succès.
+
+Par exemple, lors de mon entretien d'embauche dans une agence de communication, il m'a fallu modifier un projet existant en respectant un cahier des charges. Plus tard, j'ai appris que le développeur ayant passé son entretien après moi s'était simplement contenté de copier/coller mon travail.
+
+Ajoutez à ça le fait j'étais entièrement autodidacte, ou que mon arrivé dans l'agence nous a permis de basculer sur WordPress, ce qui a grandement amélioré notre productivité. (Ils avaient pour habitude de réinventer la roue à chaque projet.)  Par conséquent, je contribuais à la montée en compétences du responsable du pôle web de l'entreprise (plus âgé et plus expérimenté) et on venait souvent me demander lorsqu'il y avait une question technique.
+
+Croyez-moi, la largeur de mes chevilles augmentait à vue d'oeil.
+
+Toutes ces choses positives ne valent malheureusement pas grand chose lorsque votre attitude est déplorable. Si vous vous reconnaissez, arrêtez tout de suite. **Ne vous vantez pas en étalant vos connaissances** et **ne rabaissez pas vos collègues**. **Soyez bienveillants** et votre réputation s'en trouvera améliorée.
+
+## Personne n'est parfait. Un code livré est préférable à un code parfait.
+
+Avez-vous entendu parler des chimères ? Savez-vous ce qu'elles ont en commun avec la perfection ? Voici ce que Wikipédia nous dit à leur sujet :
+
+> Une chimère, est une idée irrationnelle produite par l'imagination, un fantasme irréalisable.
+
+C'est l'analogie idéale. La perfection *"est une idée irrationnelle produite par l'imagination, un fantasme irréalisable."* C'est aussi un concept hautement subjectif. Ce qui rend votre code parfait à vos yeux ne l'est pas forcément pour les autres, ni même à ceux de votre vous futur.
+
+Passer un temps considérable sur la forme au détriment du reste peut être extrêmement néfaste pour votre carrière.  
+Il faut aussi bien garder à l'esprit que les gens pour qui vous produisez le code se moquent de savoir si que vous utilisez un design pattern quelconque ou je ne sais quelle autre fantaisie qui ne fait fantasmer qu'un développeur.  
+**Leur but est que votre code génère un retour sur investissement, car vous avez été payé pour ça**.
+
+Lorsque vous travaillez sur un projet, il est important qu'il soit livré dans un état décent. Mais ne retardez pas la livraison pour des problèmes ou des besoins qui ne se poseront peut-être jamais.
+
+**Faites seulement ce qu'on vous demande et corrigez seulement les bugs auxquels vous êtes confrontés. Votre employeur a besoin de quelqu'un d'efficace.**
+
+Imaginez-vous un instant avoir commandé une nouvelle maison et voir le chantier prendre un retard considérable car l'artisan a décidé de s'attarder sur l'apparence du carrelage ou de poser une porte au plafond au cas où vous aimeriez faire un autre étage ([exemple ici](https://www.youtube.com/watch?v=dEP7aEyTOf0)). Nous sommes d'accord, personne n'a envie d'être confronté à ce genre de situation.
+
+## Soyez pragmatiques
+
+Même les plus grands font appel à l'open source, Google et Stack Overflow.
+
+## Celui qui sait qu'il ne sait pas sait beaucoup.
+
+## Conclusion
+
+Modestie et pragmatisme sont les maîtres-mots. Accumulez de l'expérience en gardant à l'esprit tout ce que vous avez lu jusqu'à maintenant et allez plus loin seulement après mûre réflexion.
+EOT,
+            'certified_for_laravel' => null,
+        ]);
+
+        $post
+            ->addMediaFromUrl('https://user-images.githubusercontent.com/3613731/181029204-7a461f9f-66f3-4c8f-aba4-ed4fe2eda68b.jpg')
             ->toMediaCollection('illustration');
     }
 }
