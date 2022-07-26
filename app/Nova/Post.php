@@ -30,10 +30,10 @@ class Post extends Resource
         return [
             ID::make(),
 
-            BelongsTo::make('User')
+            BelongsTo::make('Author', 'user', User::class)
                 ->rules('required'),
 
-            Images::make('Illustration', 'illustration')
+            Images::make('Image', 'illustration')
                 ->conversionOnIndexView('thumbnail')
                 ->showStatistics()
                 ->rules('required'),
@@ -59,7 +59,7 @@ class Post extends Resource
                 ->placeholder('e.g. 9')
                 ->hideFromIndex(),
 
-            Text::make('Comments Count')
+            Text::make('Comments', 'comments_count')
                 ->exceptOnForms(),
 
             HasMany::make('Comments'),

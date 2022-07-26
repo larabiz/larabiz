@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Nova\Nova;
 use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
@@ -26,6 +27,12 @@ class Post extends Model implements HasMedia
         self::creating(function (self $post) {
             $post->random_id = Str::random(6);
         });
+
+        self::saved(function (self $post) {
+            Nova::serving(function () use ($post) {
+                Str::marxdown($post->content);
+            });
+        });
     }
 
     public function comments() : HasMany
@@ -37,7 +44,8 @@ class Post extends Model implements HasMedia
     {
         $this
             ->addMediaCollection('illustration')
-            ->singleFile();
+            ->singleFile()
+            ->onlyKeepLatest(1);
 
         $this->addMediaCollection('images');
     }

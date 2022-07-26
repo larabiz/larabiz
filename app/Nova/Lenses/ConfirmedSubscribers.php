@@ -1,22 +1,27 @@
 <?php
 
-namespace App\Nova;
+namespace App\Nova\Lenses;
 
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Lenses\Lens;
 use Laravel\Nova\Fields\DateTime;
-use App\Nova\Lenses\ConfirmedSubscribers;
+use Laravel\Nova\Http\Requests\LensRequest;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Subscriber extends Resource
+class ConfirmedSubscribers extends Lens
 {
-    public static $model = \App\Models\Subscriber::class;
-
-    public static $title = 'email';
-
-    public static $search = [
-        'id', 'email',
-    ];
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return mixed
+     */
+    public static function query(LensRequest $request, $query)
+    {
+        return $request->withOrdering($request->withFilters(
+            $query->whereNotNull('confirmed_at')
+        ));
+    }
 
     public function fields(NovaRequest $request) : array
     {
@@ -44,15 +49,8 @@ class Subscriber extends Resource
         return [];
     }
 
-    public function lenses(NovaRequest $request) : array
+    public function uriKey() : string
     {
-        return [
-            new ConfirmedSubscribers,
-        ];
-    }
-
-    public function actions(NovaRequest $request) : array
-    {
-        return [];
+        return 'confirmed-subscribers';
     }
 }

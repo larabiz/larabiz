@@ -10,5 +10,6 @@ class SubscribersTableSeeder extends Seeder
     public function run() : void
     {
         Subscriber::factory(30)->create();
+        Subscriber::factory(30)->create(['confirmed_at' => null]);
     }
 }
