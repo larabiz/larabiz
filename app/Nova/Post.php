@@ -5,7 +5,9 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Textarea;
@@ -35,8 +37,13 @@ class Post extends Resource
                 ->showStatistics()
                 ->rules('required'),
 
+            Text::make('Random ID')
+                ->exceptOnForms()
+                ->hideFromIndex(),
+
             BelongsTo::make('Author', 'user', User::class)
-                ->rules('required'),
+                ->rules('required')
+                ->hideFromIndex(),
 
             Text::make('Title')
                 ->rules('required')
@@ -59,12 +66,27 @@ class Post extends Resource
                 ->placeholder('e.g. 9')
                 ->hideFromIndex(),
 
+            Badge::make('Status', 'is_draft')
+                ->map([
+                    true => 'danger',
+                    false => 'success',
+                ])
+                ->labels([
+                    true => 'Draft',
+                    false => 'Published',
+                ]),
+
+            Boolean::make('Is Draft')
+                ->onlyOnForms(),
+
             Text::make('Comments', 'comments_count')
+                ->sortable()
                 ->exceptOnForms(),
 
             HasMany::make('Comments'),
 
             Images::make('Images', 'images')
+                ->conversionOnForm('large')
                 ->showStatistics()
                 ->hideFromIndex(),
         ];

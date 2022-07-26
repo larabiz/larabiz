@@ -4,7 +4,7 @@
     </x-slot>
 
     <p class="mt-5 text-center sm:text-lg md:text-xl">
-        <strong class="bg-purple-200">Tous les lundis</strong>, Larabiz vous envoie <strong class="bg-purple-200">gratuitement</strong> les dernières opportunités.
+        <strong class="bg-purple-200">Tous les lundis</strong>, {{ config('app.name') }} vous envoie <strong class="bg-purple-200">gratuitement</strong> les dernières opportunités.
     </p>
 
     <x-form method="POST" action="{{ route('subscribers.store') }}" class="md:max-w-screen-sm mt-8 mx-auto">
@@ -21,7 +21,7 @@
     </x-form>
 
     <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 text-xs">
-        Pas de spam, seulement des nouvelles en rapport avec Larabiz !
+        Pas de spam, seulement des nouvelles en rapport avec {{ config('app.name') }} !
     </p>
 
     {{ $slot }}

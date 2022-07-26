@@ -9,8 +9,8 @@
 /node_modules
 /public/build
 /public/hot
+/public/sitemap.xml
 /public/storage
-/public/vendor
 /storage/*.key
 /vendor
 auth.json

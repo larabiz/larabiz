@@ -3,13 +3,18 @@
 namespace Tests\Feature\App\Http\Controllers;
 
 use Tests\TestCase;
+use App\Models\User;
 use App\Models\Subscriber;
 use Illuminate\Support\Facades\URL;
+use App\Notifications\NewSubscriber;
+use Illuminate\Support\Facades\Notification;
 
 class ConfirmSubscriberControllerTest extends TestCase
 {
     public function test_it_confirms_subscriber() : void
     {
+        Notification::fake();
+
         $subscriber = Subscriber::factory()->create(['confirmed_at' => null]);
 
         $this
@@ -19,6 +24,8 @@ class ConfirmSubscriberControllerTest extends TestCase
         ;
 
         $this->assertNotNull($subscriber->fresh()->confirmed_at);
+
+        Notification::assertSentToTimes(User::master()->first(), NewSubscriber::class, 1);
     }
 
     public function test_it_needs_a_signed_URL() : void

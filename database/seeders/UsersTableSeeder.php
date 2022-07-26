@@ -14,6 +14,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'benjamincrozat@me.com',
         ]);
 
-        User::factory(29)->create();
+        User::factory(30)->create();
     }
 }

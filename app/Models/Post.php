@@ -8,6 +8,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -24,14 +25,20 @@ class Post extends Model implements HasMedia
 
     public static function booted() : void
     {
-        self::creating(function (self $post) {
+        static::creating(function (self $post) {
             $post->random_id = Str::random(6);
         });
 
-        self::saved(function (self $post) {
+        static::saved(function (self $post) {
             Nova::serving(function () use ($post) {
                 Str::marxdown($post->content);
             });
+        });
+
+        static::addGlobalScope('published', function (Builder $builder) {
+            if (! auth()->check()) {
+                $builder->where('is_draft', false);
+            }
         });
     }
 

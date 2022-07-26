@@ -1,4 +1,8 @@
-<x-app>
+<x-app
+    :title="$post->title"
+    :description="$post->excerpt"
+    :image="$post->getFirstMediaUrl('illustration', 'large')"
+>
     <div class="container py-8 sm:py-16">
         <nav>
             <a href="{{ route('posts.index') }}" class="inline-flex items-center gap-1 font-semibold text-indigo-400">
@@ -8,7 +12,7 @@
 
         <article class="pb-8 sm:pb-16 pt-6 sm:pt-14">
             <h1 class="font-thin text-3xl sm:text-5xl">
-                {{ $post->title }}
+                @if ($post->is_draft) Brouillon : @endif {{ $post->title }}
             </h1>
 
             <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
@@ -28,7 +32,7 @@
             </div>
 
             @if ($url = $post->getFirstMediaUrl('illustration', 'large'))
-                <img src="{{ $url }}" alt="" class="mt-8" />
+                <img loading="lazy" src="{{ $url }}" alt="" class="mt-8" />
             @endif
 
             <div class="break-words prose prose-a:bg-indigo-100 prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-200 prose-blockquote:font-serif prose-blockquote:text-indigo-900 prose-blockquote:text-opacity-75 prose-h3:leading-tight prose-img:my-0 prose-figure:mx-auto prose-figure:text-center prose-figure:sm:w-2/3 prose-figure:md:w-1/2 prose-strong:font-bold !max-w-none mt-8">
@@ -36,7 +40,7 @@
             </div>
         </article>
 
-        <x-author :author="$post->user" />
+        <x-author :author="$post->user" class="border-t border-indigo-100 pt-8 sm:pt-16" />
     </div>
 
     <div class="bg-indigo-100">

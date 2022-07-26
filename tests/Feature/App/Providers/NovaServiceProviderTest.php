@@ -9,12 +9,8 @@ class NovaServiceProviderTest extends TestCase
 {
     public function test_it_allows_some_emails() : void
     {
-        $user = User::factory()->create([
-            'email' => 'benjamincrozat@me.com',
-        ]);
-
         $this
-            ->actingAs($user)
+            ->actingAs(User::master()->first())
             ->getJson('/nova')
             ->assertRedirect('/nova/dashboards/main')
         ;

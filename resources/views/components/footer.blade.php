@@ -1,6 +1,6 @@
 <div {{ $attributes->merge(['class' => 'bg-gray-900 py-8 text-gray-400']) }}>
     <footer class="container">
-        <p class="mt-4">{{ config('app.name') }} est un site ayant pour mission d'accompagner les développeurs Laravel francophones. Lisez le blog et abonnez-vous à la newsletter afin de recevoir chaque lundi les dernières offres d'emploi.</p>
+        <p class="mt-4">{{ config('app.name') }} est un site ayant pour mission d'accompagner les développeurs Laravel francophones. Lisez le blog et abonnez-vous à la newsletter afin de recevoir les dernières offres d'emploi et plus encore.</p>
 
         <div class="grid grid-cols-2 gap-8 mt-8">
             <nav>
@@ -40,6 +40,6 @@
             </div>
         </div>
 
-        <p class="mt-8 text-center text-gray-700 text-xs">© {{ date('Y') }} Larabiz</p>
+        <p class="mt-8 text-center text-gray-700 text-xs">© {{ date('Y') }} {{ config('app.name') }}</p>
     </footer>
 </div>

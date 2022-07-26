@@ -16,7 +16,11 @@ class PostFactory extends Factory
             'slug' => fake()->slug(),
             'content' => fake()->paragraphs(5, true),
             'excerpt' => fake()->paragraph(),
-            'certified_for_laravel' => 9,
         ];
+    }
+
+    public function asDraft() : static
+    {
+        return $this->state(fn () => ['is_draft' => true]);
     }
 }

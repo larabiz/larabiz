@@ -147,7 +147,7 @@ return [
     |
     */
 
-    'currency' => 'USD',
+    'currency' => 'EUR',
 
     /*
     |--------------------------------------------------------------------------
@@ -184,5 +184,10 @@ return [
 
     'actions' => [
         'resource' => ActionResource::class,
+    ],
+
+    'routes' => [
+        'login' => '/login',
+        'logout' => '/logout',
     ],
 ];

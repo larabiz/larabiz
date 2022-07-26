@@ -28,14 +28,20 @@ class User extends Resource
             Gravatar::make()->maxWidth(50),
 
             Text::make('Username')
-                ->sortable()
                 ->rules('required', 'max:255'),
+
+            Text::make('URL GitHub', 'github')
+                ->rules('nullable', 'url', 'regex:/^https?:\/\/github.com\//')
+                ->hideFromIndex(),
+
+            Text::make('URL LinkedIn', 'linkedin')
+                ->rules('nullable', 'url', 'regex:/^https?:\/\/www\.linkedin.com\/in\//')
+                ->hideFromIndex(),
 
             Textarea::make('Biography')
                 ->rules('nullable', 'max:255'),
 
             Text::make('Email')
-                ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),

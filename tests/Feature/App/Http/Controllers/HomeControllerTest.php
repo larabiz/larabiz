@@ -10,7 +10,8 @@ class HomeControllerTest extends TestCase
 {
     public function test_it_works() : void
     {
-        Post::factory(10)->forUser()->create();
+        Post::factory(3)->forUser()->create();
+        Post::factory(3)->forUser()->asDraft()->create();
 
         $response = $this
             ->get(route('home'))
@@ -19,6 +20,6 @@ class HomeControllerTest extends TestCase
         ;
 
         $this->assertInstanceOf(Collection::class, $latest = $response->viewData('latest'));
-        $this->assertCount(6, $latest);
+        $this->assertCount(3, $latest);
     }
 }

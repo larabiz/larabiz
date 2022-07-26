@@ -10,6 +10,6 @@ class PostsCount extends Value
 {
     public function calculate(NovaRequest $request) : ValueResult
     {
-        return $this->count($request, Post::class);
+        return $this->count($request, Post::whereIsDraft(false));
     }
 }

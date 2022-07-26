@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->text('content');
             $table->text('excerpt');
             $table->unsignedInteger('certified_for_laravel')->nullable();
+            $table->boolean('is_draft')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
