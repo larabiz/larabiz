@@ -17,7 +17,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'username' => ['required', 'string', 'min:3', 'max:255'],
             'github' => ['nullable', 'url', 'regex:/^https?:\/\/github.com\//'],
-            'linkedin' => ['nullable', 'url', 'regex:/^https?:\/\/www\.linkedin.com\/in\//'],
+            'linkedin' => ['nullable', 'url', 'regex:/^https?:\/\/(www\.)?linkedin.com\/in\//'],
             'biography' => ['nullable', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ])->validateWithBag('updateProfileInformation');

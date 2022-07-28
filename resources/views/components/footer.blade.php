@@ -1,45 +1,25 @@
-<div {{ $attributes->merge(['class' => 'bg-gray-900 py-8 text-gray-400']) }}>
-    <footer class="container">
-        <p class="mt-4">{{ config('app.name') }} est un site ayant pour mission d'accompagner les développeurs Laravel francophones. Lisez le blog et abonnez-vous à la newsletter afin de recevoir les dernières offres d'emploi et plus encore.</p>
+<div {{ $attributes->merge(['class' => 'bg-gray-900 py-8 text-gray-400 text-sm']) }}>
+    <footer class="container sm:max-w-screen-sm text-center">
+        <a href="{{ route('home') }}">
+            <x-icon-larabiz-alt class="h-6 sm:h-7 inline" />
+        </a>
 
-        <div class="grid grid-cols-2 gap-8 mt-8">
-            <nav>
-                <p class="font-semibold text-white">Navigation</p>
+        <p class="mt-6 sm:mt-8">Sur {{ config('app.name') }}, retrouvez par mail les dernières offres d'emploi Laravel, des articles de qualité et plus encore.</p>
 
-                <ul class="grid gap-2 leading-tight mt-4">
-                    <li>
-                        <a href="{{ route('home') }}">
-                            Accueil
-                        </a>
-                    </li>
+        <ul class="flex items-center justify-center gap-2 mt-7 sm:mt-9 text-gray-300">
+            <li>
+                <a href="https://github.com/Larabiz">
+                    <span class="sr-only">GitHub</span>
+                    <x-icon-github class="fill-current h-8" />
+                </a>
+            </li>
 
-                    <li>
-                        <a href="{{ route('posts.index') }}">
-                            Blog
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-            <div>
-                <p class="font-semibold text-white">Réseaux sociaux</p>
-
-                <ul class="grid gap-2 leading-tight mt-4">
-                    <li>
-                        <a href="https://twitter.com/Larabiz_">
-                            @Larabiz_
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://twitter.com/Larabiz_">
-                            @benjamincrozat
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <p class="mt-8 text-center text-gray-700 text-xs">© {{ date('Y') }} {{ config('app.name') }}</p>
+            <li>
+                <a href="https://twitter.com/Larabiz_">
+                    <span class="sr-only">Twitter</span>
+                    <x-icon-twitter class="fill-current h-8" />
+                </a>
+            </li>
+        </ul>
     </footer>
 </div>

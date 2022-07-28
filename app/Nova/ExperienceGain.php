@@ -4,35 +4,42 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\DateTime;
-use App\Nova\Lenses\ConfirmedSubscribers;
+use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Subscriber extends Resource
+class ExperienceGain extends Resource
 {
-    public static $group = 'Marketing';
+    public static $group = 'Community';
 
-    public static $model = \App\Models\Subscriber::class;
+    public static $model = \App\Models\ExperienceGain::class;
 
-    public static $title = 'email';
+    public static $title = 'title';
 
     public static $search = [
-        'id', 'email',
+        'id',
+        'user.username',
+        'points',
+        'message',
     ];
+
+    public function subtitle() : string
+    {
+        return "« $this->message »";
+    }
 
     public function fields(NovaRequest $request) : array
     {
         return [
             ID::make()->sortable(),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+            BelongsTo::make('User'),
 
-            DateTime::make('Confirmed At')
+            Number::make('Points')
                 ->rules('required'),
+
+            Text::make('Message')
+                ->rules('required', 'max:255'),
         ];
     }
 
@@ -48,9 +55,7 @@ class Subscriber extends Resource
 
     public function lenses(NovaRequest $request) : array
     {
-        return [
-            new ConfirmedSubscribers,
-        ];
+        return [];
     }
 
     public function actions(NovaRequest $request) : array

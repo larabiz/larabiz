@@ -17,7 +17,9 @@ class SitemapGenerateCommand extends Command
         $sitemap = Sitemap::create();
 
         $sitemap->add(route('home'));
+
         $sitemap->add(route('posts.index'));
+
         Post::latest()->cursor()->each(function (Post $post) use ($sitemap) {
             $sitemap->add(route('posts.show', [$post->random_id, $post->slug]));
         });

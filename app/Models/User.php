@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Nova\Auth\Impersonatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Impersonatable, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 
@@ -40,6 +41,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Discussion::class);
     }
 
+    public function experience_gains() : HasMany
+    {
+        return $this->hasMany(ExperienceGain::class);
+    }
+
     public function posts() : HasMany
     {
         return $this->hasMany(Post::class);
@@ -48,5 +54,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function replies() : HasMany
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function sumExperienceGainsPoints() : int
+    {
+        return $this->experience_gains()->sum('points');
     }
 }

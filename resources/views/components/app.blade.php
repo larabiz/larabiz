@@ -50,7 +50,7 @@
                 {{ $slot }}
             </main>
 
-            <x-footer class="bg-indigo-100 flex-grow" />
+            <x-footer class="flex-grow" />
         </div>
 
         <x-status />

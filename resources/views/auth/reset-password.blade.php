@@ -1,14 +1,11 @@
 <x-app>
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
-            Inscription
+            Mon nouveau mot de passe
         </x-slot:title>
 
-        <x-form method="POST" action="{{ route('register') }}" class="grid gap-4">
-            <div class="grid">
-                <x-label for="username">Nom d'utilisateur</x-label>
-                <x-input id="username" name="username" value="{{ old('username') }}" placeholder="Monsieur X, El Barto, etc." required />
-            </div>
+        <x-form method="POST" action="{{ route('password.update') }}" class="grid gap-4">
+            <input type="hidden" name="token" value="{{ $request->route('token') }}" />
 
             <div class="grid">
                 <x-label for="email">E-mail</x-label>
@@ -16,16 +13,16 @@
             </div>
 
             <div class="grid">
-                <x-label for="password">Mot de passe</x-label>
+                <x-label for="password">Nouveau mot de passe</x-label>
                 <x-input type="password" id="password" name="password" required />
             </div>
 
             <div class="grid">
-                <x-label for="password-confirmation">Confirmation du mot de passe</x-label>
+                <x-label for="password-confirmation">Confirmation du nouveau mot de passe</x-label>
                 <x-input type="password" id="password-confirmation" name="password_confirmation" required />
             </div>
 
-            <x-cta type="submit" class="mt-4">Inscription</x-cta>
+            <x-cta type="submit" class="mt-4">Valider</x-cta>
         </x-form>
     </x-section>
 </x-app>

@@ -36,6 +36,17 @@
                 </button>
 
                 <div class="absolute top-full right-0 backdrop-blur-md bg-white/75 min-w-[200px] mt-2 py-2 rounded-lg shadow-xl shadow-indigo-900/10 z-10" x-show="open" x-transition>
+                    <div class="px-4 py-2 text-sm">
+                        <div class="font-bold">{{ auth()->user()->username }}</div>
+
+                        <div>
+                            <span class="text-gray-600">XP : </span>
+                            <span class="font-bold font-mono">{{ auth()->user()->sumExperienceGainsPoints() }}</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 h-px my-2"></div>
+
                     <a href="{{ route('user.profile') }}" class="hover:bg-indigo-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
                         <x-heroicon-o-user class="h-4 translate-y-[-0.5px]" />
                         Mon profil
@@ -44,12 +55,12 @@
                     <div class="bg-indigo-50 h-px my-2"></div>
 
                     @if (auth()->user()->email === 'benjamincrozat@me.com')
-                        <a href="{{ url(config('nova.path')) }}" target="_blank" class="hover:bg-purple-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
+                        <a href="{{ url(config('nova.path')) }}" class="hover:bg-purple-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
                             <x-icon-nova class="fill-current h-4 translate-y-[-0.5px]" />
                             Nova
                         </a>
 
-                        <a href="{{ url(config('horizon.path')) }}" target="_blank" class="hover:bg-purple-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
+                        <a href="{{ url(config('horizon.path')) }}" class="hover:bg-purple-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
                             <x-icon-horizon class="h-4 translate-y-[-0.5px]" />
                             Horizon
                         </a>

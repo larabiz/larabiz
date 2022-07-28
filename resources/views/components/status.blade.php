@@ -8,10 +8,13 @@
         <div class="container mb-4">
             <div class="bg-gradient-to-r from-gray-700 to-gray-800 flex items-center justify-between gap-5 px-5 py-4 rounded-lg shadow-lg shadow-indigo-900/20">
                 <div class="font-bold text-white">
+                    {{-- Fortify provides these statuses. --}}
                     @if (session('status') === 'profile-information-updated')
-                        Votre profil a bien bien été mis à jour.
+                        Vos informations ont bien été mises à jour.
                     @elseif (session('status') === 'verification-link-sent')
                         L'e-mail de confirmation a bien été renvoyé.
+                    @elseif (session('status') === 'password-updated')
+                        Votre mot de passe a bien été mis à jour.
                     @else
                         {{ session('status') }}
                     @endif

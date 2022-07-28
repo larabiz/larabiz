@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
 class ShowPostController extends Controller
 {
-    public function __invoke(Request $request, string $randomId, ?string $slug = null) : View|RedirectResponse
+    public function __invoke(string $randomId, ?string $slug = null) : View|RedirectResponse
     {
         $post = Post::whereRandomId($randomId)->firstOrFail();
 

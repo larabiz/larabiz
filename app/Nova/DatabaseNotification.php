@@ -2,37 +2,37 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\DateTime;
-use App\Nova\Lenses\ConfirmedSubscribers;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Subscriber extends Resource
+class DatabaseNotification extends Resource
 {
-    public static $group = 'Marketing';
+    public static $model = \Illuminate\Notifications\DatabaseNotification::class;
 
-    public static $model = \App\Models\Subscriber::class;
-
-    public static $title = 'email';
+    public static $title = 'data->message';
 
     public static $search = [
-        'id', 'email',
+        'id', 'type',
     ];
 
     public function fields(NovaRequest $request) : array
     {
         return [
-            ID::make()->sortable(),
+            Text::make('ID')
+                ->exceptOnForms(),
 
-            Text::make('Email')
-                ->sortable()
-                ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
-                ->updateRules('unique:users,email,{{resourceId}}'),
+            MorphTo::make('Notifiable'),
 
-            DateTime::make('Confirmed At')
+            Text::make('Type')
                 ->rules('required'),
+
+            Code::make('Data')->json(),
+
+            DateTime::make('Read At')
+                ->rules('nullable'),
         ];
     }
 
@@ -48,9 +48,7 @@ class Subscriber extends Resource
 
     public function lenses(NovaRequest $request) : array
     {
-        return [
-            new ConfirmedSubscribers,
-        ];
+        return [];
     }
 
     public function actions(NovaRequest $request) : array

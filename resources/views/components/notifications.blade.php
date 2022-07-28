@@ -15,14 +15,26 @@
     </div>
 
     @forelse (auth()->user()->unreadNotifications as $notification)
-        <a href="{{ $notification->data['url'] ?? '#' }}" class="border-t border-indigo-50 flex items-center gap-4 group p-4 text-sm transition-colors">
-            <span class="flex-shrink-0 w-2 h-2 bg-indigo-400 rounded-full"></span>
+        @if (str_contains($notification->type, 'NewExperienceGain'))
+            <a href="{{ $notification->data['url'] ?? '#' }}" class="border-t border-indigo-50 flex items-center gap-4 group p-4 text-sm transition-colors">
+                <span class="flex-shrink-0 w-2 h-2 bg-indigo-400 rounded-full"></span>
 
-            <span>
-                <span class="block font-semibold">{{ $notification->data['message'] }}</span>
-                <span class="block mt-1 text-gray-400 text-xs transition-colors">{{ $notification->created_at->diffForHumans() }}</span>
-            </span>
-        </a>
+                <span>
+                    <span class="block font-bold">@choice(':count point|:count points', $notification->data['points']) d'expérience gagnés.</span>
+                    <span class="block text-gray-500">« {{ $notification->data['message'] }} »</span>
+                    <span class="block mt-1 text-gray-400 text-xs transition-colors">{{ $notification->created_at->diffForHumans() }}</span>
+                </span>
+            </a>
+        @else
+            <a href="{{ $notification->data['url'] ?? '#' }}" class="border-t border-indigo-50 flex items-center gap-4 group p-4 text-sm transition-colors">
+                <span class="flex-shrink-0 w-2 h-2 bg-indigo-400 rounded-full"></span>
+
+                <span>
+                    <span class="block font-semibold">{{ $notification->data['message'] }}</span>
+                    <span class="block mt-1 text-gray-400 text-xs transition-colors">{{ $notification->created_at->diffForHumans() }}</span>
+                </span>
+            </a>
+        @endif
     @empty
         <div class="border-t border-indigo-50 px-4 pb-6 pt-7 text-center text-black/30 text-sm">
             <x-icon-check class="fill-current h-12 inline" />

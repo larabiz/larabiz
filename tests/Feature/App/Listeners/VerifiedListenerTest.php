@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use App\Notifications\NewConfirmedUser;
+use App\Notifications\NewExperienceGain;
 use Illuminate\Support\Facades\Notification;
 
 class VerifiedListenerTest extends TestCase
@@ -14,12 +15,16 @@ class VerifiedListenerTest extends TestCase
     {
         Notification::fake();
 
-        event(
-            new Verified(
-                User::factory()->create()
-            )
-        );
+        $user = User::factory()->create();
 
-        Notification::assertSentToTimes(User::master()->first(), NewConfirmedUser::class, 1);
+        $this->assertEquals(0, $user->sumExperienceGainsPoints());
+
+        event(new Verified($user));
+
+        Notification::assertSentTo($user, NewExperienceGain::class);
+
+        Notification::assertSentTo(User::master()->first(), NewConfirmedUser::class);
+
+        $this->assertEquals(100, $user->sumExperienceGainsPoints());
     }
 }

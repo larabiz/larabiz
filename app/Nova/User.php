@@ -5,6 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Illuminate\Validation\Rules;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Textarea;
@@ -12,6 +13,8 @@ use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
+    public static $group = 'Community';
+
     public static $model = \App\Models\User::class;
 
     public static $title = 'username';
@@ -35,7 +38,7 @@ class User extends Resource
                 ->hideFromIndex(),
 
             Text::make('URL LinkedIn', 'linkedin')
-                ->rules('nullable', 'url', 'regex:/^https?:\/\/www\.linkedin.com\/in\//')
+                ->rules('nullable', 'url', 'regex:/^https?:\/\/(www\.)?linkedin.com\/in\//')
                 ->hideFromIndex(),
 
             Textarea::make('Biography')
@@ -45,6 +48,9 @@ class User extends Resource
                 ->rules('required', 'email', 'max:254')
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
+
+            DateTime::make('Email Verified At')
+                ->rules('nullable'),
 
             Password::make('Password')
                 ->onlyOnForms()
