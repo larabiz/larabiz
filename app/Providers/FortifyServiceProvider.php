@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
-use App\Notifications\NewUser;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
@@ -27,10 +25,6 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->instance(RegisterResponse::class, new class implements RegisterResponse {
             public function toResponse($request)
             {
-                dispatch(function () use ($request) {
-                    User::master()->first()?->notify(new NewUser($request->user()));
-                })->afterResponse();
-
                 return to_route('home')->with('status', 'Merci de vous être inscrit ! Vous êtes maintenant connectés.');
             }
         });
