@@ -16,6 +16,7 @@
         "laravel/horizon": "^5.9",
         "laravel/nova": "^4.11",
         "laravel/tinker": "^2.7",
+        "sentry/sentry-laravel": "^2.13",
         "spatie/laravel-collection-macros": "^7.11",
         "spatie/laravel-google-fonts": "^1.2",
         "spatie/laravel-medialibrary": "^10.4",
