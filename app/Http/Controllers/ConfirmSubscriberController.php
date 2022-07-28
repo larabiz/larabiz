@@ -20,9 +20,7 @@ class ConfirmSubscriberController extends Controller
 
         $subscriber->update(['confirmed_at' => now()]);
 
-        dispatch(function () use ($subscriber) {
-            User::master()->first()?->notify(new NewSubscriber($subscriber));
-        })->afterResponse();
+        User::master()->first()?->notify(new NewSubscriber($subscriber));
 
         return to_route('home')->with('status', 'Votre abonnement a bien été confirmé, à bientôt !');
     }
