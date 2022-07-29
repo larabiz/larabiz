@@ -6,6 +6,7 @@ use Laravel\Nova\Nova;
 use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
+use App\Models\Traits\HasRandomId;
 use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +18,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Post extends Model implements HasMedia
 {
-    use BelongsToUser, HasFactory, InteractsWithMedia, SoftDeletes;
+    use BelongsToUser, HasFactory, HasRandomId, InteractsWithMedia, SoftDeletes;
 
     protected $guarded = [];
 
@@ -25,10 +26,6 @@ class Post extends Model implements HasMedia
 
     public static function booted() : void
     {
-        static::creating(function (self $post) {
-            $post->random_id = Str::random(6);
-        });
-
         static::saved(function (self $post) {
             Nova::serving(function () use ($post) {
                 Str::marxdown($post->content);
@@ -36,7 +33,7 @@ class Post extends Model implements HasMedia
         });
 
         static::addGlobalScope('published', function (Builder $builder) {
-            if (! auth()->check()) {
+            if (! auth()->check() || 'benjamincrozat@me.com' !== auth()->user()->email) {
                 $builder->where('is_draft', false);
             }
         });

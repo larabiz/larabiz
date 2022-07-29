@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\View\View;
 
 class HomeController extends Controller
@@ -10,7 +11,16 @@ class HomeController extends Controller
     public function __invoke() : View
     {
         return view('home')->with([
-            'latest' => Post::latest()->limit(6)->get(),
+            'latest' => Post::query()
+                ->addSelect([
+                    'username' => User::select('username')
+                        ->whereColumn('id', 'posts.user_id')
+                        ->limit(1),
+                ])
+                ->with('media')
+                ->latest()
+                ->limit(6)
+                ->get(),
         ]);
     }
 }

@@ -27,7 +27,9 @@ class Discussion extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('User'),
+            BelongsTo::make('User')
+                ->dontReorderAssociatables()
+                ->showCreateRelationButton(),
 
             Text::make('Title'),
 

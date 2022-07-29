@@ -29,6 +29,12 @@ class SitemapGenerateCommand extends Command
             $sitemap->add(route('posts.comments.show', $comment));
         });
 
+        $sitemap->add(route('about'));
+
+        $sitemap->add(route('community'));
+
+        $sitemap->add(route('uses'));
+
         $sitemap->writeToFile(public_path('/sitemap.xml'));
 
         return Command::SUCCESS;

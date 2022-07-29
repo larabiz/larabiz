@@ -7,14 +7,15 @@ use App\Models\Comment;
 use Livewire\Component;
 use App\Events\Commented;
 use Livewire\WithPagination;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Comments extends Component
 {
-    use WithPagination;
+    use AuthorizesRequests, WithPagination;
 
     public Post $post;
 
-    public $comment_random_id = '';
+    public $commentRepliedToRandomId = '';
 
     public $content = '';
 
@@ -24,11 +25,11 @@ class Comments extends Component
     ];
 
     protected $queryString = [
-        'comment_random_id' => ['except' => ''],
+        'commentRepliedToRandomId' => ['except' => ''],
     ];
 
     protected $rules = [
-        'comment_random_id' => ['nullable', 'string', 'size:6'],
+        'commentRepliedToRandomId' => ['nullable', 'string', 'size:6'],
         'content' => ['required', 'string', 'min:3'],
     ];
 
@@ -49,34 +50,42 @@ class Comments extends Component
 
     public function getCommentsProperty()
     {
-        return $this->post->comments()->latest()->simplePaginate(10);
+        return $this->post->comments()->with('user')->simplePaginate(10);
     }
 
     public function getCommentProperty()
     {
-        return Comment::whereRandomId($this->comment_random_id)->firstOrFail();
+        return Comment::whereRandomId($this->commentRepliedToRandomId)->firstOrFail();
     }
 
     public function addressReplyTo(string $randomId)
     {
-        $this->comment_random_id = $randomId;
+        $this->commentRepliedToRandomId = $randomId;
     }
 
     public function storeComment()
     {
+        $this->authorize('create', Comment::class);
+
         $validated = $this->validate();
 
         $comment = $this->post->comments()->create([
             'user_id' => auth()->id(),
-            'comment_id' => ! $this->comment_random_id ?: Comment::whereRandomId($this->comment_random_id)->whereNotIn('user_id', [auth()->id()])->firstOrFail()->id,
+            'comment_id' => Comment::whereRandomId($this->commentRepliedToRandomId)
+                ->whereNotIn('user_id', [auth()->id()])
+                ->first()
+                ?->id,
             'content' => $validated['content'],
         ]);
 
         event(new Commented($comment));
 
-        $this->content = '';
-        $this->comment_random_id = '';
+        $this->resetState();
+    }
 
-        $this->resetPage();
+    public function resetState()
+    {
+        $this->content = '';
+        $this->commentRepliedToRandomId = '';
     }
 }

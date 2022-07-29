@@ -12,36 +12,14 @@ use League\CommonMark\Extension\SmartPunct\SmartPunctExtension;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot() : void
     {
-        Str::macro('lightdown', function (string $string) {
-            $converter = new LightdownConverter();
-
-            return (string) $converter->convert($string);
-        });
-
-        Str::macro('marxdown', function (string $string) {
-            $converter = new MarxdownConverter([
-                'heading_permalink' => [
-                    'html_class' => 'heading-permalink',
-                    'id_prefix' => 'content',
-                    'fragment_prefix' => 'content',
-                    'insert' => 'before',
-                    'min_heading_level' => 1,
-                    'max_heading_level' => 6,
-                    'title' => '',
-                    'symbol' => '#',
-                    'aria_hidden' => true,
-                ],
-            ]);
-
-            return (string) $converter->convert($string);
-        });
+        Str::macro('lightdown', fn ($s) => (string) (new LightdownConverter)->convert($s));
+        Str::macro('marxdown', fn ($s) => (string) (new MarxdownConverter)->convert($s));
     }
 }
 
@@ -80,7 +58,6 @@ class MarxdownConverter extends \League\CommonMark\MarkdownConverter
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension);
         $environment->addExtension(new GithubFlavoredMarkdownExtension);
-        $environment->addExtension(new HeadingPermalinkExtension);
         $environment->addExtension(new SmartPunctExtension);
         $environment->addExtension(new TableExtension);
         $environment->addExtension(new TorchlightExtension);

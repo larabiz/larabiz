@@ -5,18 +5,18 @@
         </x-slot>
 
         <div class="italic mt-8 sm:mt-16">
-            <p><strong>Salut, moi c'est <a href="{{ route('home') }}#about" class="bg-indigo-100 font-bold text-indigo-400">Benjamin</a> ! 👋</strong> Cela fait plus de 10 ans que je suis développeur web.</p>
+            <p>Salut, moi c'est <a href="{{ route('about') }}" class="bg-indigo-100 font-bold text-indigo-400">Benjamin</a>&nbsp;! 👋 Cela fait plus de 10 ans que je suis développeur web.</p>
 
             <p class="mt-4">Il y a quelques années, je découvrais Laravel et ce fut une révélation. À l'époque, il y avait peu d'offres d'emploi ouvertes à son utilisation. Je devais me contenter de projets WordPress et l'expérience était pour le moins… frustrante.</p>
 
-            <p class="mt-4">Aujourd'hui, les choses ont changé. Le web pullule d'offres d'emploi en tout genre. <strong class="bg-purple-200">Je vous aide à faire le tri afin de trouver les opportunités qui vous permetteront de gagner de l'expérience avec Laravel</strong>.</p>
+            <p class="mt-4">Aujourd'hui, les choses ont changé. Le web pullule d'offres d'emploi en tout genre. <strong class="bg-purple-200 font-semibold">Je vous aide à faire le tri afin de trouver les opportunités qui vous permetteront de gagner de l'expérience avec Laravel</strong>.</p>
         </div>
     </x-newsletter>
 
-    <div class="bg-indigo-100">
+    <div class="bg-indigo-100" x-intersect="window.fathom?.trackGoal('ECBYPDIG', 0)">
         <x-section class="max-w-[1024px]">
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
-                Augmentez vos chances d'être&nbsp;recruté<br>
+                Augmentez vos chances d'être&nbsp;recruté<br />
                 <span class="text-indigo-400">Développez vos compétences</span>
             </x-slot>
 
@@ -30,28 +30,46 @@
                 @endforeach
             </div>
 
-            <x-primary href="{{ route('posts.index') }}" class="mt-8 mx-auto table">
+            <x-primary href="{{ route('posts.index') }}" class="mt-8 mx-auto table" @click="window.fathom?.trackGoal('QEMXBB9C', 0)">
                 Et plus encore sur le blog
             </x-primary>
         </x-section>
     </div>
 
-    <x-section id="about">
-        <x-slot:title tag="h2">
-            Découvrez votre serviteur
+    <x-section class="md:max-w-screen-md" x-intersect="window.fathom?.trackGoal('0JCL9NAI', 0)">
+        <x-slot:title tag="h2" class="text-xl md:text-3xl">
+            Ne soyez pas timide<br />
+            <span class="text-indigo-400">La communauté est là pour vous aider</span>
         </x-slot>
 
-        <div class="italic">
-            <figure class="float-right mb-8 ml-8 text-center">
-                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5('benjamincrozat@me.com') }}?s=144" width="150" height="150" alt="Photo de Benjamin." class="inline rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px]">
-            </figure>
+        <div class="grid sm:grid-cols-7 gap-8">
+            <div class="sm:col-span-4 order-2 sm:order-none self-center md:text-lg">
+                <div>
+                    Quelque chose vous échappe au sujet d'un article&nbsp;? <strong class="font-bold">La section commentaires</strong> est là pour recevoir vos questions. Les contributeurs se feront un plaisir d'y répondre.
+                </div>
 
-            <p>Prendre des conseils d'étrangers sur internet n'est pas vraiment une chose facile. Laissez-moi me présenter.</p>
+                @auth
+                    <x-cta
+                        href="{{ route('posts.index') }}"
+                        class="mt-4 text-center sm:text-left w-full sm:w-auto"
+                        @click="window.fathom?.trackGoal('NECDT6XG', 0)"
+                    >
+                        Commencer
+                    </x-cta>
+                @else
+                    <x-cta
+                        href="{{ route('register') }}"
+                        class="font-extrabold mt-4 px-4 md:px-8 text-center sm:text-left w-full sm:w-auto"
+                        @click="window.fathom?.trackGoal('TBIFNVNC', 0)"
+                    >
+                        Inscrivez-vous <span class="font-light">pour commencer</span>
+                    </x-cta>
+                @endauth
+            </div>
 
-            <p class="mt-4">Je m'appelle Benjamin (<a href="https://twitter.com/benjamincrozat" class="bg-indigo-100 font-bold text-indigo-400">@benjamincrozat</a>). Développeur web depuis de nombreuses années, j'ai accumulé énormément d'expérience. Mais j'ai également commis des erreurs. <em>Beaucoup</em>.</p>
-
-            <p class="mt-4">À travers {{ config('app.name') }}, j'ai envie d'aider les développeurs à accumuler autant d'expérience, tout en évitant de refaire les mêmes erreurs.<br>
-            Étant autodidacte depuis mon adolescence, il est bien normal que je contribue à mon tour à la communauté.</p>
+            <div class="sm:col-span-3 order-1 sm:order-none self-center text-center">
+                <x-icon-comments class="h-[30vh] sm:h-auto inline" />
+            </div>
         </div>
     </x-section>
 </x-app>

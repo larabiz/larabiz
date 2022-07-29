@@ -24,9 +24,18 @@ class Comment extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('User'),
+            BelongsTo::make('User')
+                ->dontReorderAssociatables()
+                ->showCreateRelationButton(),
 
-            BelongsTo::make('Post'),
+            BelongsTo::make('Post')
+                ->dontReorderAssociatables()
+                ->showCreateRelationButton(),
+
+            BelongsTo::make('Reply To', 'reply_to', Comment::class)
+                ->rules('nullable')
+                ->dontReorderAssociatables()
+                ->showCreateRelationButton(),
 
             Textarea::make('Content')
                 ->rules('required'),

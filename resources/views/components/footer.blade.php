@@ -4,7 +4,34 @@
             <x-icon-larabiz-alt class="h-6 sm:h-7 inline" />
         </a>
 
-        <p class="mt-6 sm:mt-8">Sur {{ config('app.name') }}, retrouvez par mail les dernières offres d'emploi Laravel, des articles de qualité et plus encore.</p>
+        <p class="mt-6 sm:mt-8">
+            Sur {{ config('app.name') }}, retrouvez par mail les dernières
+            offres d'emploi Laravel, des articles de qualité et plus encore.
+        </p>
+
+        <ul class="flex flex-wrap sm:flex-nowrap items-center justify-center gap-2 mt-5 sm:mt-7">
+            <li>
+                <a href="{{ route('posts.index') }}" class="text-gray-300 hover:text-white transition-colors">Blog</a>
+            </li>
+
+            <li class=" text-gray-600 text-xs">•</li>
+
+            <li>
+                <a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition-colors">À propos</a>
+            </li>
+
+            <li class=" text-gray-600 text-xs">•</li>
+
+            <li>
+                <a href="{{ route('community') }}" class="text-gray-300 hover:text-white transition-colors">Communauté</a>
+            </li>
+
+            <li class=" text-gray-600 text-xs">•</li>
+
+            <li>
+                <a href="{{ route('uses') }}" class="text-gray-300 hover:text-white transition-colors">Mon équipement</a>
+            </li>
+        </ul>
 
         <ul class="flex items-center justify-center gap-2 mt-7 sm:mt-9 text-gray-300">
             <li>
@@ -21,5 +48,9 @@
                 </a>
             </li>
         </ul>
+
+        <p class="mt-8">
+            {{ config('app.name') }} est respectueux de votre vie privée et utilise <a href="https://usefathom.com/ref/JTPOCN" target="_blank" class="font-bold text-white">Fathom</a> plutôt que Google.
+        </p>
     </footer>
 </div>

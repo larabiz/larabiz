@@ -5,6 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Illuminate\Validation\Rules;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\Password;
@@ -31,7 +32,7 @@ class User extends Resource
             Gravatar::make()->maxWidth(50),
 
             Text::make('Username')
-                ->rules('required', 'max:255'),
+                ->rules('required', 'unique:users,username', 'max:255'),
 
             Text::make('URL GitHub', 'github')
                 ->rules('nullable', 'url', 'regex:/^https?:\/\/github.com\//')
@@ -56,6 +57,16 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
+
+            HasMany::make('Comments'),
+
+            HasMany::make('Discussions'),
+
+            HasMany::make('Experience Gains'),
+
+            HasMany::make('Posts'),
+
+            HasMany::make('Replies'),
         ];
     }
 

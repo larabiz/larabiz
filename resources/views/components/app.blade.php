@@ -26,13 +26,14 @@
 
         <livewire:scripts />
 
+        <script defer src="https://unpkg.com/@alpinejs/intersect@3.10.3/dist/cdn.min.js"></script>
         <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 
         <link rel="canonical" href="{{ $canonical ?? URL::current() }}" />
 
         <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('img/apple-touch-icon.png') }}">
 
-        @if (app()->isProduction() && auth()->id() !== 1)
+        @if (app()->isProduction() && 'benjamincrozat@me.com' !== $user?->email)
             <script defer src="https://enlightenment.larabiz.fr/script.js" data-site="{{ config('services.fathom.site_id') }}"></script>
         @endif
     </head>

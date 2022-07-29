@@ -1,4 +1,4 @@
-@if (auth()->check() && ! auth()->user()->hasVerifiedEmail())
+@if (auth()->check() && ! $user->hasVerifiedEmail())
     <div {{ $attributes->merge(['class' => 'bg-gradient-to-r from-indigo-400 to-indigo-300 font-semibold py-3 text-center text-sm text-white']) }}>
         <div class="container">
             <div>Veuillez confirmer votre adresse e-mail afin d'utiliser Larabiz à son plein potentiel.</div>

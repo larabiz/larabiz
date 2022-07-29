@@ -19,10 +19,10 @@
                 <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user->email) }}?s=144" alt="Avatar de {{ $post->user->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
 
                 <div>
-                    <p>Mis à jour le <time datetime="{{ $post->updated_at->toDateString() }}" class="font-bold">{{ $post->updated_at->isoFormat('ll') }}</time> par <span class="font-bold">{{ $post->user->username }}</span></p>
+                    <p>Mis à jour le <time datetime="{{ $post->created_at->toDateString() }}" class="font-bold">{{ $post->created_at->isoFormat('ll') }}</time> par <span class="font-bold">{{ $post->user->username }}</span></p>
 
                     @if ($post->certified_for_laravel)
-                        <p>Article certifié pour <strong>Laravel {{ $post->certified_for_laravel }}</strong></p>
+                        <p>Article certifié pour <strong class="font-bold">Laravel {{ $post->certified_for_laravel }}</strong></p>
                     @endif
                 </div>
             </div>
@@ -40,11 +40,11 @@
 
                 <div>
                     <div>
-                        Quelque chose vous échappe au sujet de cet article ? <a href="#comments" class="font-semibold text-indigo-900">Demandez de l'aide dans les commentaires</a>.
+                        Quelque chose vous échappe au sujet de cet article&nbsp;? <a href="#comments" class="font-semibold text-indigo-900" @click="window.fathom?.trackGoal('SNY6VO5I', 0)">Demandez de l'aide dans les commentaires</a>.
                     </div>
 
                     <div class="font-bold mt-2 text-indigo-700" x-show="document.getElementById('comments').clientHeight === 0">
-                        Désactivez votre bloqueur de pub sur {{ config('app.name') }}, car il semble qu'il masque la section commentaires !
+                        Désactivez votre bloqueur de pub sur {{ config('app.name') }}, car il semble qu'il masque la section commentaires&nbsp;!
                     </div>
                 </div>
             </div>
@@ -54,9 +54,16 @@
             </div>
         </article>
 
-        <x-author :author="$post->user" class="border-t border-indigo-100 pt-8 sm:pt-16" />
+        <x-author
+            :author="$post->user"
+            class="border-y border-indigo-100 py-8"
+        />
 
-        <div id="comments" class="border-t border-indigo-100 mt-8 sm:mt-16 pt-8 sm:pt-16">
+        <div
+            id="comments"
+            class="mt-8 sm:mt-16"
+            x-intersect="window.fathom?.trackGoal('0DZGVNFZ', 0)"
+        >
             <livewire:comments :post="$post" />
         </div>
     </div>
@@ -70,7 +77,7 @@
         </x-newsletter>
     </div>
 
-    <x-section class="max-w-[1024px]">
+    <x-section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('XFZRYOKR', 0)">
         <x-slot:title tag="h3">
             Autres articles à lire
         </x-slot>

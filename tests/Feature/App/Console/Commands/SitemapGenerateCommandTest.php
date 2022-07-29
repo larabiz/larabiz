@@ -17,10 +17,18 @@ class SitemapGenerateCommandTest extends TestCase
 
         $content = file_get_contents(public_path('/sitemap.xml'));
 
+        $this->assertStringContainsString(route('home'), $content);
+
         $this->assertStringContainsString(route('posts.index'), $content);
+
         Post::latest()->cursor()->each(function (Post $post) use ($content) {
             $this->assertStringContainsString(route('posts.show', [$post->random_id, $post->slug]), $content);
         });
-        $this->assertStringContainsString(route('home'), $content);
+
+        $this->assertStringContainsString(route('about'), $content);
+
+        $this->assertStringContainsString(route('community'), $content);
+
+        $this->assertStringContainsString(route('uses'), $content);
     }
 }

@@ -4,7 +4,9 @@
             Mon profil
         </x-slot:title>
 
-        <h2 class="font-extrabold leading-tight my-8 text-center">Mes informations</h2>
+        <h2 class="font-extrabold leading-tight my-8 text-center">
+            Mes informations
+        </h2>
 
         <x-form method="PUT" action="{{ route('user-profile-information.update') }}" class="grid gap-4">
             <div>
@@ -18,16 +20,6 @@
             </div>
 
             <div>
-                <x-label for="github">URL GitHub</x-label>
-                <x-input type="url" id="github" name="github" value="{{ old('github') ?? $user->github }}" placeholder="https://github.com/jonathanfrink" bag="updateProfileInformation" />
-            </div>
-
-            <div>
-                <x-label for="linkedin">URL LinkedIn</x-label>
-                <x-input type="url" id="linkedin" name="linkedin" value="{{ old('linkedin') ?? $user->linkedin }}" placeholder="https://linkedin.com/in/moeszyslak" bag="updateProfileInformation" />
-            </div>
-
-            <div>
                 <x-label for="biography">Biographie</x-label>
 
                 <x-textarea
@@ -37,7 +29,27 @@
                 >{{ old('biography') ?? $user->biography }}</x-textarea>
             </div>
 
-            <x-cta type="submit" class="mt-4">Modifier mes informations</x-cta>
+            <p class="font-bold mb-4 mt-8 text-center">
+                Et si Larabiz ouvrait un espace pour de potentiels employeurs, où pourraient-ils en apprendre plus sur votre parcours et vos compétences&nbsp;?
+            </p>
+
+            <div>
+                <x-label for="github">URL GitHub</x-label>
+                <x-input type="url" id="github" name="github" value="{{ old('github') ?? $user->github }}" placeholder="https://github.com/jonathanfrink" bag="updateProfileInformation" />
+            </div>
+
+            <div>
+                <x-label for="linkedin">URL LinkedIn</x-label>
+                <x-input type="url" id="linkedin" name="linkedin" value="{{ old('linkedin') ?? $user->linkedin }}" placeholder="https://www.linkedin.com/in/moeszyslak" bag="updateProfileInformation" />
+            </div>
+
+            <x-cta
+                type="submit"
+                class="mt-4"
+                @click="window.fathom?.trackGoal('NMBYUHN7', 0)"
+            >
+                Modifier mes informations
+            </x-cta>
         </x-form>
 
         <h2 class="border-t border-indigo-100 font-extrabold leading-tight mb-8 mt-16 pt-16 text-center">Mon mot de passe</h2>
@@ -58,7 +70,13 @@
                 <x-input type="password" id="password-confirmation" name="password_confirmation" bag="updatePassword" />
             </div>
 
-            <x-cta type="submit" class="mt-4">Modifier mon mot de passe</x-cta>
+            <x-cta
+                type="submit"
+                class="mt-4"
+                @click="window.fathom?.trackGoal('SPKVSTS8', 0)"
+            >
+                Modifier mon mot de passe
+            </x-cta>
         </x-form>
     </x-section>
 </x-app>

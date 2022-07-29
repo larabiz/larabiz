@@ -1,7 +1,7 @@
 <div @if (empty($this->frameless)) class="bg-gradient-to-b from-white to-gray-50 rounded-lg shadow shadow-indigo-100" @endif>
-    @if ($comment->comment)
+    @if ($comment->reply_to)
         <div class="border-b border-gray-100 p-4 text-center text-gray-400 text-sm">
-            En réponse au <a href="{{ route('posts.comments.show', $comment->comment) }}" class="font-semibold text-indigo-300">commentaire</a> de <span class="font-semibold">{{ $comment->comment->user->username }}</span>
+            En réponse au <a href="{{ route('posts.comments.show', $comment->reply_to) }}" class="font-semibold text-indigo-300">commentaire</a> de <span class="font-semibold">{{ $comment->reply_to->user->username }}</span>
         </div>
     @endif
 
@@ -31,16 +31,16 @@
                 @can('delete', $comment)
                     <button
                         class="border flex items-center justify-center rounded-full transition-colors @if (empty($this->frameless)) border-red-100 hover:bg-red-100 w-8 h-8 @else border-indigo-100 hover:bg-indigo-100 w-10 h-10 @endif"
-                        @click="if (window.confirm('Souhaitez-vous vraiment supprimer ce commentaire ?')) $wire.removeComment({{ $this->frameless }})"
+                        @click="if (window.confirm('Souhaitez-vous vraiment supprimer ce commentaire ?')) { $wire.removeComment({{ $this->frameless }}); window.fathom?.trackGoal('4Q0E9VUO', 0) }"
                     >
                         <x-heroicon-o-trash class="text-red-400 translate-y-[-1px] @if (empty($this->frameless)) w-4 h-4 @else w-5 h-5 @endif" />
                     </button>
                 @endcan
 
-                @if (auth()->check() && auth()->user()?->isNot($comment->user))
+                @if (auth()->check() && $user?->isNot($comment->user) && $user->can('create', App\Models\Comment::class))
                     <button
                         class="border border-indigo-100 hover:bg-indigo-100 flex items-center justify-center rounded-full transition-colors @if (empty($this->frameless)) w-8 h-8 @else w-10 h-10 @endif"
-                        @click="$wire.emit('comment.address_reply_to', '{{ $comment->random_id }}'); $refs.content.focus()"
+                        @click="$wire.emit('comment.address_reply_to', '{{ $comment->random_id }}'); $refs.content.focus(); window.fathom?.trackGoal('TXBFNVUS', 0)"
                     >
                         <x-heroicon-o-reply class="text-indigo-400 translate-y-[-1px] @if (empty($this->frameless)) w-4 h-4 @else w-5 h-5 @endif" />
                     </button>

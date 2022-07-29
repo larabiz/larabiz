@@ -22,12 +22,14 @@
         "spatie/laravel-google-fonts": "^1.2",
         "spatie/laravel-medialibrary": "^10.4",
         "spatie/laravel-sitemap": "^6.2",
+        "spatie/laravel-tags": "^4.3",
         "symfony/http-client": "^6.1",
         "symfony/mailgun-mailer": "^6.1",
         "torchlight/torchlight-commonmark": "^0.5.5",
         "torchlight/torchlight-laravel": "^0.5.11"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.7",
         "brianium/paratest": "^6.6",
         "fakerphp/faker": "^1.9.1",
         "laravel/telescope": "^4.9",

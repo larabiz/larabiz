@@ -4,7 +4,7 @@ namespace Tests\Feature\App\Http\Controllers;
 
 use Tests\TestCase;
 use App\Models\Post;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 
 class ListPostsControllerTest extends TestCase
 {
@@ -19,7 +19,6 @@ class ListPostsControllerTest extends TestCase
             ->assertViewIs('posts.index')
         ;
 
-        $this->assertInstanceOf(Paginator::class, $posts = $response->viewData('posts'));
-        $this->assertCount(10, $posts);
+        $this->assertInstanceOf(Collection::class, $posts = $response->viewData('posts'));
     }
 }

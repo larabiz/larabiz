@@ -24,9 +24,12 @@ class Reply extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('User'),
+            BelongsTo::make('User')
+                ->dontReorderAssociatables(),
 
-            BelongsTo::make('Discussion'),
+            BelongsTo::make('Discussion')
+                ->dontReorderAssociatables()
+                ->showCreateRelationButton(),
 
             Textarea::make('Content')
                 ->rules('required'),

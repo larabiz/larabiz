@@ -15,8 +15,16 @@ class CommentedListener
             30, 'Pour avoir posté un commentaire. Merci de faire vivre le site !', $event->comment->user
         );
 
-        if ($event->comment->user->isNot($master = User::master()->first())) {
-            $master->notify(new NewComment($event->comment));
+        $event = new NewComment($event->comment);
+
+        // Notify the person who's been answered to.
+        if ($event->comment->reply_to) {
+            $event->comment->reply_to->user->notify($event);
+        }
+
+        // Notify the master if it's not a comment from the master himself.
+        if ('benjamincrozat@me.com' !== $event->comment->user->email) {
+            User::master()->first()?->notify($event);
         }
     }
 }

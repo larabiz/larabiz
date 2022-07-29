@@ -33,7 +33,9 @@ class ExperienceGain extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('User'),
+            BelongsTo::make('User')
+                ->dontReorderAssociatables()
+                ->showCreateRelationButton(),
 
             Number::make('Points')
                 ->rules('required'),

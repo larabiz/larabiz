@@ -4,7 +4,12 @@
             Connexion
         </x-slot:title>
 
-        <x-form method="POST" action="{{ route('login') }}" class="grid gap-4 mt-6">
+        <x-form
+            method="POST"
+            action="{{ route('login') }}"
+            class="grid gap-4 mt-6"
+            @submit.prevent="window.fathom?.trackGoal('G24W3KCX', 0); $el.submit()"
+        >
             <input type="hidden" name="remember" value="1" />
 
             <div>
@@ -23,7 +28,16 @@
                 <x-input type="password" id="password" name="password" required />
             </div>
 
-            <x-cta type="submit" class="mt-4">Connexion</x-cta>
+            <x-cta
+                type="submit"
+                class="mt-4"
+            >
+                Connexion
+            </x-cta>
         </x-form>
+
+        <div class="border-t mt-8 sm:mt-16 pt-8 sm:pt-16 text-center">
+            <p>Vous n'avez pas encore de compte sur {{ config('app.name') }}&nbsp;? <a href="{{ route('register') }}" class="font-semibold text-indigo-400" @click="window.fathom?.trackGoal('WNMM2HJ8', 0)">Inscrivez-vous</a>.</p>
+        </div>
     </x-section>
 </x-app>

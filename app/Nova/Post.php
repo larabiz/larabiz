@@ -24,7 +24,7 @@ class Post extends Resource
     public static $title = 'title';
 
     public static $search = [
-        'id', 'title', 'slug', 'content', 'excerpt',
+        'id', 'random_id', 'title', 'slug', 'content', 'excerpt',
     ];
 
     public function fields(NovaRequest $request) : array
@@ -35,7 +35,7 @@ class Post extends Resource
             Images::make('Image', 'illustration')
                 ->conversionOnIndexView('thumbnail')
                 ->showStatistics()
-                ->rules('required'),
+                ->rules('nullable'),
 
             Text::make('Random ID')
                 ->exceptOnForms()
@@ -43,7 +43,9 @@ class Post extends Resource
 
             BelongsTo::make('Author', 'user', User::class)
                 ->rules('required')
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->dontReorderAssociatables()
+                ->showCreateRelationButton(),
 
             Text::make('Title')
                 ->rules('required')

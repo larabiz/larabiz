@@ -4,7 +4,12 @@
             Inscription
         </x-slot:title>
 
-        <x-form method="POST" action="{{ route('register') }}" class="grid gap-4">
+        <x-form
+            method="POST"
+            action="{{ route('register') }}"
+            class="grid gap-4"
+            @submit.prevent="window.fathom?.trackGoal('G5KSDX2H', 0); $el.submit()"
+        >
             <div class="grid">
                 <x-label for="username">Nom d'utilisateur</x-label>
                 <x-input id="username" name="username" value="{{ old('username') }}" placeholder="Monsieur X, El Barto, etc." required />
@@ -25,7 +30,16 @@
                 <x-input type="password" id="password-confirmation" name="password_confirmation" required />
             </div>
 
-            <x-cta type="submit" class="mt-4">Inscription</x-cta>
+            <x-cta
+                type="submit"
+                class="mt-4"
+            >
+                Inscription
+            </x-cta>
         </x-form>
+
+        <div class="border-t mt-8 sm:mt-16 pt-8 sm:pt-16 text-center">
+            <p>Avez-vous déjà un compte sur {{ config('app.name') }}&nbsp;? <a href="{{ route('login') }}" class="font-semibold text-indigo-400" @click="window.fathom?.trackGoal('SRUCVXXS', 0)">Connectez-vous</a>.</p>
+        </div>
     </x-section>
 </x-app>

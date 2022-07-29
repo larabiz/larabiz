@@ -35,18 +35,41 @@ class ShowPostControllerTest extends TestCase
 
         $this
             ->get(route('posts.show', [$post->random_id, 'foo']))
-            ->assertRedirect(route('posts.show', [$post->random_id, $post->slug]))
+            ->assertStatus(301)
+            ->assertLocation(route('posts.show', [$post->random_id, $post->slug]))
         ;
     }
 
-    public function test_it_shows_drafts_for_admin() : void
+    public function test_it_shows_drafts_to_master() : void
     {
-        $post = Post::factory()->for(User::master()->first())->asDraft()->create();
+        $post = Post::factory()->forUser()->asDraft()->create();
 
         $this
-            ->actingAs($post->user)
+            ->actingAs(User::master()->first())
             ->get(route('posts.show', [$post->random_id, $post->slug]))
             ->assertOk()
+        ;
+    }
+
+    public function test_it_does_not_show_drafts_to_users() : void
+    {
+        $post = Post::factory()->forUser()->asDraft()->create();
+
+        $this
+            ->actingAs(User::factory()->create())
+            ->get(route('posts.show', [$post->random_id, $post->slug]))
+            ->assertNotFound()
+        ;
+    }
+
+    public function test_it_does_not_show_drafts_to_guests() : void
+    {
+        $post = Post::factory()->forUser()->asDraft()->create();
+
+        $this
+            ->assertGuest()
+            ->get(route('posts.show', [$post->random_id, $post->slug]))
+            ->assertNotFound()
         ;
     }
 

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Notification;
 
 class VerifiedListenerTest extends TestCase
 {
-    public function test_it_works() : void
+    public function test_it_rewards_user_for_verification_with_experience_points_and_notifies_user_and_master() : void
     {
         Notification::fake();
 

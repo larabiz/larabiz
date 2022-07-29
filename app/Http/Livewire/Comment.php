@@ -3,9 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Comment extends Component
 {
+    use AuthorizesRequests;
+
     public \App\Models\Comment $comment;
 
     public $frameless = false;
@@ -17,10 +20,7 @@ class Comment extends Component
 
     public function removeComment(bool $redirect = false)
     {
-        throw_unless(
-            auth()->user()->can('delete', $this->comment),
-            'Unauthorized to delete this comment.'
-        );
+        $this->authorize('delete', $this->comment);
 
         $this->comment->delete();
 

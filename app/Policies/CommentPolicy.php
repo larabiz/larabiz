@@ -22,7 +22,7 @@ class CommentPolicy
 
     public function create(User $user) : bool
     {
-        return false;
+        return $user->hasVerifiedEmail();
     }
 
     public function update(User $user, Comment $comment) : bool
