@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Réinitialiser mon mot de passe">
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
             Réinitialiser mon mot de passe

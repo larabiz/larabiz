@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Connexion">
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title class="font-extrabold leading-tight text-center text-xl">
             Connexion

@@ -1,4 +1,4 @@
-<x-app>
+<x-app title="Inscription">
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
             Inscription

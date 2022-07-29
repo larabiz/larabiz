@@ -18,6 +18,8 @@
         <meta name="twitter:image" content="{{ $image ?? secure_asset('img/larabiz-banner.jpg') }}">
         <meta name="twitter:title" content="{{ $title ?? config('app.name') }}">
 
+        <livewire:styles />
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         @googlefonts
@@ -31,17 +33,7 @@
         @endif
     </head>
     <body class="bg-indigo-50 text-gray-700" x-data>
-        @if (auth()->check() && ! auth()->user()->hasVerifiedEmail())
-            <div class="bg-gradient-to-r from-indigo-400 to-indigo-300 font-semibold py-3 text-center text-sm text-white">
-                <div class="container">
-                    <div>Veuillez confirmer votre adresse e-mail afin d'utiliser Larabiz à son plein potentiel.</div>
-
-                    <x-form method="POST" action="{{ route('verification.send') }}" class="mt-2">
-                        <button type="submit" class="bg-white/20 font-bold px-3 py-1 rounded">Renvoyer la confirmation</button>
-                    </x-form>
-                </div>
-            </div>
-        @endif
+        <x-confirm-email />
 
         <div class="flex flex-col min-h-screen">
             <x-nav />
@@ -54,5 +46,7 @@
         </div>
 
         <x-status />
+
+        <livewire:scripts />
     </body>
 </html>
