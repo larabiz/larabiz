@@ -32,7 +32,7 @@ class CommentPolicy
 
     public function delete(User $user, Comment $comment) : bool
     {
-        return false;
+        return $comment->user->is($user);
     }
 
     public function restore(User $user, Comment $comment) : bool

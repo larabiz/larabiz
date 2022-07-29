@@ -11,8 +11,10 @@ class CreateNewExperienceGain
     {
         $user->experience_gains()->create(compact('points', 'message'));
 
-        $user->notify(new NewExperienceGain(
-            $points, $message
-        ));
+        if ($notify) {
+            $user->notify(new NewExperienceGain(
+                $points, $message
+            ));
+        }
     }
 }

@@ -20,9 +20,13 @@
 
         <livewire:styles />
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.css'])
 
         @googlefonts
+
+        <livewire:scripts />
+
+        <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 
         <link rel="canonical" href="{{ $canonical ?? URL::current() }}" />
 
@@ -32,7 +36,7 @@
             <script defer src="https://enlightenment.larabiz.fr/script.js" data-site="{{ config('services.fathom.site_id') }}"></script>
         @endif
     </head>
-    <body class="bg-indigo-50 text-gray-700" x-data>
+    <body class="bg-indigo-50 font-light text-gray-700" x-data>
         <x-confirm-email />
 
         <div class="flex flex-col min-h-screen">
@@ -47,6 +51,6 @@
 
         <x-status />
 
-        <livewire:scripts />
+        @vite(['resources/js/app.js'])
     </body>
 </html>

@@ -1,7 +1,7 @@
 @if ($paginator->hasPages())
     <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between mt-8">
         @if ($paginator->onFirstPage())
-            <span class="flex items-center gap-2 font-bold opacity-50">
+            <span class="flex items-center gap-2 font-normal opacity-30">
                 <x-heroicon-o-arrow-left class="w-4 h-4" /> Précédent
             </span>
         @else
@@ -15,7 +15,7 @@
                 Suivant <x-heroicon-o-arrow-right class="w-4 h-4" />
             </a>
         @else
-            <span class="flex items-center gap-2 font-bold opacity-50">
+            <span class="flex items-center gap-2 font-normal opacity-30">
                 Suivant <x-heroicon-o-arrow-right class="w-4 h-4" />
             </span>
         @endif

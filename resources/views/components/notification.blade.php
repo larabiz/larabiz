@@ -15,15 +15,23 @@
                 {{ $notification->created_at->diffForHumans() }}
             </div>
         @else
-            <div>
-                <div class="block font-semibold">
-                    {{ $notification->data['message'] }}
-                </div>
+            @if (! empty($notification->data['actionUrl']))
+                <a href="{{ $notification->data['actionUrl'] }}">
+            @else
+                <div>
+            @endif
+                    <div class="block font-semibold">
+                        {{ $notification->data['message'] }}
+                    </div>
 
-                <div class="block mt-1 text-gray-400 text-xs transition-colors">
-                    {{ $notification->created_at->diffForHumans() }}
+                    <div class="block mt-1 text-gray-400 text-xs transition-colors">
+                        {{ $notification->created_at->diffForHumans() }}
+                    </div>
+            @if (! empty($notification->data['actionUrl']))
+                </a>
+            @else
                 </div>
-            </div>
+            @endif
         @endif
     </div>
 </div>
