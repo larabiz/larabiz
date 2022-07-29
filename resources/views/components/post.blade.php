@@ -48,7 +48,7 @@
                 class="flex items-center gap-2"
             >
                 <x-heroicon-o-chat class="h-5 translate-y-[-1px]" />
-                @choice('<strong class="text-indigo-900">:count</strong> commentaire|<strong class="text-indigo-900">:count</strong> commentaires', $post->comments_count)
+                @choice('<strong class="text-indigo-900">:count commentaire</strong>|<strong class="text-indigo-900">:count commentaires</strong>', $post->comments_count)
             </a>
         </div>
     </div>
