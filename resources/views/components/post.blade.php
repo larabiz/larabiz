@@ -32,13 +32,13 @@
             {{ $post->excerpt }}
         </div>
 
-        <div class="grid grid-cols-2 gap-1 mt-6 text-indigo-900/50">
+        <div class="flex flex-wrap gap-x-8 gap-y-2 sm:grid sm:grid-cols-2 mt-6 text-indigo-900/50">
             <div class="flex items-center gap-2">
                 <x-heroicon-o-user class="h-5 translate-y-[-1px]" />
                 <strong class="text-indigo-900">{{ $post->user->username }}</strong>
             </div>
 
-            <div class="flex items-center gap-2 mt-1">
+            <div class="flex items-center gap-2">
                 <x-heroicon-o-calendar class="h-5 translate-y-[-1.5px]" />
                 <strong class="text-indigo-900">{{ $post->updated_at->isoFormat('ll') }}</strong>
             </div>
