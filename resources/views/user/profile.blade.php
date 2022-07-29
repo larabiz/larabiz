@@ -29,8 +29,12 @@
 
             <div>
                 <x-label for="biography">Biographie</x-label>
-                <textarea id="biography" name="biography" value="{{ old('biography') ?? $user->biography }}" placeholder="" class="bg-white/75 focus:bg-white border-0 h-40 mt-1 placeholder-indigo-200/75 px-4 py-3 resize-none rounded shadow shadow-indigo-100 transition-colors w-full">{{ old('biography') ?? $user->biography }}</textarea>
-                <x-error name="biography" bag="updateProfileInformation" />
+
+                <x-textarea
+                    id="biography"
+                    name="biography"
+                    value="{{ old('biography') ?? $user->biography }}"
+                >{{ old('biography') ?? $user->biography }}</x-textarea>
             </div>
 
             <x-cta type="submit" class="mt-4">Modifier mes informations</x-cta>
