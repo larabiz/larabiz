@@ -21,6 +21,7 @@
         "spatie/laravel-collection-macros": "^7.11",
         "spatie/laravel-google-fonts": "^1.2",
         "spatie/laravel-medialibrary": "^10.4",
+        "spatie/laravel-model-status": "^1.11",
         "spatie/laravel-sitemap": "^6.2",
         "spatie/laravel-tags": "^4.3",
         "symfony/http-client": "^6.1",

@@ -7,9 +7,9 @@ use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Traits\HasRandomId;
+use Spatie\ModelStatus\HasStatuses;
 use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,7 +18,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Post extends Model implements HasMedia
 {
-    use BelongsToUser, HasFactory, HasRandomId, InteractsWithMedia, SoftDeletes;
+    use BelongsToUser, HasFactory, HasRandomId, HasStatuses, InteractsWithMedia, SoftDeletes;
 
     protected $guarded = [];
 
@@ -30,12 +30,6 @@ class Post extends Model implements HasMedia
             Nova::serving(function () use ($post) {
                 Str::marxdown($post->content);
             });
-        });
-
-        static::addGlobalScope('published', function (Builder $builder) {
-            if (! auth()->check() || 'benjamincrozat@me.com' !== auth()->user()->email) {
-                $builder->where('is_draft', false);
-            }
         });
     }
 
