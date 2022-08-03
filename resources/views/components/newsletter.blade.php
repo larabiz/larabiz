@@ -14,7 +14,7 @@
         Rejoignez les <strong class="font-semibold">@choice('<span class="font-extrabold text-indigo-400">:count</span> autre abonné|<span class="font-bold text-indigo-400">:count</span> autres abonnés', $subscribersCount)</strong>&nbsp;!
     </p>
 
-    <x-form
+    <x-forms.form
         method="POST"
         action="{{ route('subscribers.store') }}"
         class="md:max-w-screen-sm mt-8 mx-auto"
@@ -26,13 +26,13 @@
                 <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="homer@simpson.com" class="border-0 placeholder-indigo-200 px-4 py-3 rounded shadow shadow-indigo-100 w-full" required>
             </p>
 
-            <x-cta type="submit" class="w-full sm:w-auto">
+            <x-buttons.cta type="submit" class="w-full sm:w-auto">
                 M'abonner
-            </x-cta>
+            </x-buttons.cta>
         </div>
 
-        <x-error name="email" />
-    </x-form>
+        <x-forms.error name="email" />
+    </x-forms.form>
 
     <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 text-xs">
         Pas de spam, seulement des nouvelles en rapport avec {{ config('app.name') }}&nbsp;!

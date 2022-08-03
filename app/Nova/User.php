@@ -60,13 +60,9 @@ class User extends Resource
 
             HasMany::make('Comments'),
 
-            HasMany::make('Discussions'),
-
             HasMany::make('Experience Gains'),
 
             HasMany::make('Posts'),
-
-            HasMany::make('Replies'),
         ];
     }
 

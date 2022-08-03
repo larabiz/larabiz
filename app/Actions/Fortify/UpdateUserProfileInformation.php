@@ -55,6 +55,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'username' => $input['username'],
+            'github' => $input['github'],
+            'linkedin' => $input['linkedin'],
+            'biography' => $input['biography'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();

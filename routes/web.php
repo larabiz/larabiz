@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ShowCommentController;
 use App\Http\Controllers\Posts\ShowPostController;
 use App\Http\Controllers\EditUserProfileController;
 use App\Http\Controllers\Posts\ListPostsController;
@@ -16,8 +15,6 @@ Route::view('/uses', 'uses')->name('uses');
 
 Route::get('/blog', ListPostsController::class)->name('posts.index');
 Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');
-
-Route::get('/comments/{comment:random_id}', ShowCommentController::class)->name('posts.comments.show');
 
 Route::post('/subscribers', StoreSubscriberController::class)->name('subscribers.store');
 Route::get('/confirm-subscriber/{subscriber:email}', ConfirmSubscriberController::class)->name('confirm-subscriber');

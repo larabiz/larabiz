@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" class="scroll-smooth">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -29,6 +29,8 @@
         <script defer src="https://unpkg.com/@alpinejs/intersect@3.10.3/dist/cdn.min.js"></script>
         <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 
+        @vite(['resources/js/app.js'])
+
         <link rel="canonical" href="{{ $canonical ?? URL::current() }}" />
 
         <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('img/apple-touch-icon.png') }}">
@@ -51,7 +53,5 @@
         </div>
 
         <x-status />
-
-        @vite(['resources/js/app.js'])
     </body>
 </html>

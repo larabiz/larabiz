@@ -10,9 +10,9 @@ class CommentPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user) : bool
+    public function viewAny(?User $user) : bool
     {
-        return false;
+        return true;
     }
 
     public function view(User $user, Comment $comment) : bool

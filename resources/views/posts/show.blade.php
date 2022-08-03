@@ -12,7 +12,7 @@
 
         <article class="pb-8 sm:pb-16 pt-6 sm:pt-14">
             <h1 class="font-thin text-3xl sm:text-5xl">
-                @if ($post->is_draft) Brouillon : @endif {{ $post->title }}
+                {{ $post->title }}
             </h1>
 
             <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
@@ -54,23 +54,39 @@
             </div>
         </article>
 
-        <x-author
+        <x-posts.author
             :author="$post->user"
             class="border-y border-indigo-100 py-8"
         />
 
         <div
             id="comments"
-            class="mt-8 sm:mt-16"
+            class="mt-8 sm:mt-16 scroll-mt-8 sm:scroll-mt-16"
             x-intersect="window.fathom?.trackGoal('0DZGVNFZ', 0)"
         >
-            <livewire:comments :post="$post" />
+            <livewire:comments.listing :post="$post" />
+
+            @auth
+                @if (! $user?->hasVerifiedEmail())
+                    <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 text-lg sm:text-xl">
+                        Vous y êtes presque.<br />
+                        Il n'y a plus qu'à confirmer votre adresse e-mail.
+                    </div>
+                @elseif ($user?->hasVerifiedEmail())
+                    <livewire:comments.form :post="$post" />
+                @endif
+            @else
+                <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 text-lg sm:text-xl">
+                    Besoin d'aide&nbsp;? Envie de partager&nbsp;?<br />
+                    <a href="{{ route('register') }}" class="font-semibold text-indigo-400">Inscrivez-vous</a> ou <a href="{{ route('login') }}" class="font-semibold text-indigo-400">connectez-vous</a> d'abord.
+                </div>
+            @endauth
         </div>
     </div>
 
     <div class="bg-indigo-100">
         <x-newsletter class="container">
-            <x-slot:title tag="h3">
+            <x-slot:title tag="h2">
                 Passez à la pratique<br />
                 <span class="text-indigo-400">Trouvez votre prochain emploi PHP+Laravel</span>
             </x-slot>
@@ -82,10 +98,10 @@
             Autres articles à lire
         </x-slot>
 
-        <div class="grid md:grid-cols-2 gap-8 mt-8">
+        <ul class="grid md:grid-cols-2 gap-8 mt-8">
             @foreach ($others as $post)
-                <x-post :post="$post" />
+                <li><x-posts.post :post="$post" /></li>
             @endforeach
-        </div>
+        </ul>
     </x-section>
 </x-app>

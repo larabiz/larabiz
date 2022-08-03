@@ -36,11 +36,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 
-    public function discussions() : HasMany
-    {
-        return $this->hasMany(Discussion::class);
-    }
-
     public function experienceGains() : HasMany
     {
         return $this->hasMany(ExperienceGain::class);
@@ -49,11 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts() : HasMany
     {
         return $this->hasMany(Post::class);
-    }
-
-    public function replies() : HasMany
-    {
-        return $this->hasMany(Reply::class);
     }
 
     public function sumExperienceGainsPoints() : int

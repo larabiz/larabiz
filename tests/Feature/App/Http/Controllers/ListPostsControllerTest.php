@@ -11,7 +11,6 @@ class ListPostsControllerTest extends TestCase
     public function test_it_works() : void
     {
         Post::factory(10)->forUser()->create();
-        Post::factory(10)->forUser()->asDraft()->create();
 
         $response = $this
             ->get(route('posts.index'))
@@ -19,6 +18,6 @@ class ListPostsControllerTest extends TestCase
             ->assertViewIs('posts.index')
         ;
 
-        $this->assertInstanceOf(Collection::class, $posts = $response->viewData('posts'));
+        $this->assertInstanceOf(Collection::class, $response->viewData('posts'));
     }
 }

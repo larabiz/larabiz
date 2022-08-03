@@ -32,11 +32,6 @@ class Comment extends Resource
                 ->dontReorderAssociatables()
                 ->showCreateRelationButton(),
 
-            BelongsTo::make('Reply To', 'reply_to', Comment::class)
-                ->rules('nullable')
-                ->dontReorderAssociatables()
-                ->showCreateRelationButton(),
-
             Textarea::make('Content')
                 ->rules('required'),
         ];

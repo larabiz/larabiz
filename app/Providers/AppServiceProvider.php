@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment\Environment;
 use Torchlight\Commonmark\V2\TorchlightExtension;
@@ -20,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Str::macro('lightdown', fn ($s) => (string) (new LightdownConverter)->convert($s));
         Str::macro('marxdown', fn ($s) => (string) (new MarxdownConverter)->convert($s));
+
+        Vite::useScriptTagAttributes(['defer']);
     }
 }
 

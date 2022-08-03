@@ -59,7 +59,7 @@
 
         @auth
             <li>
-                <livewire:notifications />
+                <livewire:notifications.listing />
             </li>
 
             <li class="relative" x-data="{ open: false }" @click.away="open = false">
@@ -68,10 +68,10 @@
                 </button>
 
                 <div class="absolute top-full right-0 backdrop-blur-md bg-white/75 min-w-[200px] mt-2 py-2 rounded-lg shadow-xl shadow-indigo-900/10 z-10" x-show="open" x-transition>
-                    <div class="px-4 py-2 text-sm">
+                    <div class="px-4 py-2 leading-tight text-sm">
                         <div class="font-bold">{{ $user->username }}</div>
 
-                        <div>
+                        <div class="mt-2">
                             <span class="text-gray-600">XP : </span>
                             <span class="font-bold font-mono">{{ $user->experience_gains_sum_points }}</span>
                         </div>

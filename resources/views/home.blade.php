@@ -24,15 +24,15 @@
                 {{ config('app.name') }} est aussi une plateforme permettant d'apprendre PHP et Laravel. Découvrez des articles en français de qualité, remplis de conseils appliquables immédiatement.
             </p>
 
-            <div class="grid md:grid-cols-2 gap-8 mt-16">
+            <ul class="grid md:grid-cols-2 gap-8 mt-16">
                 @foreach ($latest as $post)
-                    <x-post :post="$post" />
+                    <li><x-posts.post :post="$post" /></li>
                 @endforeach
-            </div>
+            </ul>
 
-            <x-primary href="{{ route('posts.index') }}" class="mt-8 mx-auto table" @click="window.fathom?.trackGoal('QEMXBB9C', 0)">
+            <x-buttons.primary href="{{ route('posts.index') }}" class="mt-8 mx-auto table" @click="window.fathom?.trackGoal('QEMXBB9C', 0)">
                 Et plus encore sur le blog
-            </x-primary>
+            </x-buttons.primary>
         </x-section>
     </div>
 
@@ -49,21 +49,21 @@
                 </div>
 
                 @auth
-                    <x-cta
+                    <x-buttons.cta
                         href="{{ route('posts.index') }}"
                         class="mt-4 text-center sm:text-left w-full sm:w-auto"
                         @click="window.fathom?.trackGoal('NECDT6XG', 0)"
                     >
                         Commencer
-                    </x-cta>
+                    </x-buttons.cta>
                 @else
-                    <x-cta
+                    <x-buttons.cta
                         href="{{ route('register') }}"
                         class="font-extrabold mt-4 px-4 md:px-8 text-center sm:text-left w-full sm:w-auto"
                         @click="window.fathom?.trackGoal('TBIFNVNC', 0)"
                     >
                         Inscrivez-vous <span class="font-light">pour commencer</span>
-                    </x-cta>
+                    </x-buttons.cta>
                 @endauth
             </div>
 

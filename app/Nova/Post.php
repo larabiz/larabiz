@@ -5,9 +5,7 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\Number;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Textarea;
@@ -67,19 +65,6 @@ class Post extends Resource
                 ->rules('nullable', 'min:1')
                 ->placeholder('e.g. 9')
                 ->hideFromIndex(),
-
-            Badge::make('Status', 'is_draft')
-                ->map([
-                    true => 'danger',
-                    false => 'success',
-                ])
-                ->labels([
-                    true => 'Draft',
-                    false => 'Published',
-                ]),
-
-            Boolean::make('Is Draft')
-                ->onlyOnForms(),
 
             Text::make('Comments', 'comments_count')
                 ->sortable()

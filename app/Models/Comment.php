@@ -20,7 +20,7 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public function reply_to() : BelongsTo
+    public function parent() : BelongsTo
     {
         return $this->belongsTo(Comment::class, 'comment_id');
     }

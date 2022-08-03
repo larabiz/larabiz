@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use Laravel\Nova\Nova;
-use Illuminate\Support\Str;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Traits\HasRandomId;
@@ -23,15 +21,6 @@ class Post extends Model implements HasMedia
     protected $guarded = [];
 
     protected $withCount = ['comments'];
-
-    public static function booted() : void
-    {
-        static::saved(function (self $post) {
-            Nova::serving(function () use ($post) {
-                Str::marxdown($post->content);
-            });
-        });
-    }
 
     public function comments() : HasMany
     {

@@ -15,7 +15,7 @@
 
         <div class="grid md:grid-cols-2 gap-8 mt-8 sm:mt-16">
             @foreach ($posts as $post)
-                <x-post :post="$post" />
+                <x-posts.post :post="$post" />
             @endforeach
         </div>
     </x-section>

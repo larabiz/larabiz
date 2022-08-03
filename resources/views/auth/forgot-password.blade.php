@@ -9,14 +9,14 @@
                 Réinitialiser mon mot de passe
             </h2>
 
-            <x-form method="POST" action="{{ route('password.email') }}" class="grid gap-4 mt-6">
+            <x-forms.form method="POST" action="{{ route('password.email') }}" class="grid gap-4 mt-6">
                 <div class="grid">
-                    <x-label for="email">E-mail</x-label>
-                    <x-input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="lennyetcarl@pourlavie.com" />
+                    <x-forms.label for="email">E-mail</x-forms.label>
+                    <x-forms.input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="lennyetcarl@pourlavie.com" />
                 </div>
 
-                <x-cta type="submit">Réinitialiser</x-cta>
-            </x-form>
+                <x-buttons.cta type="submit">Réinitialiser</x-buttons.cta>
+            </x-forms.form>
         </div>
     </div>
 </x-app>

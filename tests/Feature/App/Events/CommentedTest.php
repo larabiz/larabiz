@@ -14,7 +14,7 @@ class CommentedTest extends TestCase
         $event = new Commented(
             Comment::factory()->forUser()->for(
                 Post::factory()->forUser()
-            )->create()
+            )->make()
         );
 
         $this->assertInstanceOf(Comment::class, $event->comment);

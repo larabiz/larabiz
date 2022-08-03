@@ -18,9 +18,4 @@ class PostFactory extends Factory
             'excerpt' => fake()->paragraph(),
         ];
     }
-
-    public function asDraft() : static
-    {
-        return $this->state(fn () => ['is_draft' => true]);
-    }
 }

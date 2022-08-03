@@ -31,25 +31,4 @@ class CommentedListenerTest extends TestCase
         // The event has been triggered. 30 points should be gained.
         $this->assertEquals(30, $comment->user->sumExperienceGainsPoints());
     }
-
-    public function test_it_sends_notifications_to_the_user_who_has_been_replied_to_and_master() : void
-    {
-        Notification::fake();
-
-        $commentRepliedTo = Comment::factory()->forUser()->for(
-            $post = Post::factory()->forUser()
-        )->create();
-
-        $comment = Comment::factory()->forUser()->for($post)->create([
-            'comment_id' => $commentRepliedTo->id,
-        ]);
-
-        event(new Commented($comment));
-
-        // The user who's been answered to should be notified.
-        Notification::assertSentToTimes($comment->reply_to->user, NewComment::class, 1);
-
-        // Master should be notified of this new comment as well.
-        Notification::assertSentToTimes(User::master()->first(), NewComment::class, 1);
-    }
 }

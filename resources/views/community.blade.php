@@ -9,6 +9,11 @@
         </div>
 
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 mt-8">
+            <a href="https://www.youtube.com/c/HappyToDev/featured" target="_blank" rel="noopener noreferrer" class="border border-indigo-100 p-4 rounded text-center" @click="window.fathom?.trackGoal('U4RBWUT3', 0)">
+                <img src="{{ secure_asset('img/happytodev.jpg') }}" alt="HappyToDev" class="h-16 inline" />
+                <span class="block font-bold mt-4 text-sm sm:text-base">HappyToDev</span>
+            </a>
+
             <a href="https://laravel.cm" target="_blank" rel="noopener noreferrer" class="border border-indigo-100 p-4 rounded text-center" @click="window.fathom?.trackGoal('U4RBWUT3', 0)">
                 <x-icon-laravel-cm class="h-16 inline" />
                 <span class="block font-bold mt-4 text-sm sm:text-base">Laravel Cameroun</span>
@@ -25,7 +30,7 @@
             </a>
 
             <a href="https://www.tutomarks.fr" target="_blank" rel="noopener noreferrer" class="border border-indigo-100 p-4 rounded text-center" @click="window.fathom?.trackGoal('U4RBWUT3', 0)">
-                <img src="{{ secure_asset('img/tutomarks.png') }}" alt="Nord Coders" class="h-16 inline" />
+                <img src="{{ secure_asset('img/tutomarks.png') }}" alt="Tutomarks" class="h-16 inline" />
                 <span class="block font-bold mt-4 text-sm sm:text-base">Tutomarks</span>
             </a>
         </div>
