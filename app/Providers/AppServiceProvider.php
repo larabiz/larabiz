@@ -13,6 +13,7 @@ use League\CommonMark\Extension\SmartPunct\SmartPunctExtension;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\Strikethrough\StrikethroughExtension;
+use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,7 +21,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot() : void
     {
         Str::macro('lightdown', fn ($s) => (string) (new LightdownConverter)->convert($s));
-        Str::macro('marxdown', fn ($s) => (string) (new MarxdownConverter)->convert($s));
+        Str::macro('marxdown', fn ($s) => (string) (new MarxdownConverter([
+            'heading_permalink' => [
+                'fragment_prefix' => '',
+                'id_prefix' => '',
+                'insert' => 'after',
+                'symbol' => '#',
+                'title' => 'Permalien',
+            ],
+        ]))->convert($s));
 
         Vite::useScriptTagAttributes(['defer']);
     }
@@ -61,6 +70,7 @@ class MarxdownConverter extends \League\CommonMark\MarkdownConverter
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension);
         $environment->addExtension(new GithubFlavoredMarkdownExtension);
+        $environment->addExtension(new HeadingPermalinkExtension);
         $environment->addExtension(new SmartPunctExtension);
         $environment->addExtension(new TableExtension);
         $environment->addExtension(new TorchlightExtension);
