@@ -16,7 +16,7 @@ class FormTest extends TestCase
 {
     public function test_it_disallows_guests_to_store_comments() : void
     {
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->forUser()->published()->create();
 
         $this->assertGuest();
 
@@ -31,7 +31,7 @@ class FormTest extends TestCase
 
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->forUser()->published()->create();
 
         $this->actingAs($user);
 
@@ -58,7 +58,7 @@ class FormTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->forUser()->published()->create();
 
         $this->actingAs($user);
 
@@ -71,7 +71,7 @@ class FormTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->forUser()->published()->create();
 
         $this->actingAs($user);
 

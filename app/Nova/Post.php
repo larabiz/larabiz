@@ -5,7 +5,9 @@ namespace App\Nova;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\Number;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Textarea;
@@ -65,6 +67,24 @@ class Post extends Resource
                 ->rules('nullable', 'min:1')
                 ->placeholder('e.g. 9')
                 ->hideFromIndex(),
+
+            Badge::make('Status')->types([
+                'draft' => 'bg-gray-100 text-gray-400',
+                'published' => 'bg-green-100 text-green-500',
+            ])->labels([
+                'draft' => 'Draft',
+                'published' => 'Published',
+            ]),
+
+            Select::make('Status')
+                ->options([
+                    'draft' => 'Draft',
+                    'published' => 'Published',
+                ])
+                ->fillUsing(function (NovaRequest $request, \App\Models\Post $model) {
+                    $model->setStatus($request->status);
+                })
+                ->onlyOnForms(),
 
             Text::make('Comments', 'comments_count')
                 ->sortable()

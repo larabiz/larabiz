@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,5 +18,12 @@ class PostFactory extends Factory
             'content' => fake()->paragraphs(5, true),
             'excerpt' => fake()->paragraph(),
         ];
+    }
+
+    public function published() : static
+    {
+        return $this->afterCreating(function (Post $post) {
+            $post->setStatus('published')->save();
+        });
     }
 }

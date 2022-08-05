@@ -17,7 +17,7 @@ class CommentedListenerTest extends TestCase
         Notification::fake();
 
         $comment = Comment::factory()->forUser()->for(
-            Post::factory()->forUser()
+            Post::factory()->forUser()->published()
         )->create();
 
         // User has no experience points yet.

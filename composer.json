@@ -21,6 +21,7 @@
         "spatie/laravel-google-fonts": "^1.2",
         "spatie/laravel-medialibrary": "^10.4",
         "spatie/laravel-model-status": "^1.11",
+        "spatie/laravel-ray": "^1.30",
         "spatie/laravel-sitemap": "^6.2",
         "spatie/laravel-tags": "^4.3",
         "symfony/http-client": "^6.1",
@@ -30,6 +31,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "barryvdh/laravel-ide-helper": "^2.12",
         "brianium/paratest": "^6.6",
         "fakerphp/faker": "^1.9.1",
         "laravel/telescope": "^4.9",
@@ -54,7 +56,10 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan ide-helper:generate",
+            "@php artisan ide-helper:models -N",
+            "@php artisan ide-helper:meta"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"

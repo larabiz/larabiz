@@ -13,7 +13,7 @@ class CommentedTest extends TestCase
     {
         $event = new Commented(
             Comment::factory()->forUser()->for(
-                Post::factory()->forUser()
+                Post::factory()->forUser()->published()
             )->make()
         );
 

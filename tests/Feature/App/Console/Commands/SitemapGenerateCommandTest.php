@@ -11,7 +11,7 @@ class SitemapGenerateCommandTest extends TestCase
 {
     public function test_it_generates_a_sitemap_with_essential_links_that_need_indexing() : void
     {
-        Post::factory(10)->forUser()->create();
+        Post::factory(10)->forUser()->published()->create();
 
         Artisan::call(SitemapGenerateCommand::class);
 

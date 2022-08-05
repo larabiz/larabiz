@@ -13,7 +13,7 @@ class CommentTest extends TestCase
     public function test_it_deletes_comment() : void
     {
         $comment = Comment::factory()->forUser()->for(
-            Post::factory()->forUser()->create()
+            Post::factory()->forUser()->published()->create()
         )->create();
 
         $this->actingAs($comment->user);
@@ -30,7 +30,7 @@ class CommentTest extends TestCase
     public function test_it_allows_master_to_delete_any_comment() : void
     {
         $comment = Comment::factory()->forUser()->for(
-            Post::factory()->forUser()->create()
+            Post::factory()->forUser()->published()->create()
         )->create();
 
         $this->actingAs(User::master()->first());
@@ -43,7 +43,7 @@ class CommentTest extends TestCase
     public function test_it_disallows_users_to_delete_other_users_comment() : void
     {
         $comment = Comment::factory()->forUser()->for(
-            Post::factory()->forUser()->create()
+            Post::factory()->forUser()->published()->create()
         )->create();
 
         $this->actingAs(User::factory()->create());
@@ -56,7 +56,7 @@ class CommentTest extends TestCase
     public function test_it_disallows_guests_to_delete_comment() : void
     {
         $comment = Comment::factory()->forUser()->for(
-            Post::factory()->forUser()->create()
+            Post::factory()->forUser()->published()->create()
         )->create();
 
         $this->assertGuest();

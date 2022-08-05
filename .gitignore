@@ -1,6 +1,9 @@
+_ide_helper_models.php
+_ide_helper.php
 .DS_Store
 .env
 .env.backup
+.phpstorm.meta.php
 .phpunit.result.cache
 *.cache
 *.log

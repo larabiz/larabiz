@@ -58,6 +58,9 @@ class User extends Resource
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
 
+            DateTime::make('Last Login At')
+                ->exceptOnForms(),
+
             HasMany::make('Comments'),
 
             HasMany::make('Experience Gains'),

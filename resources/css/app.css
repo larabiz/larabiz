@@ -2,32 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.heading-permalink {
-    @apply !bg-transparent ml-2
-}
-
 .prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"] *))::before {
     display: none
 }
 
 .prose :where(blockquote p:first-of-type):not(:where([class~="not-prose"] *))::after {
     display: none
-}
-
-.prose h1 .heading-permalink,
-.prose h2 .heading-permalink,
-.prose h3 .heading-permalink,
-.prose h4 .heading-permalink,
-.prose h5 .heading-permalink,
-.prose h6 .heading-permalink {
-    display: none;
-}
-
-.prose h1:hover .heading-permalink,
-.prose h2:hover .heading-permalink,
-.prose h3:hover .heading-permalink,
-.prose h4:hover .heading-permalink,
-.prose h5:hover .heading-permalink,
-.prose h6:hover .heading-permalink {
-    display: inline;
 }

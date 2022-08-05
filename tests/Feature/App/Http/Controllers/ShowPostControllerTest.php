@@ -5,12 +5,13 @@ namespace Tests\Feature\App\Http\Controllers;
 use Tests\TestCase;
 use App\Models\Post;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class ShowPostControllerTest extends TestCase
 {
     public function test_it_works() : void
     {
-        Post::factory(20)->forUser()->create();
+        Post::factory(20)->forUser()->published()->create();
 
         $post = Post::inRandomOrder()->first();
 
@@ -28,12 +29,22 @@ class ShowPostControllerTest extends TestCase
 
     public function test_it_redirects_when_slug_is_wrong() : void
     {
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->forUser()->published()->create();
 
         $this
             ->get(route('posts.show', [$post->random_id, 'foo']))
             ->assertStatus(301)
             ->assertLocation(route('posts.show', [$post->random_id, $post->slug]))
+        ;
+    }
+
+    public function test_it_does_not_show_drafts() : void
+    {
+        $post = Post::factory()->forUser()->create();
+
+        $this
+            ->get(route('posts.show', [$post->random_id, $post->slug]))
+            ->assertNotFound()
         ;
     }
 }

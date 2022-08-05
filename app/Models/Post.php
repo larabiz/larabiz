@@ -8,6 +8,7 @@ use App\Models\Traits\HasRandomId;
 use Spatie\ModelStatus\HasStatuses;
 use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,6 +22,19 @@ class Post extends Model implements HasMedia
     protected $guarded = [];
 
     protected $withCount = ['comments'];
+
+    public static function booted() : void
+    {
+        static::created(function (self $model) {
+            if (empty($model->status)) {
+                $model->setStatus('draft');
+            }
+        });
+
+        static::addGlobalScope('published', function (Builder $query) {
+            $query->currentStatus('published');
+        });
+    }
 
     public function comments() : HasMany
     {

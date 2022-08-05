@@ -8,8 +8,9 @@ use Illuminate\Support\Collection;
 
 class ListPostsControllerTest extends TestCase
 {
-    public function test_it_works() : void
+    public function test_it_lists_posts_excluding_drafts() : void
     {
+        $posts = Post::factory(10)->forUser()->published()->create();
         Post::factory(10)->forUser()->create();
 
         $response = $this
@@ -19,5 +20,6 @@ class ListPostsControllerTest extends TestCase
         ;
 
         $this->assertInstanceOf(Collection::class, $response->viewData('posts'));
+        $this->assertCount(10, $response->viewData('posts'));
     }
 }

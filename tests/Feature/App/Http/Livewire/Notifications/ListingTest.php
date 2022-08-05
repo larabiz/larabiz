@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Livewire;
+namespace Tests\Feature\App\Http\Livewire\Notifications;
 
 use Tests\TestCase;
 use App\Models\User;

@@ -13,7 +13,7 @@ class ListingTest extends TestCase
 {
     public function test_it_lists_comments_by_creation_date_in_asc_order() : void
     {
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->forUser()->published()->create();
 
         Carbon::setTestNow();
 
