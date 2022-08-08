@@ -81,8 +81,7 @@ class Post extends Resource
                     'draft' => 'Draft',
                     'published' => 'Published',
                 ])
-                ->fillUsing(function (NovaRequest $request, \App\Models\Post $model) {
-                    $model->setStatus($request->status);
+                ->fillUsing(function () {
                 })
                 ->onlyOnForms(),
 

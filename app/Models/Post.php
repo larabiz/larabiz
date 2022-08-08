@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Nova;
 use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Traits\HasRandomId;
@@ -9,6 +10,7 @@ use Spatie\ModelStatus\HasStatuses;
 use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -25,10 +27,18 @@ class Post extends Model implements HasMedia
 
     public static function booted() : void
     {
-        static::created(function (self $model) {
+        static::saved(function (self $model) {
             if (empty($model->status)) {
                 $model->setStatus('draft');
             }
+
+            Nova::whenServing(function (NovaRequest $request) use ($model) {
+                $model->setStatus($request->status ?? 'draft');
+            }, function () use ($model) {
+                if (empty($model->status)) {
+                    $model->setStatus('draft');
+                }
+            });
         });
 
         static::addGlobalScope('published', function (Builder $query) {
