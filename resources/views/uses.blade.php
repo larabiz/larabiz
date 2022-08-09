@@ -1,8 +1,11 @@
-<x-app title="Ce que j'utilise pour faire vivre Larabiz">
-    <x-section>
-        <x-slot:title class="text-xl sm:text-3xl">
-            Ce que j'utilise pour faire vivre Larabiz
-        </x-slot>
+<x-app
+    title="Matériel, logiciels et services utilisés pour Larabiz"
+    description="La création et la maintenance d'un site requiert des outils divers et variés de toutes sortes."
+>
+    <article class="container py-8 sm:py-16">
+        <h1 class="font-extrabold leading-tight mb-6 text-center text-2xl md:text-3xl">
+            Quel matériel, logiciels et services pour faire du développement Laravel ?
+        </h1>
 
         <div class="flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-start gap-8">
             <div class="order-2 sm:order-none">
@@ -99,5 +102,5 @@
                 </li>
             </ul>
         </div>
-    </x-section>
+    </article>
 </x-app>

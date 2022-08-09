@@ -1,6 +1,6 @@
 <x-app
-    :title="$post->title"
-    :description="$post->excerpt"
+    :title="$post->seo_title ?? $post->title"
+    :description="$post->seo_excerpt ?? $post->excerpt"
     :image="$post->getFirstMediaUrl('illustration', 'large')"
 >
     <div class="container py-8 sm:py-16">
@@ -12,19 +12,19 @@
 
         <article class="pb-8 sm:pb-16 pt-6 sm:pt-14">
             <h1 class="font-thin text-3xl sm:text-5xl">
-                {{ $post->title }}
+                @if ($post->latestStatus('draft')) Brouillon : @endif {{ $post->title }}
             </h1>
 
-            <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
+            <div class="border-y border-indigo-100 dark:border-gray-800 flex items-center gap-4 mt-6 py-4 text-sm">
                 <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user->email) }}?s=144" alt="Avatar de {{ $post->user->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
 
-                <div>
-                    <p>Mis à jour le <time datetime="{{ $post->created_at->toDateString() }}" class="font-bold">{{ $post->created_at->isoFormat('ll') }}</time> par <span class="font-bold">{{ $post->user->username }}</span></p>
-
-                    @if ($post->certified_for_laravel)
-                        <p>Article certifié pour <strong class="font-bold">Laravel {{ $post->certified_for_laravel }}</strong></p>
-                    @endif
-                </div>
+                <p>
+                    @if ($post->latestStatus('draft')) Brouillon créé le @else Publié le @endif
+                    <time datetime="{{ $post->latestStatus()->created_at->toDateString() }}" class="font-bold">
+                        {{ $post->latestStatus()->created_at->isoFormat('ll') }}
+                    </time>
+                    par <span class="font-bold">{{ $post->user->username }}</span>
+                </p>
             </div>
 
             <div class="font-light mt-6 text-indigo-400 text-xl">
@@ -35,12 +35,12 @@
                 <img loading="lazy" src="{{ $url }}" alt="" class="mt-8" />
             @endif
 
-            <div class="bg-indigo-100 flex items-center gap-4 mt-8 p-4 rounded-lg text-indigo-900/75">
+            <div class="bg-indigo-100 dark:bg-gray-800 flex items-center gap-4 mt-8 p-4 rounded-lg text-indigo-900/75 dark:text-indigo-200">
                 <x-heroicon-o-information-circle class="flex-shrink-0 w-5 h-5" />
 
                 <div>
                     <div>
-                        Quelque chose vous échappe au sujet de cet article&nbsp;? <a href="#comments" class="font-semibold text-indigo-900" @click="window.fathom?.trackGoal('SNY6VO5I', 0)">Demandez de l'aide dans les commentaires</a>.
+                        Quelque chose vous échappe au sujet de cet article&nbsp;? <a href="#comments" class="font-semibold text-indigo-900 dark:text-indigo-400" @click="window.fathom?.trackGoal('SNY6VO5I', 0)">Demandez de l'aide dans les commentaires</a>.
                     </div>
 
                     <div class="font-bold mt-2 text-indigo-700" x-show="document.getElementById('comments').clientHeight === 0">
@@ -49,14 +49,14 @@
                 </div>
             </div>
 
-            <div class="break-words prose prose-a:bg-indigo-100 prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-200 prose-blockquote:font-serif prose-blockquote:text-indigo-900/75 prose-h3:leading-tight prose-img:my-0 prose-figure:mx-auto prose-figure:text-center prose-figure:sm:w-2/3 prose-figure:md:w-1/2 prose-strong:font-bold !max-w-none mt-8">
+            <div class="break-words prose prose-a:bg-indigo-100 prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-200 prose-blockquote:font-serif prose-blockquote:text-indigo-900/75 prose-h3:leading-tight prose-img:my-0 prose-figure:mx-auto prose-figure:text-center prose-figure:sm:w-2/3 prose-figure:md:w-1/2 prose-p:dark:text-indigo-100 prose-strong:font-bold !max-w-none mt-8">
                 {!! \Illuminate\Support\Str::marxdown($post->content) !!}
             </div>
         </article>
 
         <x-posts.author
             :author="$post->user"
-            class="border-y border-indigo-100 py-8"
+            class="border-y border-indigo-100 dark:border-gray-800 py-8"
         />
 
         <div
@@ -68,7 +68,7 @@
 
             @auth
                 @if (! $user?->hasVerifiedEmail())
-                    <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 text-lg sm:text-xl">
+                    <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 dark:text-gray-300 text-lg sm:text-xl">
                         Vous y êtes presque.<br />
                         Il n'y a plus qu'à confirmer votre adresse e-mail.
                     </div>
@@ -76,7 +76,7 @@
                     <livewire:comments.form :post="$post" />
                 @endif
             @else
-                <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 text-lg sm:text-xl">
+                <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 dark:text-gray-300 text-lg sm:text-xl">
                     Besoin d'aide&nbsp;? Envie de partager&nbsp;?<br />
                     <a href="{{ route('register') }}" class="font-semibold text-indigo-400">Inscrivez-vous</a> ou <a href="{{ route('login') }}" class="font-semibold text-indigo-400">connectez-vous</a> d'abord.
                 </div>
@@ -84,11 +84,11 @@
         </div>
     </div>
 
-    <div class="bg-indigo-100">
+    <div class="bg-indigo-100 dark:bg-gray-800">
         <x-newsletter class="container">
             <x-slot:title tag="h2">
-                Passez à la pratique<br />
-                <span class="text-indigo-400">Trouvez votre prochain emploi PHP+Laravel</span>
+                Envie de plus ?<br />
+                <span class="text-indigo-400">Abonnez-vous à la newsletter</span>
             </x-slot>
         </x-newsletter>
     </div>

@@ -1,10 +1,11 @@
 <nav {{ $attributes->merge(['class' => 'container flex items-center justify-between gap-8 sm:gap-0 pt-6 sm:pt-4 relative text-sm sm:text-base']) }}>
     <a href="{{ route('home') }}">
-        <x-icon-larabiz class="h-6 md:h-7 hidden sm:inline" />
+        <x-icon-larabiz class="h-6 md:h-7 hidden dark:!hidden sm:inline" />
+        <x-icon-larabiz-alt class="h-6 md:h-7 hidden dark:sm:inline" />
         <x-icon-larabiz-icon class="h-6 sm:hidden" />
     </a>
 
-    <ul class="flex items-center gap-6 sm:gap-8 justify-start">
+    <ul class="flex items-center gap-6 sm:gap-8 justify-start dark:text-gray-400">
         <li>
             <a href="{{ route('posts.index') }}" class="font-semibold @if (Route::is('posts.index') || Route::is('posts.show')) text-indigo-400 @else hover:text-indigo-400 transition-colors @endif">
                 <span class="sr-only sm:not-sr-only">Blog</span>
@@ -22,7 +23,7 @@
                 <x-heroicon-o-chat-alt-2 class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
             </a>
 
-            <span class="absolute -top-6 sm:-top-4 left-1/2 sm:left-auto sm:-right-4 bg-yellow-400 font-semibold leading-normal mt-1 rounded-full text-center text-xs w-[55px] -translate-x-1/2 sm:translate-x-0 scale-75">
+            <span class="absolute -top-6 sm:-top-4 left-1/2 sm:left-auto sm:-right-4 bg-yellow-400 dark:bg-yellow-600 font-semibold leading-normal mt-1 rounded-full text-center dark:text-white text-xs w-[55px] -translate-x-1/2 sm:translate-x-0 scale-75">
                 Bientôt
             </span>
         </li>

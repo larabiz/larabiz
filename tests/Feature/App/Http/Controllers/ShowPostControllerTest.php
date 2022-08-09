@@ -4,6 +4,7 @@ namespace Tests\Feature\App\Http\Controllers;
 
 use Tests\TestCase;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -25,6 +26,17 @@ class ShowPostControllerTest extends TestCase
         $this->assertInstanceOf(Collection::class, $latest = $response->viewData('others'));
         $this->assertCount(6, $latest);
         $this->assertTrue($latest->doesntContain('id', $post->id));
+    }
+
+    public function test_it_shows_drafts_to_master() : void
+    {
+        $post = Post::factory()->forUser()->create();
+
+        $this
+            ->actingAs(User::master()->first())
+            ->get(route('posts.show', [$post->random_id, $post->slug]))
+            ->assertOk()
+        ;
     }
 
     public function test_it_redirects_when_slug_is_wrong() : void

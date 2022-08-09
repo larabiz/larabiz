@@ -6,7 +6,6 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Badge;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Markdown;
@@ -48,13 +47,15 @@ class Post extends Resource
                 ->showCreateRelationButton(),
 
             Text::make('Title')
-                ->rules('required')
-                ->placeholder('Some title written with SEO in mind.'),
+                ->rules('required'),
+
+            Text::make('SEO Title')
+                ->rules('nullable', 'max:60'),
 
             Slug::make('Slug')
                 ->from('Title')
-                ->hideFromIndex()
-                ->placeholder('some-keywords-that-will-boost-seo'),
+                ->placeholder('some-keywords-that-will-boost-seo')
+                ->hideFromIndex(),
 
             Markdown::make('Content')
                 ->rules('required'),
@@ -63,10 +64,8 @@ class Post extends Resource
                 ->rules('required')
                 ->placeholder('Short text that makes the user want to read.'),
 
-            Number::make('Certified for Laravel')
-                ->rules('nullable', 'min:1')
-                ->placeholder('e.g. 9')
-                ->hideFromIndex(),
+            Textarea::make('SEO Excerpt')
+                ->rules('nullable', 'min:120', 'max:155'),
 
             Badge::make('Status')->types([
                 'draft' => 'bg-gray-100 text-gray-400',
@@ -116,5 +115,12 @@ class Post extends Resource
     public function actions(NovaRequest $request) : array
     {
         return [];
+    }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $query->withoutGlobalScopes();
+
+        return parent::indexQuery($request, $query);
     }
 }

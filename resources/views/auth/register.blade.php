@@ -1,4 +1,7 @@
-<x-app title="Inscription">
+<x-app
+    title="Créez un compte sur Larabiz"
+    description="Inscrivez-vous gratuitement et contribuez à la meilleure communauté Laravel francophone."
+>
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
             Inscription
@@ -38,7 +41,7 @@
             </x-buttons.cta>
         </x-forms.form>
 
-        <div class="border-t mt-8 sm:mt-16 pt-8 sm:pt-16 text-center">
+        <div class="border-t dark:border-gray-800 mt-8 sm:mt-16 pt-8 sm:pt-16 text-center">
             <p>Avez-vous déjà un compte sur {{ config('app.name') }}&nbsp;? <a href="{{ route('login') }}" class="font-semibold text-indigo-400" @click="window.fathom?.trackGoal('SRUCVXXS', 0)">Connectez-vous</a>.</p>
         </div>
     </x-section>

@@ -23,7 +23,7 @@ class PostFactory extends Factory
     public function published() : static
     {
         return $this->afterCreating(function (Post $post) {
-            $post->setStatus('published')->save();
+            $post->setStatus('published');
         });
     }
 }

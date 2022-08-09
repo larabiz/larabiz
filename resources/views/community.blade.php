@@ -1,8 +1,11 @@
-<x-app title="Il n'y a pas que Larabiz dans la vie">
+<x-app
+    title="Les autres communautés Laravel francophones"
+    description="Parce qu'il n'y a pas que Larabiz dans la vie, découvrez d'autres communautés Laravel francophones."
+>
     <x-section>
         <x-slot:title>
-            Il n'y a pas que Larabiz dans la vie
-        </x-slot>
+            Les autres communautés Laravel francophones
+        </x-slot:title>
 
         <div class="-mt-2">
             Lorsqu'on est développeur, il est très important d'aller chercher l'information peu importe où elle se trouve. Vos sources doivent être diversifiées et {{ config('app.name') }} vous aide à en trouver de nouvelles.

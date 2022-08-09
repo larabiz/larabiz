@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-b from-white to-gray-50 rounded-lg shadow shadow-indigo-100">
+<div class="bg-gradient-to-b from-white dark:from-gray-700 to-gray-50 dark:to-gray-700/90 rounded-lg shadow shadow-indigo-100 dark:shadow-none">
     <div class="px-4 py-6 sm:p-6">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-4">
@@ -18,7 +18,7 @@
             <div class="flex items-center justify-end gap-4">
                 @can('delete', $comment)
                     <button
-                        class="border border-red-100 hover:bg-red-100 flex items-center
+                        class="border border-red-100 dark:border-red-400/20 hover:bg-red-100 hover:dark:bg-red-400/20 flex items-center
                         justify-center rounded-full transition-colors w-8 h-8"
                         @click="if (window.confirm('Souhaitez-vous vraiment supprimer ce commentaire ?')) $wire.delete()"
                     >
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="break-words mt-4 sm:mt-6 prose prose-a:bg-indigo-100/75 prose-a:font-semibold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-indigo-100 prose-blockquote:font-serif prose-blockquote:text-indigo-900/75 prose-img:my-0 prose-img:max-h-[50vh] prose-li:my-0 prose-pre:whitespace-pre-wrap prose-strong:font-bold !max-w-none @if (! empty($this->frameless)) bg-gradient-to-b from-white to-gray-50 p-4 sm:p-6 rounded-lg shadow shadow-indigo-100 @endif">
+        <div class="break-words mt-4 sm:mt-6 prose prose-a:bg-indigo-100/75 prose-a:font-semibold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-indigo-100 prose-blockquote:font-serif prose-blockquote:text-indigo-900/75 prose-img:my-0 prose-img:max-h-[50vh] prose-li:my-0 prose-p:dark:text-gray-400 prose-pre:whitespace-pre-wrap prose-strong:font-bold !max-w-none">
             {!! Illuminate\Support\Str::lightdown($this->comment->content) !!}
         </div>
     </div>

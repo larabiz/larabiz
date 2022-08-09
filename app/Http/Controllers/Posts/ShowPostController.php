@@ -5,14 +5,21 @@ namespace App\Http\Controllers\Posts;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 
 class ShowPostController extends Controller
 {
-    public function __invoke(string $randomId, ?string $slug = null) : View|RedirectResponse
+    public function __invoke(Request $request, string $randomId, ?string $slug = null) : View|RedirectResponse
     {
-        $post = Post::query()
+        $post = Post::query();
+
+        if ($request->user()?->email === 'benjamincrozat@me.com') {
+            $post = $post->withoutGlobalScope('published');
+        }
+
+        $post = $post
             ->whereRandomId($randomId)
             ->firstOrFail();
 

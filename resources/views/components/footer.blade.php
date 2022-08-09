@@ -1,12 +1,12 @@
-<div {{ $attributes->merge(['class' => 'bg-gray-900 py-8 text-gray-400 text-sm']) }}>
+<div {{ $attributes->merge(['class' => 'bg-gray-900 dark:bg-black py-8 text-gray-400 text-sm']) }}>
     <footer class="container sm:max-w-screen-sm text-center">
         <a href="{{ route('home') }}">
             <x-icon-larabiz-alt class="h-6 sm:h-7 inline" />
         </a>
 
         <p class="mt-6 sm:mt-8">
-            Sur {{ config('app.name') }}, retrouvez par mail les dernières
-            offres d'emploi Laravel, des articles de qualité et plus encore.
+            Sur {{ config('app.name') }}, apprenez PHP et Laravel en français. Retrouvez les dernières
+            offres d'emploi, des articles de qualité et plus encore.
         </p>
 
         <ul class="flex flex-wrap sm:flex-nowrap items-center justify-center gap-2 mt-5 sm:mt-7">
@@ -48,9 +48,5 @@
                 </a>
             </li>
         </ul>
-
-        <p class="mt-8">
-            {{ config('app.name') }} est respectueux de votre vie privée et utilise <a href="https://usefathom.com/ref/JTPOCN" target="_blank" class="font-bold text-white">Fathom</a> plutôt que Google.
-        </p>
     </footer>
 </div>

@@ -9,7 +9,7 @@ class SubscribersTableSeeder extends Seeder
 {
     public function run() : void
     {
-        Subscriber::factory(30)->create();
-        Subscriber::factory(30)->create(['confirmed_at' => null]);
+        Subscriber::factory(mt_rand(100, 10000))->create();
+        Subscriber::factory(mt_rand(100, 10000))->create(['confirmed_at' => null]);
     }
 }

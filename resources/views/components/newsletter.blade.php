@@ -6,12 +6,12 @@
         {{ $title }}
     </x-slot>
 
-    <p class="mt-5 text-center sm:text-lg">
-        <strong class="bg-purple-200 font-semibold">Tous les lundis</strong>, {{ config('app.name') }} vous envoie <strong class="bg-purple-200 font-semibold">gratuitement</strong> les dernières opportunités.
+    <p class="-mt-2 font-regular text-center sm:text-lg">
+        {{ config('app.name') }} vous envoie régulièrement<br /> trucs et astuces, ainsi que les dernières offres d'emploi.
     </p>
 
-    <p class="text-center sm:text-lg">
-        Rejoignez les <strong class="font-semibold">@choice('<span class="font-extrabold text-indigo-400">:count</span> autre abonné|<span class="font-bold text-indigo-400">:count</span> autres abonnés', $subscribersCount)</strong>&nbsp;!
+    <p class="font-bold mt-5 text-center sm:text-lg">
+        Rejoignez les @choice('<span class="font-exabold text-indigo-400">:count</span> autre abonné|<span class="font-extrabold text-indigo-400">:count</span> autres abonnés', $subscribersCount)&nbsp;!
     </p>
 
     <x-forms.form
@@ -23,7 +23,7 @@
         <div class="flex flex-wrap sm:flex-nowrap items-stretch gap-2 rounded">
             <p class="flex-grow">
                 <label for="email" class="sr-only">E-mail :</label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="homer@simpson.com" class="border-0 placeholder-indigo-200 px-4 py-3 rounded shadow shadow-indigo-100 w-full" required>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="homer@simpson.com" class="dark:bg-gray-700 border-0 placeholder-indigo-200 dark:placeholder-gray-500 px-4 py-3 rounded shadow shadow-indigo-100 dark:shadow-none w-full" required>
             </p>
 
             <x-buttons.cta type="submit" class="w-full sm:w-auto">
@@ -34,7 +34,7 @@
         <x-forms.error name="email" />
     </x-forms.form>
 
-    <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 text-xs">
+    <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 dark:text-indigo-400/80 text-xs">
         Pas de spam, seulement des nouvelles en rapport avec {{ config('app.name') }}&nbsp;!
     </p>
 

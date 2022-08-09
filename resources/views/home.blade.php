@@ -1,19 +1,22 @@
-<x-app>
+<x-app
+    title="Apprenez PHP et Laravel en français avec {{ config('app.name') }}"
+    description="Retrouvez les dernières offres d'emploi, des articles de qualité et plus encore avec Larabiz, la meilleure communauté francophone PHP et Laravel."
+>
     <x-newsletter>
         <x-slot:title>
-            Trouvez votre prochain emploi&nbsp;<span class="text-indigo-400">PHP</span>+<span class="text-indigo-400">Laravel</span>
-        </x-slot>
+            Apprenez PHP et Laravel <strong class="text-indigo-400">en français</strong>
+        </x-slot:title>
 
         <div class="italic mt-8 sm:mt-16">
-            <p>Salut, moi c'est <a href="{{ route('about') }}" class="bg-indigo-100 font-bold text-indigo-400">Benjamin</a>&nbsp;! 👋 Cela fait plus de 10 ans que je suis développeur web.</p>
+            <p>Salut, moi c'est <a href="{{ route('about') }}" class="bg-indigo-100 dark:bg-indigo-400/20 font-bold text-indigo-400">Benjamin</a>&nbsp;! 👋 Cela fait plus de 10 ans que je suis développeur web.</p>
 
-            <p class="mt-4">Il y a quelques années, je découvrais Laravel et ce fut une révélation. À l'époque, il y avait peu d'offres d'emploi ouvertes à son utilisation. Je devais me contenter de projets WordPress et l'expérience était pour le moins… frustrante.</p>
+            <p class="mt-4">Il y a quelques années, je découvrais Laravel et ce fut une révélation. À l'époque, il y avait peu d'offres d'emploi ouvertes à son utilisation. Mais les choses ont changé.</p>
 
-            <p class="mt-4">Aujourd'hui, les choses ont changé. Le web pullule d'offres d'emploi en tout genre. <strong class="bg-purple-200 font-semibold">Je vous aide à faire le tri afin de trouver les opportunités qui vous permetteront de gagner de l'expérience avec Laravel</strong>.</p>
+            <p class="mt-4">Aujourd'hui, <strong class="bg-purple-200/75 dark:bg-purple-400/20 font-semibold">Laravel est un excellent investissement</strong> et j'ai créé Larabiz afin d'aider autant de gens que possible à voir leur vie changée grâce à cet ecosystème.</p>
         </div>
     </x-newsletter>
 
-    <div class="bg-indigo-100" x-intersect="window.fathom?.trackGoal('ECBYPDIG', 0)">
+    <div class="bg-indigo-100 dark:bg-gray-800" x-intersect="window.fathom?.trackGoal('ECBYPDIG', 0)">
         <x-section class="max-w-[1024px]">
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
                 Augmentez vos chances d'être&nbsp;recruté<br />

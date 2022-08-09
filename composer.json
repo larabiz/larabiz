@@ -34,7 +34,6 @@
         "barryvdh/laravel-ide-helper": "^2.12",
         "brianium/paratest": "^6.6",
         "fakerphp/faker": "^1.9.1",
-        "laravel/telescope": "^4.9",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "nunomaduro/larastan": "^2.1",
