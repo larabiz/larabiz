@@ -24,8 +24,6 @@ class SitemapGenerateCommand extends Command
             $sitemap->add(route('posts.show', [$post->random_id, $post->slug]));
         });
 
-        $sitemap->add(route('about'));
-
         $sitemap->add(route('community'));
 
         $sitemap->add(route('uses'));

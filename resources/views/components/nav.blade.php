@@ -34,7 +34,7 @@
             </button>
 
             <div class="absolute top-full right-0 backdrop-blur-md bg-white/75 min-w-[200px] mt-2 py-2 rounded-lg shadow-xl shadow-indigo-900/10 z-10" x-show="open" x-transition>
-                <a href="{{ route('about') }}" class="hover:bg-indigo-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
+                <a href="{{ route('home') }}#about" class="hover:bg-indigo-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
                     <x-heroicon-o-question-mark-circle class="h-4 translate-y-[-1px]" />
                     À propos
                 </a>

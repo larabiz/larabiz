@@ -17,7 +17,7 @@
             <li class=" text-gray-600 text-xs">•</li>
 
             <li>
-                <a href="{{ route('about') }}" class="text-gray-300 hover:text-white transition-colors">À propos</a>
+                <a href="{{ route('home') }}#about" class="text-gray-300 hover:text-white transition-colors">À propos</a>
             </li>
 
             <li class=" text-gray-600 text-xs">•</li>
