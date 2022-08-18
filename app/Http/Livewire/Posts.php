@@ -18,19 +18,16 @@ class Posts extends Component
     public function render()
     {
         return view('livewire.posts', [
-            'posts' => Post::query()
-                ->addSelect([
-                    'username' => User::select('username')
-                        ->whereColumn('id', 'posts.user_id')
-                        ->limit(1),
-                ])
-                ->selectRaw('MATCH(title, content, excerpt) AGAINST(?) AS relevance', [$this->search])
-                ->with('media')
-                ->when(! empty($this->search), function (Builder $query) {
-                    $query->whereFullText(['title', 'content', 'excerpt'], $this->search);
+            'posts' => Post::search($this->search)
+                ->query(function (Builder $query) {
+                    $query
+                        ->addSelect([
+                            'username' => User::select('username')
+                                ->whereColumn('id', 'posts.user_id')
+                                ->limit(1),
+                        ])
+                        ->with('media');
                 })
-                ->latest()
-                ->orderByDesc('relevance')
                 ->get(),
         ]);
     }

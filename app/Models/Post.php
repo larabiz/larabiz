@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Nova;
+use Laravel\Scout\Searchable;
 use Spatie\Image\Manipulations;
+use App\Models\Traits\SetsStatus;
 use Spatie\MediaLibrary\HasMedia;
 use App\Models\Traits\HasRandomId;
 use Spatie\ModelStatus\HasStatuses;
 use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,7 +19,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Post extends Model implements HasMedia
 {
-    use BelongsToUser, HasFactory, HasRandomId, HasStatuses, InteractsWithMedia, SoftDeletes;
+    use BelongsToUser, HasFactory, HasRandomId, HasStatuses, InteractsWithMedia, Searchable, SetsStatus, SoftDeletes;
 
     protected $guarded = [];
 
@@ -27,20 +27,6 @@ class Post extends Model implements HasMedia
 
     public static function booted() : void
     {
-        static::saved(function (self $model) {
-            if (empty($model->status)) {
-                $model->setStatus('draft');
-            }
-
-            Nova::whenServing(function (NovaRequest $request) use ($model) {
-                $model->setStatus($request->status ?? 'draft');
-            }, function () use ($model) {
-                if (empty($model->status)) {
-                    $model->setStatus('draft');
-                }
-            });
-        });
-
         static::addGlobalScope('published', function (Builder $query) {
             $query->currentStatus('published');
         });
@@ -49,6 +35,17 @@ class Post extends Model implements HasMedia
     public function comments() : HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function toSearchableArray() : array
+    {
+        return [
+            'author' => $this->user->username,
+            'title' => $this->title,
+            'slug' => $this->slug,
+            'content' => $this->content,
+            'excerpt' => $this->excerpt,
+        ];
     }
 
     public function registerMediaCollections() : void

@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 class ListPostsControllerTest extends TestCase
 {
-    public function test_it_lists_posts_excluding_drafts() : void
+    public function test_it_works() : void
     {
         $this
             ->get(route('posts.index'))

@@ -23,7 +23,15 @@
         <div class="flex flex-wrap sm:flex-nowrap items-stretch gap-2 rounded">
             <p class="flex-grow">
                 <label for="email" class="sr-only">E-mail :</label>
-                <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="homer@simpson.com" class="dark:bg-gray-700 border-0 placeholder-indigo-200 dark:placeholder-gray-500 px-4 py-3 rounded shadow shadow-indigo-100 dark:shadow-none w-full" required>
+                <x-forms.input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    placeholder="homer@simpson.com"
+                    required
+                    class="mt-0"
+                />
             </p>
 
             <x-buttons.cta type="submit" class="w-full sm:w-auto">
@@ -34,7 +42,7 @@
         <x-forms.error name="email" />
     </x-forms.form>
 
-    <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 dark:text-indigo-400/80 text-xs">
+    <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 text-xs">
         Pas de spam, seulement des nouvelles en rapport avec {{ config('app.name') }}&nbsp;!
     </p>
 

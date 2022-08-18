@@ -1,4 +1,4 @@
-<x-app
+<x-layout.app
     title="Réinitialiser mon mot de passe"
     description="Mot de passe oublié ? Ce sont des choses qui arrivent et ce n'est pas grave. Réinitialisez tout simplement votre mot de passe."
 >

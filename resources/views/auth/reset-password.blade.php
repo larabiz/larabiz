@@ -1,4 +1,4 @@
-<x-app title="Mon nouveau mot de passe">
+<x-layout.app title="Mon nouveau mot de passe">
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
             Mon nouveau mot de passe

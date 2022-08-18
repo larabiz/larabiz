@@ -1,4 +1,4 @@
-<x-app>
+<x-layout.app>
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
             Mon profil
@@ -57,17 +57,17 @@
         <x-forms.form method="PUT" action="{{ route('user-password.update') }}" class="grid gap-4">
             <div>
                 <x-forms.label for="current-password">Mot de passe actuel</x-forms.label>
-                <x-forms.input type="password" id="current-password" name="current_password" bag="updatePassword" />
+                <x-forms.input type="password" id="current-password" name="current_password" required bag="updatePassword" />
             </div>
 
             <div>
                 <x-forms.label for="password">Nouveau mot de passe</x-forms.label>
-                <x-forms.input type="password" id="password" name="password" bag="updatePassword" />
+                <x-forms.input type="password" id="password" name="password" required bag="updatePassword" />
             </div>
 
             <div>
                 <x-forms.label for="password-confirmation">Confirmation du nouveau mot de passe</x-forms.label>
-                <x-forms.input type="password" id="password-confirmation" name="password_confirmation" bag="updatePassword" />
+                <x-forms.input type="password" id="password-confirmation" name="password_confirmation" required bag="updatePassword" />
             </div>
 
             <x-buttons.cta

@@ -39,17 +39,17 @@
             <script defer src="https://enlightenment.larabiz.fr/script.js" data-site="{{ config('services.fathom.site_id') }}"></script>
         @endif
     </head>
-    <body class="bg-indigo-50 dark:bg-gray-900 font-light text-gray-700 dark:text-indigo-100" x-data>
+    <body class="bg-indigo-50 font-light text-gray-700" x-data>
         <x-confirm-email />
 
         <div class="flex flex-col min-h-screen">
-            <x-nav />
+            <x-layout.nav />
 
             <main>
                 {{ $slot }}
             </main>
 
-            <x-footer class="flex-grow" />
+            <x-layout.footer class="flex-grow" />
         </div>
 
         <x-status />

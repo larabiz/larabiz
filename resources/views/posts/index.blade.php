@@ -1,4 +1,4 @@
-<x-app
+<x-layout.app
     title="Progressez en PHP et Laravel avec le blog de Larabiz"
     description="Boostez votre carrière de développeur web en continuant à progresser grâce à des articles de qualité en français."
 >

@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'bg-gray-900 dark:bg-black py-8 text-gray-400 text-sm']) }}>
+<div {{ $attributes->merge(['class' => 'bg-gray-900 py-8 text-gray-400 text-sm']) }}>
     <footer class="container sm:max-w-screen-sm text-center">
         <a href="{{ route('home') }}">
             <x-icon-larabiz-alt class="h-6 sm:h-7 inline" />

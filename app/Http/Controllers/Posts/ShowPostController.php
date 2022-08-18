@@ -15,7 +15,7 @@ class ShowPostController extends Controller
     {
         $post = Post::query();
 
-        if ($request->user()?->email === 'benjamincrozat@me.com') {
+        if ('benjamincrozat@me.com' === $request->user()?->email) {
             $post = $post->withoutGlobalScope('published');
         }
 
@@ -37,6 +37,7 @@ class ShowPostController extends Controller
                 ])
                 ->with('media')
                 ->whereNotIn('random_id', [$randomId])
+                ->inRandomOrder()
                 ->latest()
                 ->limit(6)
                 ->get(),

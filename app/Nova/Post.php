@@ -26,6 +26,8 @@ class Post extends Resource
         'id', 'random_id', 'title', 'slug', 'content', 'excerpt',
     ];
 
+    public static $trafficCop = false;
+
     public function fields(NovaRequest $request) : array
     {
         return [

@@ -1,4 +1,4 @@
-<x-app
+<x-layout.app
     title="Les autres communautés Laravel francophones"
     description="Parce qu'il n'y a pas que Larabiz dans la vie, découvrez d'autres communautés Laravel francophones."
 >

@@ -1,4 +1,4 @@
-<x-app
+<x-layout.app
     title="Matériel, logiciels et services utilisés pour Larabiz"
     description="La création et la maintenance d'un site requiert des outils divers et variés de toutes sortes."
 >

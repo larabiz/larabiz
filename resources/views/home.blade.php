@@ -1,4 +1,4 @@
-<x-app
+<x-layout.app
     title="Apprenez PHP et Laravel en français avec {{ config('app.name') }}"
     description="Retrouvez les dernières offres d'emploi, des articles de qualité et plus encore avec Larabiz, la meilleure communauté francophone PHP et Laravel."
 >
@@ -12,11 +12,11 @@
 
             <p class="mt-4">Il y a quelques années, je découvrais Laravel et ce fut une révélation. À l'époque, il y avait peu d'offres d'emploi ouvertes à son utilisation. Mais les choses ont changé.</p>
 
-            <p class="mt-4">Aujourd'hui, <strong class="bg-purple-200/75 dark:bg-purple-400/20 font-semibold">Laravel est un excellent investissement</strong> et j'ai créé Larabiz afin d'aider autant de gens que possible à voir leur vie changée grâce à cet ecosystème.</p>
+            <p class="mt-4">Aujourd'hui, <strong class="bg-purple-200/75 font-semibold">Laravel est un excellent investissement</strong> et j'ai créé Larabiz afin d'aider autant de gens que possible à voir leur vie changée grâce à cet ecosystème.</p>
         </div>
     </x-newsletter>
 
-    <div class="bg-indigo-100 dark:bg-gray-800" x-intersect="window.fathom?.trackGoal('ECBYPDIG', 0)">
+    <div class="bg-indigo-100" x-intersect="window.fathom?.trackGoal('ECBYPDIG', 0)">
         <x-section class="max-w-[1024px]">
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
                 Augmentez vos chances d'être&nbsp;recruté<br />
@@ -76,7 +76,7 @@
         </div>
     </x-section>
 
-    <div class="bg-indigo-100 dark:bg-gray-800" x-intersect="window.fathom?.trackGoal('SAOGYGTN', 0);">
+    <div class="bg-indigo-100" x-intersect="window.fathom?.trackGoal('SAOGYGTN', 0);">
         <x-section id="about" class="md:max-w-screen-md">
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
                 À propos de {{ config('app.name') }}
@@ -89,7 +89,7 @@
 
                 <p>Prendre des conseils d'étrangers sur internet n'est pas vraiment une chose facile. Laissez-moi me présenter.</p>
 
-                <p class="mt-4">Je m'appelle Benjamin (<a href="https://twitter.com/benjamincrozat" class="bg-indigo-100 font-bold text-indigo-400">@benjamincrozat</a>). Développeur web depuis de nombreuses années, j'ai accumulé énormément d'expérience. Mais j'ai également commis des erreurs. <em>Beaucoup</em>.</p>
+                <p class="mt-4">Je m'appelle Benjamin (<a href="https://twitter.com/benjamincrozat" class="bg-purple-200/75 font-bold text-indigo-400">@benjamincrozat</a>). Développeur web depuis de nombreuses années, j'ai accumulé énormément d'expérience. Mais j'ai également commis des erreurs. <em>Beaucoup</em>.</p>
 
                 <p class="mt-4">À travers {{ config('app.name') }}, j'ai envie de créer une communauté Laravel francophone dans le but d'aider les développeurs à accumuler autant d'expérience, tout en leur évitant de refaire les mêmes erreurs.<br />
                 Étant autodidacte depuis mon adolescence, il est bien normal que je contribue à mon tour.</p>
