@@ -2,7 +2,7 @@
     <div class="sm:max-w-screen-sm sm:mx-auto">
         <input
             type="search"
-            wire:model.debounce="search"
+            wire:model="search"
             placeholder="Rechercher"
             class="bg-white/75 focus:bg-white border-0 placeholder-indigo-200/75 mt-1 px-4 py-2 rounded-full shadow shadow-indigo-100 text-sm transition-colors w-full"
             @input.throttle.3000ms="window.fathom.trackGoal('DJOBX1N1', 0)"
