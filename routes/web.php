@@ -9,8 +9,6 @@ use App\Http\Controllers\Subscribers\StoreSubscriberController;
 use App\Http\Controllers\Subscribers\ConfirmSubscriberController;
 
 Route::get('/', HomeController::class)->name('home');
-Route::view('/community', 'community')->name('community');
-Route::view('/uses', 'uses')->name('uses');
 
 Route::get('/blog', ListPostsController::class)->name('posts.index');
 Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');

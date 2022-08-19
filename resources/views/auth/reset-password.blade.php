@@ -1,5 +1,5 @@
 <x-layout.app title="Mon nouveau mot de passe">
-    <x-section class="sm:max-w-screen-sm">
+    <x-layout.section class="sm:max-w-screen-sm">
         <x-slot:title>
             Mon nouveau mot de passe
         </x-slot:title>
@@ -24,5 +24,5 @@
 
             <x-buttons.cta type="submit" class="mt-4">Valider</x-buttons.cta>
         </x-forms.form>
-    </x-section>
-</x-app>
+    </x-layout.section>
+</x-layout.app>

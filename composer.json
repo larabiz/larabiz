@@ -59,7 +59,6 @@
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
             "@php artisan ide-helper:generate",
-            "@php artisan ide-helper:models -N",
             "@php artisan ide-helper:meta"
         ],
         "post-update-cmd": [

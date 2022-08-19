@@ -10,7 +10,6 @@ class EloquentUserProvider extends \Illuminate\Auth\EloquentUserProvider
 
         return $this->newModelQuery($model)
             ->with('unreadNotifications')
-            ->withSum('experienceGains', 'points')
             ->where($model->getAuthIdentifierName(), $identifier)
             ->first();
     }

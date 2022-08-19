@@ -3,7 +3,7 @@
 $finder = PhpCsFixer\Finder::create()
     ->exclude(['bootstrap/cache', 'storage']);
 
-return (new PhpCsFixer\Config())
+return (new PhpCsFixer\Config)
     ->setFinder($finder)
     ->setRules([
         '@Symfony' => true,
@@ -25,5 +25,4 @@ return (new PhpCsFixer\Config())
         'return_type_declaration' => ['space_before' => 'one'],
         'single_space_after_construct' => true,
         'single_trait_insert_per_statement' => false,
-        'use_arrow_functions' => true,
     ]);

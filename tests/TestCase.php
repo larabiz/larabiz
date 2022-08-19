@@ -19,4 +19,9 @@ abstract class TestCase extends BaseTestCase
             'email' => 'benjamincrozat@me.com',
         ]);
     }
+
+    protected function actingAsRandomUser() : static
+    {
+        return $this->actingAs(User::factory()->create());
+    }
 }

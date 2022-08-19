@@ -8,59 +8,53 @@ use App\Models\User;
 use Livewire\Livewire;
 use App\Models\Comment;
 use App\Events\Commented;
-use Illuminate\Support\Str;
 use App\Http\Livewire\Comments\Form;
 use Illuminate\Support\Facades\Event;
 
 class FormTest extends TestCase
 {
-    public function test_it_disallows_guests_to_store_comments() : void
-    {
-        $post = Post::factory()->forUser()->published()->create();
-
-        $this->assertGuest();
-
-        Livewire::test(Form::class, compact('post') + ['content' => $content = fake()->paragraph()])
-            ->call('storeComment')
-            ->assertForbidden();
-    }
-
-    public function test_it_stores_comments_and_dispatches_an_event() : void
+    public function test_it_stores_comment_and_dispatches_an_event() : void
     {
         Event::fake([Commented::class]);
 
-        $user = User::factory()->create();
+        // The user who'll comment in this test.
+        $commenter = User::factory()->create();
 
+        // We need a post to comment on.
         $post = Post::factory()->forUser()->published()->create();
 
-        $this->actingAs($user);
+        // Let's authenticate as the commenter.
+        $this->actingAs($commenter);
 
+        // Make sure there are no comments yet.
         $this->assertDatabaseCount(Comment::class, 0);
 
-        Livewire::test(Form::class, compact('post') + ['content' => $content = fake()->paragraph()])
-            ->assertSet('post', $post)
-            ->assertSet('content', $content)
+        Livewire::test(Form::class, [
+            'content' => $content = fake()->paragraph(),
+            'post' => $post,
+        ])
             ->call('storeComment')
             ->assertOk()
             ->assertViewIs('livewire.comments.form');
 
+        // Make sure the comment was stored.
         $this->assertDatabaseHas(Comment::class, [
-            'user_id' => $user->id,
+            'user_id' => $commenter->id,
             'post_id' => $post->id,
-        ] + compact('content'));
+            'content' => $content,
+        ]);
 
-        Event::assertDispatched(
-            Commented::class, fn ($e) => $e->comment->user_id === $user->id
-        );
+        // Make sure master has been notified of the right new comment.
+        Event::assertDispatched(Commented::class, function (Commented $event) use ($commenter) {
+            return $event->comment->user_id === $commenter->id;
+        });
     }
 
     public function test_it_needs_content() : void
     {
-        $user = User::factory()->create();
-
         $post = Post::factory()->forUser()->published()->create();
 
-        $this->actingAs($user);
+        $this->actingAsRandomUser();
 
         Livewire::test(Form::class, compact('post'))
             ->call('storeComment')
@@ -69,14 +63,29 @@ class FormTest extends TestCase
 
     public function test_it_needs_at_least_3_characters_for_content() : void
     {
-        $user = User::factory()->create();
-
         $post = Post::factory()->forUser()->published()->create();
 
-        $this->actingAs($user);
+        $this->actingAsRandomUser();
 
-        Livewire::test(Form::class, compact('post') + ['content' => Str::random(2)])
+        Livewire::test(Form::class, [
+            'content' => 'Fo',
+            'post' => $post,
+        ])
             ->call('storeComment')
             ->assertHasErrors(['content' => 'min']);
+    }
+
+    public function test_it_disallows_guests_to_store_comments() : void
+    {
+        $post = Post::factory()->forUser()->published()->create();
+
+        $this->assertGuest();
+
+        Livewire::test(Form::class, [
+            'content' => fake()->paragraph(),
+            'post' => $post,
+        ])
+            ->call('storeComment')
+            ->assertForbidden();
     }
 }

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -35,6 +36,18 @@ class Post extends Model implements HasMedia
     public function comments() : HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function readTime() : Attribute
+    {
+        return new Attribute(
+            get: function () {
+                $words = str_word_count(strip_tags($this->content));
+                $minutes = ceil($words / 200);
+
+                return 0 === $minutes ? 1 : $minutes;
+            }
+        );
     }
 
     public function toSearchableArray() : array

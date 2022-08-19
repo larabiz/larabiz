@@ -9,6 +9,6 @@ class SubscribersTableSeeder extends Seeder
 {
     public function run() : void
     {
-        Subscriber::factory(50)->create();
+        Subscriber::factory(30)->create();
     }
 }

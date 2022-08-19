@@ -12,7 +12,6 @@ use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Ebess\AdvancedNovaMediaLibrary\Fields\Images;
 
 class Post extends Resource
 {
@@ -32,11 +31,6 @@ class Post extends Resource
     {
         return [
             ID::make(),
-
-            Images::make('Image', 'illustration')
-                ->conversionOnIndexView('thumbnail')
-                ->showStatistics()
-                ->rules('nullable'),
 
             Text::make('Random ID')
                 ->exceptOnForms()
@@ -67,7 +61,7 @@ class Post extends Resource
                 ->placeholder('Short text that makes the user want to read.'),
 
             Textarea::make('SEO Excerpt')
-                ->rules('nullable', 'min:120', 'max:155'),
+                ->rules('nullable', 'min:120', 'max:160'),
 
             Badge::make('Status')->types([
                 'draft' => 'bg-gray-100 text-gray-400',
@@ -91,11 +85,6 @@ class Post extends Resource
                 ->exceptOnForms(),
 
             HasMany::make('Comments'),
-
-            Images::make('Images', 'images')
-                ->conversionOnForm('large')
-                ->showStatistics()
-                ->hideFromIndex(),
         ];
     }
 

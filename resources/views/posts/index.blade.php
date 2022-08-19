@@ -1,12 +1,23 @@
-<x-layout.app
-    title="Progressez en PHP et Laravel avec le blog de Larabiz"
-    description="Boostez votre carrière de développeur web en continuant à progresser grâce à des articles de qualité en français."
->
-    <x-section class="container max-w-[1024px]">
-        <x-slot:title class="font-bold text-2xl">
-            Progressez en PHP et Laravel
-        </x-slot:title>
+<x-layout.app title="Blog">
+    <x-breadcrumb.container class="mt-16">
+        <x-breadcrumb.item>Blog</x-breadcrumb.item>
+    </x-breadcrumb.container>
 
+    <x-layout.section class="container">
         <livewire:posts />
-    </x-section>
-</x-app>
+    </x-layout.section>
+
+    @push('scripts')
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Blog"
+                }]
+            }
+        </script>
+    @endpush
+</x-layout.app>

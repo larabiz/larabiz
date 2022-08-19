@@ -24,9 +24,5 @@ class SitemapGenerateCommandTest extends TestCase
         Post::latest()->cursor()->each(function (Post $post) use ($content) {
             $this->assertStringContainsString(route('posts.show', [$post->random_id, $post->slug]), $content);
         });
-
-        $this->assertStringContainsString(route('community'), $content);
-
-        $this->assertStringContainsString(route('uses'), $content);
     }
 }

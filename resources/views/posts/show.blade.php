@@ -1,16 +1,16 @@
 <x-layout.app
-    :title="$post->seo_title ?? $post->title"
+    :title="$post->title"
+    :seo-title="$post->seo_title ?? ''"
     :description="$post->seo_excerpt ?? $post->excerpt"
     :image="$post->getFirstMediaUrl('illustration', 'large')"
 >
-    <div class="container py-8 sm:py-16">
-        <nav>
-            <a href="{{ route('posts.index') }}" class="inline-flex items-center gap-1 font-semibold text-indigo-400">
-                <x-heroicon-o-arrow-left class="-mt-[.0625rem] h-4" /> Retour au blog
-            </a>
-        </nav>
+    <x-breadcrumb.container class="mt-16">
+        <x-breadcrumb.item link="{{ route('posts.index') }}">Blog</x-breadcrumb.item>
+        <x-breadcrumb.item>{{ $post->title }}</x-breadcrumb.item>
+    </x-breadcrumb.container>
 
-        <article class="pb-8 sm:pb-16 pt-6 sm:pt-14">
+    <div class="container py-8 sm:py-16">
+        <article class="pb-8 sm:pb-16">
             <h1 class="font-thin text-3xl sm:text-5xl">
                 @if ('draft' === $post->status) Brouillon : @endif {{ $post->title }}
             </h1>
@@ -18,13 +18,20 @@
             <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
                 <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user->email) }}?s=144" alt="Avatar de {{ $post->user->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
 
-                <p>
-                    @if ('draft' === $post->status) Brouillon créé le @else Publié le @endif
-                    <time datetime="{{ $post->latestStatus()->created_at->toDateString() }}" class="font-bold">
-                        {{ $post->latestStatus()->created_at->isoFormat('ll') }}
-                    </time>
-                    par <span class="font-bold">{{ $post->user->username }}</span>
-                </p>
+                <div>
+                    <p>
+                        @if ('draft' === $post->status) Brouillon créé le @else Publié le @endif
+                        <time datetime="{{ $post->latestStatus()?->created_at->toDateString() }}" class="font-bold">
+                            {{ $post->latestStatus()?->created_at->isoFormat('ll') }}
+                        </time>
+                        par <span class="font-bold">{{ $post->user->username }}</span>
+                    </p>
+
+                    <p>
+                        Temps de lecture estimé :
+                        <span class="font-bold">@choice(':count minute|:count minutes', $post->read_time)</span>
+                    </p>
+                </div>
             </div>
 
             <div class="font-light mt-6 text-indigo-400 text-xl">
@@ -59,6 +66,27 @@
             class="border-y border-indigo-100 py-8"
         />
 
+        @push('scripts')
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "NewsArticle",
+                    "headline": "{{ $post->title }}",
+                    "image": [
+                        "{{ $post->getFirstMediaUrl('illustration', 'large') }}"
+                    ],
+                    "datePublished": "{{ $post->latestStatus('published')?->created_at->toIso8601String() }}",
+                    "dateModified": "{{ $post->updated_at->toIso8601String() }}",
+                    "author": [
+                        {
+                            "@type": "Person",
+                            "name": "{{ $post->username }}"
+                        }
+                    ]
+                }
+            </script>
+        @endpush
+
         <div
             id="comments"
             class="mt-8 sm:mt-16 scroll-mt-8 sm:scroll-mt-16"
@@ -87,21 +115,40 @@
     <div class="bg-indigo-100">
         <x-newsletter class="container">
             <x-slot:title tag="h2">
-                Aimez-vous ce que vous avez lu ?<br />
-                <span class="text-indigo-400">Abonnez-vous à la newsletter</span>
+                Ça vous a plu ?<br />
+                <span class="text-indigo-400">Abonnez-vous à la newsletter !</span>
             </x-slot>
         </x-newsletter>
     </div>
 
-    <x-section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('XFZRYOKR', 0)">
+    <x-layout.section x-intersect="window.fathom?.trackGoal('XFZRYOKR', 0)">
         <x-slot:title tag="h3">
             Autres articles à lire
         </x-slot>
 
-        <ul class="grid md:grid-cols-2 gap-8 mt-8">
+        <div class="grid gap-8 mt-8">
             @foreach ($others as $post)
-                <li><x-posts.post :post="$post" /></li>
+                <x-posts.post :post="$post" />
             @endforeach
-        </ul>
-    </x-section>
-</x-app>
+        </div>
+    </x-layout.section>
+
+    @push('scripts')
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Blog",
+                    "item": "{{ route('posts.index') }}"
+                }, {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{ $post->title }}"
+                }]
+            }
+        </script>
+    @endpush
+</x-layout.app>

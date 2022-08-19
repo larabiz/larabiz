@@ -1,8 +1,5 @@
-<x-layout.app
-    title="Créez un compte sur Larabiz"
-    description="Inscrivez-vous gratuitement et contribuez à la meilleure communauté Laravel francophone."
->
-    <x-section class="sm:max-w-screen-sm">
+<x-layout.app title="Inscription">
+    <x-layout.section class="sm:max-w-screen-sm">
         <x-slot:title>
             Inscription
         </x-slot:title>
@@ -44,5 +41,19 @@
         <div class="border-t mt-8 sm:mt-16 pt-8 sm:pt-16 text-center">
             <p>Avez-vous déjà un compte sur {{ config('app.name') }}&nbsp;? <a href="{{ route('login') }}" class="font-semibold text-indigo-400" @click="window.fathom?.trackGoal('SRUCVXXS', 0)">Connectez-vous</a>.</p>
         </div>
-    </x-section>
-</x-app>
+    </x-layout.section>
+
+    @push('scripts')
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Inscription"
+                }]
+            }
+        </script>
+    @endpush
+</x-layout.app>

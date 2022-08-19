@@ -1,4 +1,4 @@
-<x-section {{ $attributes }}>
+<x-layout.section {{ $attributes }}>
     <x-slot:title
         tag="{{ $title->attributes->get('tag') ?? 'h1' }}"
         class="font-extrabold !leading-6 md:!leading-9 text-xl md:text-3xl text-center"
@@ -6,8 +6,8 @@
         {{ $title }}
     </x-slot>
 
-    <p class="-mt-2 font-regular text-center sm:text-lg">
-        {{ config('app.name') }} vous envoie régulièrement<br /> trucs et astuces, ainsi que les dernières offres d'emploi.
+    <p class="-mt-2 font-regular md:max-w-screen-sm md:mx-auto text-center sm:text-lg">
+        Abonnez-vous à la newsletter et recevez régulièrement news, trucs et astuces à propos de Laravel et son ecosystème.
     </p>
 
     <p class="font-bold mt-5 text-center sm:text-lg">
@@ -43,8 +43,8 @@
     </x-forms.form>
 
     <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 text-xs">
-        Pas de spam, seulement des nouvelles en rapport avec {{ config('app.name') }}&nbsp;!
+        Pas de spam, c'est promis&nbsp;!
     </p>
 
     {{ $slot }}
-</x-layout>
+</x-layout.section>

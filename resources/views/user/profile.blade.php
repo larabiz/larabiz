@@ -1,5 +1,5 @@
 <x-layout.app>
-    <x-section class="sm:max-w-screen-sm">
+    <x-layout.section class="sm:max-w-screen-sm">
         <x-slot:title>
             Mon profil
         </x-slot:title>
@@ -28,10 +28,6 @@
                     value="{{ old('biography') ?? $user->biography }}"
                 >{{ old('biography') ?? $user->biography }}</x-forms.textarea>
             </div>
-
-            <p class="font-bold mb-4 mt-8 text-center">
-                Et si Larabiz ouvrait un espace pour de potentiels employeurs, où pourraient-ils en apprendre plus sur votre parcours et vos compétences&nbsp;?
-            </p>
 
             <div>
                 <x-forms.label for="github">URL GitHub</x-forms.label>
@@ -78,5 +74,5 @@
                 Modifier mon mot de passe
             </x-buttons.cta>
         </x-forms.form>
-    </x-section>
-</x-app>
+    </x-layout.section>
+</x-layout.app>

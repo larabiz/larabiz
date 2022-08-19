@@ -17,8 +17,8 @@ class Posts extends Component
 
     public function render()
     {
-        return view('livewire.posts', [
-            'posts' => Post::search($this->search)
+        if (! empty($this->search)) {
+            $posts = Post::search($this->search)
                 ->query(function (Builder $query) {
                     $query
                         ->addSelect([
@@ -28,7 +28,19 @@ class Posts extends Component
                         ])
                         ->with('media');
                 })
-                ->get(),
-        ]);
+                ->get();
+        } else {
+            $posts = Post::query()
+                ->addSelect([
+                    'username' => User::select('username')
+                        ->whereColumn('id', 'posts.user_id')
+                        ->limit(1),
+                ])
+                ->with('media')
+                ->latest()
+                ->get();
+        }
+
+        return view('livewire.posts', compact('posts'));
     }
 }
