@@ -4,7 +4,7 @@ namespace Tests\Feature\App\Listeners;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Notifications\NewUser;
+use App\Notifications\Users\NewUser;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Notification;
 

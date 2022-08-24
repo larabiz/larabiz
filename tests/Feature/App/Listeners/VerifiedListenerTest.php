@@ -5,8 +5,8 @@ namespace Tests\Feature\App\Listeners;
 use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
-use App\Notifications\NewConfirmedUser;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\Users\NewConfirmedUser;
 
 class VerifiedListenerTest extends TestCase
 {

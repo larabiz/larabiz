@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Users;
 
-use App\Models\Subscriber;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
-class NewSubscriber extends Notification
+class NewUser extends Notification
 {
     use Queueable;
 
     public function __construct(
-        public Subscriber $subscriber
+        public User $user
     ) {
     }
 
@@ -23,7 +23,7 @@ class NewSubscriber extends Notification
     public function toArray() : array
     {
         return [
-            'message' => "{$this->subscriber->email} s'est abonné à la newsletter.",
+            'message' => "{$this->user->username} vient de s'inscrire.",
         ];
     }
 }

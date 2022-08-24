@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Models\User;
 use App\Events\Commented;
-use App\Notifications\NewComment;
+use App\Notifications\Comments\NewComment;
 
 class CommentedListener
 {

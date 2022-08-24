@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Subscribers;
 use App\Models\User;
 use App\Models\Subscriber;
 use App\Http\Controllers\Controller;
-use App\Notifications\NewSubscriber;
 use Illuminate\Http\RedirectResponse;
+use App\Notifications\Subscribers\NewSubscriber;
 
 class ConfirmSubscriberController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Comments;
 
 use App\Models\Comment;
 use Illuminate\Bus\Queueable;

@@ -3,7 +3,7 @@
 namespace App\Listeners;
 
 use App\Models\User;
-use App\Notifications\NewUser;
+use App\Notifications\Users\NewUser;
 use Illuminate\Auth\Events\Registered;
 
 class RegisteredListener

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Users;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
-class NewUser extends Notification
+class NewConfirmedUser extends Notification
 {
     use Queueable;
 
@@ -23,7 +23,7 @@ class NewUser extends Notification
     public function toArray() : array
     {
         return [
-            'message' => "{$this->user->username} vient de s'inscrire.",
+            'message' => "{$this->user->username} a validé son adresse e-mail.",
         ];
     }
 }

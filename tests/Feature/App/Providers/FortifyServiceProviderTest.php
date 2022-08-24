@@ -4,11 +4,11 @@ namespace Tests\Feature\App\Providers;
 
 use Tests\TestCase;
 use App\Models\User;
-use App\Notifications\NewUser;
+use App\Notifications\Users\NewUser;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Auth\Events\Registered;
-use App\Notifications\NewConfirmedUser;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\Users\NewConfirmedUser;
 
 class FortifyServiceProviderTest extends TestCase
 {
