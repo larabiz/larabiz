@@ -2,7 +2,6 @@
     :title="$post->title"
     :seo-title="$post->seo_title ?? ''"
     :description="$post->seo_excerpt ?? $post->excerpt"
-    :image="$post->getFirstMediaUrl('illustration', 'large')"
 >
     <x-breadcrumb.container class="mt-16">
         <x-breadcrumb.item link="{{ route('posts.index') }}">Blog</x-breadcrumb.item>
@@ -38,10 +37,6 @@
                 {{ $post->excerpt }}
             </div>
 
-            @if ($url = $post->getFirstMediaUrl('illustration', 'large'))
-                <img loading="lazy" src="{{ $url }}" alt="" class="mt-8" />
-            @endif
-
             <div class="bg-indigo-100 flex items-center gap-4 mt-8 p-4 rounded-lg text-indigo-900/75">
                 <x-heroicon-o-information-circle class="flex-shrink-0 w-5 h-5" />
 
@@ -72,15 +67,13 @@
                     "@context": "https://schema.org",
                     "@type": "NewsArticle",
                     "headline": "{{ $post->title }}",
-                    "image": [
-                        "{{ $post->getFirstMediaUrl('illustration', 'large') }}"
-                    ],
                     "datePublished": "{{ $post->latestStatus('published')?->created_at->toIso8601String() }}",
                     "dateModified": "{{ $post->updated_at->toIso8601String() }}",
                     "author": [
                         {
                             "@type": "Person",
-                            "name": "{{ $post->username }}"
+                            "name": "{{ $post->user->username }}",
+                            "url": "{{ route('home') }}"
                         }
                     ]
                 }

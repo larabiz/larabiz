@@ -8,6 +8,6 @@
             {{ $slot }}
         </a>
     @else
-        <span class="group-last:font-light">{{ $slot }}</span>
+        <span class="font-light">{{ $slot }}</span>
     @endif
 </li>

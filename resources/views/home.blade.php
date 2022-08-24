@@ -98,4 +98,22 @@
             </p>
         </x-layout.section>
     </div>
+
+    @push('scripts')
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "url": "{{ route('home') }}",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "{{ url('/search/{search_term}') }}"
+                    },
+                    "query-input": "required name=search_term"
+                }
+            }
+        </script>
+    @endpush
 </x-layout.app>
