@@ -19,7 +19,7 @@ class ShowSearchResultsControllerTest extends TestCase
         Post::factory(10)->forUser()->create();
 
         $response = $this
-            ->get(route('search', $title))
+            ->get(route('search-posts', ['q' => $title]))
             ->assertOk()
             ->assertViewIs('search')
         ;

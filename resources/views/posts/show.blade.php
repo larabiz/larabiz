@@ -1,8 +1,9 @@
 <x-layout.app
     :title="$post->title"
     :seo-title="$post->seo_title ?? ''"
-    :description="$post->seo_excerpt ?? $post->excerpt"
-    :image="$post->preview"
+    :description="$post->excerpt"
+    :seo-description="$post->seo_excerpt"
+    :image="$post->preview_url"
 >
     <x-breadcrumb.container class="mt-16">
         <x-breadcrumb.item link="{{ route('posts.index') }}">Blog</x-breadcrumb.item>

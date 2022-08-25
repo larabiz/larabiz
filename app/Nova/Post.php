@@ -6,11 +6,13 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Slug;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Badge;
+use Laravel\Nova\Fields\Image;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
+use App\Nova\Actions\GeneratePostPreview;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Post extends Resource
@@ -35,6 +37,9 @@ class Post extends Resource
             Text::make('Random ID')
                 ->exceptOnForms()
                 ->hideFromIndex(),
+
+            Image::make('Preview')
+                ->exceptOnForms(),
 
             BelongsTo::make('Author', 'user', User::class)
                 ->rules('required')
@@ -105,7 +110,9 @@ class Post extends Resource
 
     public function actions(NovaRequest $request) : array
     {
-        return [];
+        return [
+            new GeneratePostPreview,
+        ];
     }
 
     public static function indexQuery(NovaRequest $request, $query)

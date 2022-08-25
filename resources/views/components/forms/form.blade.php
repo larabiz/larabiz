@@ -1,7 +1,9 @@
 <form method="{{ $method === 'GET' ? $method : 'POST' }}" {{ $attributes->except(['method']) }}>
-    @csrf
+    @if ($method !== 'GET')
+        @csrf
+    @endif
 
-    @if ('POST' !== $method)
+    @if (! in_array($method, ['GET', 'POST']))
         @method($method)
     @endif
 

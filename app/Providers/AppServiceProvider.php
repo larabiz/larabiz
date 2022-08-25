@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\Str;
+use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment\Environment;
@@ -19,6 +20,11 @@ use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
 
 class AppServiceProvider extends ServiceProvider
 {
+    public function register() : void
+    {
+        $this->app->bind(Browsershot::class, fn () => new Browsershot);
+    }
+
     public function boot() : void
     {
         Str::macro('lightdown', fn (string $s) => (string) (new LightdownConverter)->convert($s));

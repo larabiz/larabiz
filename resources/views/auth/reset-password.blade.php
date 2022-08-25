@@ -1,4 +1,8 @@
 <x-layout.app title="Mon nouveau mot de passe">
+    <x-breadcrumb.container class="mt-16">
+        <x-breadcrumb.item>Mon nouveau mot de passe</x-breadcrumb.item>
+    </x-breadcrumb.container>
+
     <x-layout.section class="sm:max-w-screen-sm">
         <x-slot:title>
             Mon nouveau mot de passe

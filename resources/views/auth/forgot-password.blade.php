@@ -1,5 +1,9 @@
 <x-layout.app title="Réinitialiser mon mot de passe">
-    <div class="container sm:max-w-screen-sm pt-16 pb-8 sm:py-16">
+    <x-breadcrumb.container class="mt-16">
+        <x-breadcrumb.item>Réinitialiser mon mot de passe</x-breadcrumb.item>
+    </x-breadcrumb.container>
+
+    <div class="container sm:max-w-screen-sm pt-8 sm:pt-16 pb-8 sm:py-16">
         <h1 class="font-extrabold leading-tight text-center text-xl">
             Réinitialiser mon mot de passe
         </h1>

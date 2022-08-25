@@ -6,17 +6,18 @@
 
         <title>{{ $title ?? config('app.name') }}</title>
 
-        <meta name="description" content="{{ $description ?? '' }}">
-        <meta property="og:description" content="{{ $description ?? '' }}">
-        <meta property="og:image" content="{{ $image ?? secure_asset('img/larabiz-banner.jpg') }}">
-        <meta property="og:title" content="{{ $seoTitle ?? $title ?? config('app.name') }}">
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="{{ URL::current() }}">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:creator" content="@Larabiz_">
-        <meta name="twitter:description" content="{{ $description ?? '' }}">
-        <meta name="twitter:image" content="{{ $image ?? secure_asset('img/larabiz-banner.jpg') }}">
-        <meta name="twitter:title" content="{{ $seoTitle ?? $title ?? config('app.name') }}">
+        <meta name="description" content="{{ $seoDescription ?? $description ?? '' }}" />
+        <meta property="og:description" content="{{ $seoDescription ?? $description ?? '' }}" />
+        <meta property="og:image" content="{{ $image ?? secure_asset('img/larabiz-banner.jpg') }}" />
+        <meta property="og:title" content="{{ $seoTitle ?? $title ?? config('app.name') }}" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ URL::current() }}" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@Larabiz_" />
+        <meta name="twitter:creator" content="@benjamincrozat" />
+        <meta name="twitter:description" content="{{ $seoDescription ?? $description ?? '' }}" />
+        <meta name="twitter:image" content="{{ $image ?? secure_asset('img/larabiz-banner.jpg') }}" />
+        <meta name="twitter:title" content="{{ $seoTitle ?? $title ?? config('app.name') }}" />
 
         <livewire:styles />
 
@@ -33,9 +34,9 @@
 
         <link rel="canonical" href="{{ $canonical ?? URL::current() }}" />
 
-        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('img/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('img/apple-touch-icon.png') }}" />
 
         @if (app()->isProduction() && 'benjamincrozat@me.com' !== $user?->email)
             <script defer src="https://enlightenment.larabiz.fr/script.js" data-site="{{ config('services.fathom.site_id') }}"></script>

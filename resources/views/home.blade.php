@@ -109,7 +109,7 @@
                     "@type": "SearchAction",
                     "target": {
                         "@type": "EntryPoint",
-                        "urlTemplate": "{{ url('/search/{search_term}') }}"
+                        "urlTemplate": "{{ url('/blog/search?q={search_term}') }}"
                     },
                     "query-input": "required name=search_term"
                 }

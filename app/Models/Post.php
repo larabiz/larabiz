@@ -35,16 +35,10 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function preview() : Attribute
+    public function previewUrl() : Attribute
     {
         return Attribute::make(
-            get: function () {
-                $path = "previews/$this->random_id.png";
-
-                return Storage::disk('public')->exists($path)
-                    ? Storage::disk('public')->url($path)
-                    : null;
-            }
+            get: fn () => Storage::disk('public')->url($this->preview)
         );
     }
 

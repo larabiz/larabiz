@@ -1,4 +1,8 @@
 <x-layout.app title="Connexion">
+    <x-breadcrumb.container class="mt-16">
+        <x-breadcrumb.item>Connexion</x-breadcrumb.item>
+    </x-breadcrumb.container>
+
     <x-layout.section class="sm:max-w-screen-sm">
         <x-slot:title class="font-extrabold leading-tight text-center text-xl">
             Connexion

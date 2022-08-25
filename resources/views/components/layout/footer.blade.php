@@ -19,11 +19,18 @@
                         <x-icon-twitter class="fill-current h-8" />
                     </a>
                 </li>
+
+                <li>
+                    <a href="https://www.youtube.com/channel/UCfoiljAxlMCtf6Ij2V0R2FA" target="_blank" rel="nofollow noopener">
+                        <span class="sr-only">YouTube</span>
+                        <x-icon-youtube class="fill-current h-8" />
+                    </a>
+                </li>
             </ul>
         </div>
 
         <p class="mt-8 text-center">
-            Site hébergé sur <a href="https://m.do.co/c/58bbdf89fc72" target="_blank" rel="nofollow noopener" class="text-gray-200">DigitalOcean</a>. Télémétrie par <a href="https://usefathom.com/ref/JTPOCN" target="_blank" rel="nofollow noopener" class="text-gray-200">Fathom Analytics</a>.
+            Site hébergé sur <a href="https://m.do.co/c/58bbdf89fc72" target="_blank" rel="nofollow noopener" class="text-gray-200">DigitalOcean</a>. Télémétrie par <a href="https://usefathom.com/ref/JTPOCN" target="_blank" rel="nofollow noopener" class="text-gray-200">Fathom&nbsp;Analytics</a>.
         </p>
     </footer>
 </div>
