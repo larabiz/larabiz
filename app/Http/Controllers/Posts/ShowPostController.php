@@ -35,7 +35,6 @@ class ShowPostController extends Controller
                         ->whereColumn('id', 'posts.user_id')
                         ->limit(1),
                 ])
-                ->with('media')
                 ->whereNotIn('random_id', [$randomId])
                 ->inRandomOrder()
                 ->latest()

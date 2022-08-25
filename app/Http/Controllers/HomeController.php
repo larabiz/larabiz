@@ -17,7 +17,6 @@ class HomeController extends Controller
                         ->whereColumn('id', 'posts.user_id')
                         ->limit(1),
                 ])
-                ->with('media')
                 ->latest()
                 ->limit(6)
                 ->get(),

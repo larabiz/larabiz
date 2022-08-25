@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShowPreviewController;
 use App\Http\Controllers\Posts\ShowPostController;
 use App\Http\Controllers\EditUserProfileController;
 use App\Http\Controllers\Posts\ListPostsController;
@@ -13,6 +14,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/blog', ListPostsController::class)->name('posts.index');
 Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');
+Route::get('/preview/{post:random_id}', ShowPreviewController::class)->name('preview');
 
 Route::get('/search/{q}', ShowSearchResultsController::class)->name('search');
 

@@ -2,6 +2,7 @@
     :title="$post->title"
     :seo-title="$post->seo_title ?? ''"
     :description="$post->seo_excerpt ?? $post->excerpt"
+    :image="$post->preview"
 >
     <x-breadcrumb.container class="mt-16">
         <x-breadcrumb.item link="{{ route('posts.index') }}">Blog</x-breadcrumb.item>

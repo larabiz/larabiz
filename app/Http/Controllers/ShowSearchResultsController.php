@@ -19,8 +19,7 @@ class ShowSearchResultsController extends Controller
                             'username' => User::select('username')
                                 ->whereColumn('id', 'posts.user_id')
                                 ->limit(1),
-                        ])
-                        ->with('media');
+                        ]);
                 })
                 ->get(),
             'q' => $q,
