@@ -25,8 +25,8 @@
             </x-slot>
 
             <p class="text-center sm:text-lg">
-                {{ config('app.name') }} est une plateforme permettant d'apprendre PHP et Laravel.<br />
-                Découvrez des articles en français de qualité, remplis de tout plein de bonnes choses.
+                Avec {{ config('app.name') }} apprenez PHP et Laravel en ligne et en français.<br class="hidden md:inline" />
+                Découvrez des articles de qualité, remplis de tout plein de bonnes choses.
             </p>
 
             <div class="grid gap-8 mt-16">
@@ -41,63 +41,33 @@
         </x-layout.section>
     </div>
 
-    <x-layout.section x-intersect="window.fathom?.trackGoal('0JCL9NAI', 0)">
+    <x-layout.section class="lg:max-w-[1024px]" x-intersect="window.fathom?.trackGoal('0JCL9NAI', 0)">
         <x-slot:title tag="h2" class="text-xl md:text-3xl">
             Ne soyez pas timide<br />
             <span class="text-indigo-400">La communauté est là pour vous aider</span>
         </x-slot>
 
-        <div class="grid sm:grid-cols-7 gap-8">
-            <div class="sm:col-span-4 order-2 sm:order-none self-center md:text-lg">
-                <div>
-                    Quelque chose vous échappe au sujet d'un article&nbsp;? <strong class="font-bold">La section commentaires</strong> est là pour recevoir vos questions. Les contributeurs se feront un plaisir d'y répondre.
-                </div>
-
-                @auth
-                    <x-buttons.cta
-                        href="{{ route('posts.index') }}"
-                        class="mt-4 text-center sm:text-left w-full sm:w-auto"
-                        @click="window.fathom?.trackGoal('NECDT6XG', 0)"
-                    >
-                        Commencer
-                    </x-buttons.cta>
-                @else
-                    <x-buttons.cta
-                        href="{{ route('register') }}"
-                        class="font-extrabold mt-4 px-4 md:px-8 text-center sm:text-left w-full sm:w-auto"
-                        @click="window.fathom?.trackGoal('TBIFNVNC', 0)"
-                    >
-                        Inscrivez-vous <span class="font-light">pour commencer</span>
-                    </x-buttons.cta>
-                @endauth
-            </div>
-
-            <div class="sm:col-span-3 order-1 sm:order-none self-center text-center">
-                <x-icon-comments class="h-[30vh] sm:h-auto inline" />
-            </div>
+        <div class="text-center">
+            <x-icon-comments class="inline" />
         </div>
+
+        <ol class="font-thin grid gap-4 mt-8 sm:mt-16 text-xl">
+            <li class="flex items-center gap-6">
+                <span class="translate-y-[-0.5px] bg-indigo-400/50 flex items-center justify-center rounded-full text-white text-sm w-8 h-8">1</span>
+                <span><a href="{{ route('register') }}" class="text-indigo-400 font-light">Créez votre compte utilisateur</a>. C'est rapide et gratuit.</span>
+            </li>
+
+            <li class="flex items-center gap-6">
+                <span class="translate-y-[-0.5px] bg-indigo-400/75 flex items-center justify-center rounded-full text-white text-sm w-8 h-8">2</span>
+                <span>Validez votre adresse e-mail, c'est comme ça qu'on lutte contre les bots.</span>
+            </li>
+
+            <li class="flex items-center gap-6">
+                <span class="translate-y-[-0.5px] bg-indigo-400 flex items-center justify-center rounded-full text-white text-sm w-8 h-8">3</span>
+                <span>Démarrez une nouvelle discussion sur le <a href="#" class="text-indigo-400 font-light">forum</a> ou le <a href="{{ route('posts.index') }}" class="text-indigo-400 font-light">blog</a>.</span>
+            </li>
+        </ol>
     </x-layout.section>
-
-    <div class="bg-indigo-100" x-intersect="window.fathom?.trackGoal('SAOGYGTN', 0);">
-        <x-layout.section id="about">
-            <x-slot:title tag="h2" class="text-xl md:text-3xl">
-                À propos de {{ config('app.name') }}
-            </x-slot>
-
-            <div>
-                <figure class="float-right mb-8 ml-8 text-center">
-                    <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5('benjamincrozat@me.com') }}?s=144" width="150" height="150" alt="Photo de Benjamin." class="inline rounded-full w-[100px] h-[100px] sm:w-[150px] sm:h-[150px]">
-                </figure>
-
-                <p>Prendre des conseils d'étrangers sur internet n'est pas vraiment une chose facile. Laissez-moi me présenter.</p>
-
-                <p class="mt-4">Je m'appelle Benjamin Crozat (<a href="https://twitter.com/benjamincrozat" class="bg-purple-200/75 font-bold text-indigo-400">@benjamincrozat</a>). Développeur web depuis de nombreuses années, j'ai accumulé énormément d'expérience. Mais j'ai également commis des erreurs. <em>Beaucoup</em>.</p>
-
-                <p class="mt-4">À travers {{ config('app.name') }}, j'ai envie de créer une communauté Laravel francophone dans le but d'aider les développeurs à accumuler autant d'expérience, tout en leur évitant de refaire les mêmes erreurs.<br />
-                Étant autodidacte depuis mon adolescence, il est bien normal que je contribue à mon tour.</p>
-            </p>
-        </x-layout.section>
-    </div>
 
     @push('scripts')
         <script type="application/ld+json">

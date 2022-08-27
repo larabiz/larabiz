@@ -6,7 +6,7 @@ use Tests\TestCase;
 use App\Models\Post;
 use Illuminate\Support\Str;
 
-class ShowSearchResultsControllerTest extends TestCase
+class SearchPostsControllerTest extends TestCase
 {
     public function test_it_displays_the_right_results() : void
     {
@@ -21,7 +21,8 @@ class ShowSearchResultsControllerTest extends TestCase
         $response = $this
             ->get(route('search-posts', ['q' => $title]))
             ->assertOk()
-            ->assertViewIs('search')
+            ->assertViewIs('posts-search')
+            ->assertSee($title)
         ;
 
         $this->assertCount(1, $response->viewData('posts'));

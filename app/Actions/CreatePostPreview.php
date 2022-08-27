@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Posts;
+namespace App\Actions;
 
 use App\Models\Post;
 use Illuminate\Support\Facades\URL;
