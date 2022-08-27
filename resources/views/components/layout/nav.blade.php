@@ -44,7 +44,7 @@
 
                     <div class="bg-indigo-900/5 h-px my-2"></div>
 
-                    <a href="{{ route('user.profile') }}" class="hover:bg-indigo-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
+                    <a href="{{ route('user-profile') }}" class="hover:bg-indigo-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
                         <x-heroicon-o-user class="h-4 translate-y-[-0.5px]" />
                         Mon profil
                     </a>

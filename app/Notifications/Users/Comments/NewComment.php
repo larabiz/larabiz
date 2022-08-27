@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Notifications\Comments;
+namespace App\Notifications\Users\Comments;
 
 use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class NewComment extends Notification
 {
@@ -17,7 +18,7 @@ class NewComment extends Notification
 
     public function via() : array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     public function toArray() : array
@@ -26,5 +27,14 @@ class NewComment extends Notification
             'actionUrl' => route('posts.show', [$this->comment->post->random_id, $this->comment->post->slug]),
             'message' => "{$this->comment->user->username} a commenté l'article \"{$this->comment->post->title}\".",
         ];
+    }
+
+    public function toMail() : MailMessage
+    {
+        return (new MailMessage)
+            ->subject('Nouveau commentaire')
+            ->greeting('Bip boop boop !')
+            ->line("Bonjour, humain. {$this->comment->user->username} a commenté l'article « {$this->comment->post->title} ».")
+            ->action('Voir le commentaire', route('posts.show', [$this->comment->post->random_id, $this->comment->post->slug]));
     }
 }

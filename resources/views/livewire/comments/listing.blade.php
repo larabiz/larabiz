@@ -4,9 +4,11 @@
     </h2>
 
     <div class="grid gap-4">
-        @forelse ($this->comments as $comment)
-            <livewire:comments.comment :comment="$comment" wire:key="comment-{{ $comment->id }}" />
-        @empty
-        @endforelse
+        @foreach ($this->comments as $comment)
+            <livewire:comments.comment
+                :comment="$comment"
+                :key="`comment-{{ $comment->id }}`"
+            />
+        @endforeach
     </div>
 </div>

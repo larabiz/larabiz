@@ -20,4 +20,4 @@ Route::get('/preview/{post:random_id}', ShowPreviewController::class)->name('pre
 Route::post('/subscribers', StoreSubscriberController::class)->name('subscribers.store');
 Route::get('/confirm-subscriber/{subscriber:email}', ConfirmSubscriberController::class)->name('confirm-subscriber');
 
-Route::get('/user/profile', EditUserProfileController::class)->name('user.profile');
+Route::get('/user/profile', EditUserProfileController::class)->name('user-profile');

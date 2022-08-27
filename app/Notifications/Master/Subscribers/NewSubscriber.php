@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Notifications\Subscribers;
+namespace App\Notifications\Master\Subscribers;
 
 use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\MailMessage;
 
 class NewSubscriber extends Notification
 {
@@ -17,7 +18,7 @@ class NewSubscriber extends Notification
 
     public function via() : array
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     public function toArray() : array
@@ -25,5 +26,13 @@ class NewSubscriber extends Notification
         return [
             'message' => "{$this->subscriber->email} s'est abonné à la newsletter.",
         ];
+    }
+
+    public function toMail() : MailMessage
+    {
+        return (new MailMessage)
+            ->subject('Nouvel abonné à la newsletter')
+            ->greeting('Bip boop boop !')
+            ->line("Bonjour, humain. {$this->subscriber->email} s'est abonné à la newsletter.");
     }
 }

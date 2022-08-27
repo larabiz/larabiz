@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Subscribers;
+namespace App\Notifications\Users\Subscribers;
 
 use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;
@@ -21,9 +21,8 @@ class ConfirmSubscription extends Notification
     {
         return (new MailMessage)
             ->subject('Êtes-vous humain ?')
-            ->greeting('Vous y êtes presque !')
-            ->line("Il ne vous reste plus qu'à confirmer votre abonnement en cliquant sur le bouton ci-dessous.")
-            ->action('Je suis humain', URL::signedRoute('confirm-subscriber', $subscriber))
-            ->line('*Merci infiniment et puisse ' . config('app.name') . ' avoir un impact positif sur votre vie.*');
+            ->greeting('Bip boop boop !')
+            ->line("Bonjour, potentiel humain. Pourriez-vous me confirmer l'origine biologique de votre abonnement ?")
+            ->action('Bip bo… je suis humain !', URL::signedRoute('confirm-subscriber', $subscriber));
     }
 }

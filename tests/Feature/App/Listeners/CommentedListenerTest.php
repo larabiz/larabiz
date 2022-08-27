@@ -7,8 +7,8 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
 use App\Events\Commented;
-use App\Notifications\Comments\NewComment;
 use Illuminate\Support\Facades\Notification;
+use App\Notifications\Users\Comments\NewComment;
 
 class CommentedListenerTest extends TestCase
 {
@@ -16,13 +16,29 @@ class CommentedListenerTest extends TestCase
     {
         Notification::fake();
 
-        $comment = Comment::factory()->forUser()->for(
-            Post::factory()->forUser()->published()
-        )->create();
+        // Create a bunch of comments each from a different user.
+
+        $post = Post::factory()->forUser()->published()->create();
+
+        $comments = Comment::factory(10)->for($post)->make()->each(function (Comment $comment) {
+            $comment->user_id = User::factory()->create()->id;
+            $comment->save();
+        });
+
+        $notified = $comments->map->user;
+
+        // Create a new comment.
+
+        $comment = Comment::factory()->forUser()->for($post)->create();
 
         event(new Commented($comment));
 
-        // Master should be notified of the new comment.
-        Notification::assertSentToTimes(User::master()->first(), NewComment::class, 1);
+        // Excluding the commenter, every user who participated should be notified.
+
+        $notified->each(function (User $user) {
+            Notification::assertSentToTimes($user, NewComment::class, 1);
+        });
+
+        Notification::assertNotSentTo($comment->user, NewComment::class);
     }
 }

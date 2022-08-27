@@ -4,9 +4,13 @@
     description="Apprenez PHP et Laravel en français avec des articles de qualité et plus encore sur {{ config('app.name') }}, la meilleure communauté francophone PHP et Laravel."
 >
     <x-newsletter>
-        <x-slot:title>
+        <x-slot:headline>
             Apprenez PHP et Laravel <span class="text-indigo-400">en français</span>
-        </x-slot:title>
+        </x-slot:headline>
+
+        <x-slot:subheadline>
+            Abonnez-vous à la newsletter et recevez régulièrement news, trucs et astuces à propos de Laravel et son ecosystème.
+        </x-slot:subheadline>
 
         <div class="italic mt-8 sm:mt-16">
             <p>Salut, moi c'est Benjamin&nbsp;! 👋 Cela fait plus de 10 ans que je suis développeur web.</p>
@@ -51,20 +55,29 @@
             <x-icon-comments class="inline" />
         </div>
 
-        <ol class="font-thin grid gap-4 mt-8 sm:mt-16 text-xl">
-            <li class="flex items-center gap-6">
-                <span class="translate-y-[-0.5px] bg-indigo-400/50 flex items-center justify-center rounded-full text-white text-sm w-8 h-8">1</span>
+        <ol class="font-thin grid gap-4 mt-8 sm:mt-16 sm:text-lg md:text-xl">
+            <li class="flex items-center gap-4 sm:gap-6">
+                <span class="translate-y-[-0.5px] bg-indigo-400/50 flex flex-shrink-0 items-center justify-center rounded-full text-white text-xs sm:text-sm w-6 sm:w-8 h-6 sm:h-8">
+                    <span class="translate-y-[0.5px]">1</span>
+                </span>
+
                 <span><a href="{{ route('register') }}" class="text-indigo-400 font-light">Créez votre compte utilisateur</a>. C'est rapide et gratuit.</span>
             </li>
 
-            <li class="flex items-center gap-6">
-                <span class="translate-y-[-0.5px] bg-indigo-400/75 flex items-center justify-center rounded-full text-white text-sm w-8 h-8">2</span>
+            <li class="flex items-center gap-4 sm:gap-6">
+                <span class="translate-y-[-0.5px] bg-indigo-400/75 flex flex-shrink-0 items-center justify-center rounded-full text-white text-xs sm:text-sm w-6 sm:w-8 h-6 sm:h-8">
+                    <span class="translate-y-[0.5px]">2</span>
+                </span>
+
                 <span>Validez votre adresse e-mail, c'est comme ça qu'on lutte contre les bots.</span>
             </li>
 
-            <li class="flex items-center gap-6">
-                <span class="translate-y-[-0.5px] bg-indigo-400 flex items-center justify-center rounded-full text-white text-sm w-8 h-8">3</span>
-                <span>Démarrez une nouvelle discussion sur le <a href="#" class="text-indigo-400 font-light">forum</a> ou le <a href="{{ route('posts.index') }}" class="text-indigo-400 font-light">blog</a>.</span>
+            <li class="flex items-center gap-4 sm:gap-6">
+                <span class="translate-y-[-0.5px] bg-indigo-400 flex flex-shrink-0 items-center justify-center rounded-full text-white text-xs sm:text-sm w-6 sm:w-8 h-6 sm:h-8">
+                    <span class="translate-y-[0.5px]">3</span>
+                </span>
+
+                <span>Démarrez une nouvelle discussion sur le <a href="#" class="text-indigo-400 font-light" @click.prevent="alert('Il n\'y a rien à voir pour le moment. Mais les commentaires sur le blog sont opérationnels et n\'attendent que vous !')">forum</a> ou le <a href="{{ route('posts.index') }}" class="text-indigo-400 font-light">blog</a>.</span>
             </li>
         </ol>
     </x-layout.section>

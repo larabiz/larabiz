@@ -6,18 +6,18 @@
 
         <title>{{ $title ?? config('app.name') }}</title>
 
-        <meta name="description" content="{{ $seoDescription ?? $description ?? '' }}" />
-        <meta property="og:description" content="{{ $seoDescription ?? $description ?? '' }}" />
+        <meta name="description" content="{{ $description ?? '' }}" />
+        <meta property="og:description" content="{{ $description ?? '' }}" />
         <meta property="og:image" content="{{ $image ?? secure_asset('img/larabiz-banner.jpg') }}" />
-        <meta property="og:title" content="{{ $seoTitle ?? $title ?? config('app.name') }}" />
+        <meta property="og:title" content="{{ $title ?? config('app.name') }}" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ URL::current() }}" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@Larabiz_" />
         <meta name="twitter:creator" content="@benjamincrozat" />
-        <meta name="twitter:description" content="{{ $seoDescription ?? $description ?? '' }}" />
+        <meta name="twitter:description" content="{{ $description ?? '' }}" />
         <meta name="twitter:image" content="{{ $image ?? secure_asset('img/larabiz-banner.jpg') }}" />
-        <meta name="twitter:title" content="{{ $seoTitle ?? $title ?? config('app.name') }}" />
+        <meta name="twitter:title" content="{{ $title ?? config('app.name') }}" />
 
         <livewire:styles />
 
@@ -44,12 +44,12 @@
     </head>
     <body class="bg-indigo-50 font-light text-gray-700" x-data>
         @if ($user && ! $user->hasVerifiedEmail())
-            <div {{ $attributes->merge(['class' => 'bg-gradient-to-r from-indigo-400 to-indigo-300 font-semibold py-3 text-center text-sm text-white']) }}>
-                <div class="container">
-                    <p>Veuillez confirmer votre adresse e-mail afin d'utiliser Larabiz à son plein potentiel.</p>
+            <div {{ $attributes->merge(['class' => 'bg-gradient-to-r from-indigo-400 to-indigo-300 py-3 text-sm text-white']) }}>
+                <div class="container sm:text-center text-indigo-50">
+                    <p class="sm:text-center">Veuillez confirmer votre adresse e-mail afin d'utiliser Larabiz à son plein potentiel.</p>
 
-                    <x-forms.form method="POST" action="{{ route('verification.send') }}" class="mt-2">
-                        <button type="submit" class="bg-white/20 font-bold px-3 py-1 rounded">Renvoyer la confirmation</button>
+                    <x-forms.form method="POST" action="{{ route('verification.send') }}" class="mt-2 text-center">
+                        <button type="submit" class="bg-white/20 font-normal px-3 py-1 rounded text-white">Renvoyer la confirmation</button>
                     </x-forms.form>
                 </div>
             </div>

@@ -13,9 +13,9 @@ class EditUserProfileControllerTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->getJson(route('user.profile'))
+            ->getJson(route('user-profile'))
             ->assertOk()
-            ->assertViewIs('user.profile')
+            ->assertViewIs('user-profile')
         ;
 
         $this->assertEquals($response->viewData('user'), $user);
@@ -25,7 +25,7 @@ class EditUserProfileControllerTest extends TestCase
     {
         $this
             ->assertGuest()
-            ->getJson(route('user.profile'))
+            ->getJson(route('user-profile'))
             ->assertUnauthorized()
         ;
     }

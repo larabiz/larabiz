@@ -1,13 +1,13 @@
 <x-layout.section {{ $attributes }}>
     <x-slot:title
-        tag="{{ $title->attributes->get('tag') ?? 'h1' }}"
+        tag="{{ $headline->attributes->get('tag') ?? 'h1' }}"
         class="font-extrabold !leading-6 md:!leading-9 text-xl md:text-3xl text-center"
     >
-        {{ $title }}
+        {{ $headline }}
     </x-slot>
 
     <p class="-mt-2 font-regular md:max-w-screen-sm md:mx-auto text-center sm:text-lg">
-        Abonnez-vous à la newsletter et recevez régulièrement news, trucs et astuces à propos de Laravel et son ecosystème.
+        {{ $subheadline }}
     </p>
 
     <p class="font-bold mt-5 text-center sm:text-lg">
@@ -22,7 +22,10 @@
     >
         <div class="flex flex-wrap sm:flex-nowrap items-stretch gap-2 rounded">
             <p class="flex-grow">
-                <label for="email" class="sr-only">E-mail :</label>
+                <label for="email" class="sr-only">
+                    E-mail :
+                </label>
+
                 <x-forms.input
                     type="email"
                     id="email"
@@ -30,7 +33,7 @@
                     value="{{ old('email') }}"
                     placeholder="homer@simpson.com"
                     required
-                    class="mt-0"
+                    class="!mt-0"
                 />
             </p>
 

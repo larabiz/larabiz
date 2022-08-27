@@ -5,7 +5,7 @@ namespace Tests\Feature\App\Http\Controllers;
 use Tests\TestCase;
 use App\Models\Subscriber;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\Subscribers\ConfirmSubscription;
+use App\Notifications\Users\Subscribers\ConfirmSubscription;
 
 class StoreSubscriberControllerTest extends TestCase
 {

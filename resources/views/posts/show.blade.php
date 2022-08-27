@@ -1,9 +1,7 @@
 <x-layout.app
-    :title="$post->title"
-    :seo-title="$post->seo_title ?? ''"
-    :description="$post->excerpt"
-    :seo-description="$post->seo_excerpt"
-    :image="$post->preview_url"
+    title="{{ $post->title }}"
+    description="{{ $post->excerpt }}"
+    image="{{ $post->preview_url }}"
 >
     <x-breadcrumb.container class="mt-16">
         <x-breadcrumb.item link="{{ route('posts.index') }}">Blog</x-breadcrumb.item>
@@ -109,10 +107,14 @@
 
     <div class="bg-indigo-100">
         <x-newsletter class="container">
-            <x-slot:title tag="h2">
+            <x-slot:headline tag="h2">
                 Ça vous a plu ?<br />
                 <span class="text-indigo-400">Abonnez-vous à la newsletter !</span>
-            </x-slot>
+            </x-slot:headline>
+
+            <x-slot:subheadline>
+                Recevez régulièrement news, trucs et astuces à propos de Laravel et son ecosystème.
+            </x-slot:subheadline>
         </x-newsletter>
     </div>
 
