@@ -82,6 +82,45 @@
         </ol>
     </x-layout.section>
 
+    <div class="bg-indigo-100">
+        <x-layout.section class="max-w-[1024px]">
+            <x-slot:title tag="h2" class="text-xl md:text-3xl">
+                {{ config('app.name') }} en quelques chiffres
+            </x-slot>
+
+            <p class="mt-8 text-center sm:text-xl">
+                Afin que Larabiz devienne un succès, les chiffres <strong class="font-bold">doivent</strong> atteindre des sommets.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                <div class="bg-indigo-200/30 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                    <span class="block text-3xl md:text-5xl text-indigo-400">{{ $visitors }}</span>
+                    <span class="block font-semibold text-indigo-900/75">visiteurs</span>
+                    <span class="block mt-4 text-indigo-900/50 text-xs">depuis le lancement</span>
+                </div>
+
+                <div class="bg-indigo-200/30 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                    <span class="block text-3xl md:text-5xl text-indigo-400">{{ $pageviews }}</span>
+                    <span class="block font-semibold text-indigo-900/75">pageviews</span>
+                    <span class="block mt-4 text-indigo-900/50 text-xs">en moyenne chaque mois</span>
+                </div>
+
+                <div class="bg-indigo-200/30 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                    <span class="block text-3xl md:text-5xl text-indigo-400">{{ $users_count }}</span>
+                    <span class="block font-semibold text-indigo-900/75">inscrits</span>
+                    <span class="block mt-4 text-indigo-900/50 text-xs">ayant passé le filtre anti-bots</span>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <a href="https://larabiz.fr/blog/BKMN8C/quel-avenir-pour-larabiz" class="border border-indigo-200 inline-flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded text-indigo-400">
+                    <x-heroicon-o-information-circle class="h-4 translate-y-[-.5px]" />
+                    Découvrez comment et pourquoi contribuer.
+                </a>
+            </div>
+        </x-layout.section>
+    </div>
+
     @push('scripts')
         <script type="application/ld+json">
             {
