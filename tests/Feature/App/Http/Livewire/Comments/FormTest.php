@@ -8,6 +8,7 @@ use App\Models\User;
 use Livewire\Livewire;
 use App\Models\Comment;
 use App\Events\Commented;
+use App\Models\Subscription;
 use App\Http\Livewire\Comments\Form;
 use Illuminate\Support\Facades\Event;
 
@@ -32,6 +33,7 @@ class FormTest extends TestCase
         Livewire::test(Form::class, [
             'content' => $content = fake()->paragraph(),
             'post' => $post,
+            'subscribe' => true,
         ])
             ->call('storeComment')
             ->assertOk()
@@ -42,6 +44,13 @@ class FormTest extends TestCase
             'user_id' => $commenter->id,
             'post_id' => $post->id,
             'content' => $content,
+        ]);
+
+        // Make sure the commenter is subscribed to post.
+        $this->assertDatabaseHas(Subscription::class, [
+            'user_id' => $commenter->id,
+            'subscribable_type' => $post->getMorphClass(),
+            'subscribable_id' => $post->id,
         ]);
 
         // Make sure master has been notified of the right new comment.

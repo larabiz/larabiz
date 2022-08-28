@@ -78,6 +78,23 @@
                     ]
                 }
             </script>
+
+            <script type="application/ld+json">
+                {
+                    "@context": "https://schema.org",
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [{
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Blog",
+                        "item": "{{ route('posts.index') }}"
+                    }, {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "{{ $post->title }}"
+                    }]
+                }
+            </script>
         @endpush
 
         <div
@@ -85,7 +102,15 @@
             class="mt-8 sm:mt-16 scroll-mt-8 sm:scroll-mt-16"
             x-intersect="window.fathom?.trackGoal('0DZGVNFZ', 0)"
         >
-            <livewire:comments.listing :post="$post" />
+            <h2 class="font-extrabold leading-tight mb-8 sm:mb-16 text-center text-xl">
+                @choice(':count commentaire|:count commentaires', $post->comments_count)
+            </h2>
+
+            <div class="grid gap-4">
+                @foreach ($post->comments as $comment)
+                    <x-comments.comment :comment="$comment" />
+                @endforeach
+            </div>
 
             @auth
                 @if (! $user?->hasVerifiedEmail())
@@ -129,23 +154,4 @@
             @endforeach
         </div>
     </x-layout.section>
-
-    @push('scripts')
-        <script type="application/ld+json">
-            {
-                "@context": "https://schema.org",
-                "@type": "BreadcrumbList",
-                "itemListElement": [{
-                    "@type": "ListItem",
-                    "position": 1,
-                    "name": "Blog",
-                    "item": "{{ route('posts.index') }}"
-                }, {
-                    "@type": "ListItem",
-                    "position": 2,
-                    "name": "{{ $post->title }}"
-                }]
-            }
-        </script>
-    @endpush
 </x-layout.app>

@@ -16,8 +16,11 @@ class Form extends Component
 
     public $content = '';
 
+    public $subscribe = false;
+
     protected $rules = [
         'content' => ['required', 'string', 'min:3'],
+        'subscribe' => ['required', 'boolean'],
     ];
 
     protected $messages = [
@@ -30,6 +33,11 @@ class Form extends Component
         return view('livewire.comments.form');
     }
 
+    public function getSubscribedProperty() : bool
+    {
+        return auth()->user()->subscribedTo($this->post);
+    }
+
     public function storeComment()
     {
         $this->authorize('create', Comment::class);
@@ -40,6 +48,10 @@ class Form extends Component
             'user_id' => auth()->id(),
             'content' => $this->content,
         ]);
+
+        if ($this->subscribe && ! $this->subscribed) {
+            $this->post->subscriptions()->firstOrCreate(['user_id' => auth()->id()]);
+        }
 
         event(new Commented($comment));
 
