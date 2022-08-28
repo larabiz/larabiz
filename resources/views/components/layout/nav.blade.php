@@ -19,12 +19,24 @@
                 @click.prevent="window.fathom?.trackGoal('OCXHSBNK', 0); alert('Il n\'y a rien à voir pour le moment. Mais les commentaires sur le blog sont opérationnels et n\'attendent que vous !')"
             >
                 <span class="sr-only sm:not-sr-only">Discussions</span>
-                <x-heroicon-o-chat-alt-2 class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
+                <x-heroicon-o-chat-bubble-left-right class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
             </a>
 
             <span class="absolute -top-6 sm:-top-4 left-1/2 sm:left-auto sm:-right-4 bg-yellow-400 font-semibold leading-normal mt-1 rounded-full text-center text-xs w-[55px] -translate-x-1/2 sm:translate-x-0 scale-75">
                 Bientôt
             </span>
+        </li>
+
+        <li class="relative">
+            <a
+                href="https://twitter.com/Larabiz_"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-semibold hover:text-blue-400 transition-colors"
+            >
+                <span class="sr-only">Twitter</span>
+                <x-icon-twitter-alt class="fill-current w-5 h-5 -translate-y-[0.5px]" />
+            </a>
         </li>
 
         @auth
@@ -73,7 +85,7 @@
                             class="hover:bg-red-400 flex items-center gap-2 font-semibold px-4 py-2 text-left text-red-400 hover:text-white transition-colors w-full"
                             @click="window.fathom?.trackGoal('KETMVOZT', 0)"
                         >
-                            <x-heroicon-s-logout class="h-4 translate-y-[-0.5px]" />
+                            <x-heroicon-s-arrow-left-on-rectangle class="h-4 translate-y-[-0.5px]" />
                             Déconnexion
                         </button>
                     </form>
@@ -83,7 +95,7 @@
             <li>
                 <a href="{{ route('login') }}" class="font-semibold @if (Route::is('login')) text-indigo-400 @else hover:text-indigo-400 transition-colors @endif">
                     <span class="sr-only sm:not-sr-only">Connexion</span>
-                    <x-heroicon-s-login class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
+                    <x-heroicon-s-arrow-right-on-rectangle class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
                 </a>
             </li>
 

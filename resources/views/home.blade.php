@@ -1,6 +1,5 @@
 <x-layout.app
     title="Apprenez PHP et Laravel en français avec {{ config('app.name') }}"
-    seo-title="Apprendre à développer en PHP et Laravel en ligne en français"
     description="Apprenez PHP et Laravel en français avec des articles de qualité et plus encore sur {{ config('app.name') }}, la meilleure communauté francophone PHP et Laravel."
 >
     <x-newsletter>
@@ -82,44 +81,81 @@
         </ol>
     </x-layout.section>
 
-    <div class="bg-indigo-100">
-        <x-layout.section class="max-w-[1024px]">
+    <div class="bg-gradient-to-t from-indigo-200/50 to-indigo-100" x-intersect="window.fathom?.trackGoal('', 0)">
+        <div class="-mb-2 sm:-mb-10 pt-8 sm:pt-16 px-4 text-center">
+            <x-icon-lives class="max-h-[350px] inline" />
+        </div>
+
+        <x-layout.section>
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
-                {{ config('app.name') }} en quelques chiffres
+                <span class="text-indigo-400">Larabiz fait des lives</span> sur Twitter
             </x-slot>
 
-            <p class="mt-8 text-center sm:text-xl">
-                Afin que Larabiz devienne un succès, les chiffres <strong class="font-bold">doivent</strong> atteindre des sommets.
+            <p class="text-center sm:text-xl">
+                <strong class="font-bold">Rompez la solitude du développeur</strong> en venant régulièrement participer aux lives !
             </p>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-                <div class="bg-indigo-200/30 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                    <span class="block text-3xl md:text-5xl text-indigo-400">{{ $visitors }}</span>
-                    <span class="block font-semibold text-indigo-900/75">visiteurs</span>
-                    <span class="block mt-4 text-indigo-900/50 text-xs">depuis le lancement</span>
-                </div>
-
-                <div class="bg-indigo-200/30 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                    <span class="block text-3xl md:text-5xl text-indigo-400">{{ $pageviews }}</span>
-                    <span class="block font-semibold text-indigo-900/75">pageviews</span>
-                    <span class="block mt-4 text-indigo-900/50 text-xs">en moyenne chaque mois</span>
-                </div>
-
-                <div class="bg-indigo-200/30 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                    <span class="block text-3xl md:text-5xl text-indigo-400">{{ $users_count }}</span>
-                    <span class="block font-semibold text-indigo-900/75">inscrits</span>
-                    <span class="block mt-4 text-indigo-900/50 text-xs">ayant passé le filtre anti-bots</span>
-                </div>
-            </div>
-
-            <div class="mt-8 text-center">
-                <a href="https://larabiz.fr/blog/BKMN8C/quel-avenir-pour-larabiz" class="border border-indigo-200 inline-flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded text-indigo-400">
-                    <x-heroicon-o-information-circle class="h-4 translate-y-[-.5px]" />
-                    Découvrez comment et pourquoi contribuer.
-                </a>
+            <div class="mt-10 text-center">
+                <x-buttons.cta href="https://twitter.com/i/events/1563989004944547846" target="_blank" rel="nofollow noopener noreferrer" class="inline-flex items-center gap-2">
+                    <x-heroicon-o-play class="-ml-2 h-6 translate-y-[-.5px]" />
+                    Écouter les précédents lives
+                </x-buttons.cta>
             </div>
         </x-layout.section>
     </div>
+
+    <x-layout.section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
+        <x-slot:title tag="h2" class="text-xl md:text-3xl">
+            {{ config('app.name') }} en quelques chiffres
+        </x-slot>
+
+        <p class="mt-8 text-center sm:text-xl">
+            Afin que ce projet devienne un succès, les chiffres <strong class="font-bold">doivent</strong> atteindre des sommets.
+        </p>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                <x-heroicon-o-globe-alt class="inline w-12 h-12 text-indigo-700/50" />
+                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $visits }}</span>
+                <span class="block font-semibold text-indigo-900/75">visiteurs</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs">sur les 30 derniers jours</span>
+            </div>
+
+            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                <x-heroicon-o-eye class="inline w-12 h-12 text-indigo-700/50" />
+                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $pageviews }}</span>
+                <span class="block font-semibold text-indigo-900/75">pageviews</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs">sur les 30 derniers jours</span>
+            </div>
+
+            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                <x-heroicon-o-user-group class="inline w-12 h-12 text-indigo-700/50" />
+                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $users_count }}</span>
+                <span class="block font-semibold text-indigo-900/75">inscrits</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs">ayant passé le filtre&nbsp;anti-bots</span>
+            </div>
+
+            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                <x-heroicon-o-envelope class="inline w-12 h-12 text-indigo-700/50" />
+                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $subscribers_count }}</span>
+                <span class="block font-semibold text-indigo-900/75 truncate">abonnés à la newsletter</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs">ayant passé le filtre&nbsp;anti-bots</span>
+            </div>
+
+            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
+                <x-heroicon-o-newspaper class="inline w-12 h-12 text-indigo-700/50" />
+                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $posts_count }}</span>
+                <span class="block font-semibold text-indigo-900/75">articles</span>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center">
+            <a href="https://larabiz.fr/blog/BKMN8C/quel-avenir-pour-larabiz" class="border border-indigo-100 inline-flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded text-indigo-400 text-sm sm:text-base">
+                <x-heroicon-o-information-circle class="h-4 translate-y-[-0.5px]" />
+                Découvrez comment et pourquoi contribuer.
+            </a>
+        </div>
+    </x-layout.section>
 
     @push('scripts')
         <script type="application/ld+json">

@@ -22,7 +22,7 @@
 
                 <button class="text-indigo-400" @click="open = false">
                     <span class="sr-only">Fermer</span>
-                    <x-heroicon-o-x class="w-5 h-5 translate-y-[-0.5px]" />
+                    <x-heroicon-o-x-mark class="w-5 h-5 translate-y-[-0.5px]" />
                 </button>
             </div>
         </div>

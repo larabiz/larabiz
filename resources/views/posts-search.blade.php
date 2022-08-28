@@ -27,7 +27,7 @@
                     @keydown.ctrl.k.window="$refs.searchField.focus()"
                 />
 
-                <x-heroicon-o-search class="absolute top-1/2 left-4 text-indigo-200/75 w-4 h-4 -translate-y-1/2" />
+                <x-heroicon-o-magnifying-glass class="absolute top-1/2 left-4 text-indigo-200/75 w-4 h-4 -translate-y-1/2" />
 
                 <div class="absolute top-1/2 right-2 border border-indigo-100 px-2 py-1 rounded-sm text-indigo-200/75 text-xs -translate-y-1/2">
                     Ctrl/⌘K
