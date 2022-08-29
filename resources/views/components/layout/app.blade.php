@@ -56,7 +56,7 @@
         @endif
 
         <div class="flex flex-col min-h-screen">
-            <x-layout.nav />
+            <x-nav.main />
 
             <main>
                 {{ $slot }}

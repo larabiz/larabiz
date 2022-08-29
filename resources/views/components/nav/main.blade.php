@@ -32,7 +32,7 @@
                 href="https://twitter.com/Larabiz_"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="font-semibold hover:text-blue-400 transition-colors"
+                class="font-semibold text-blue-400"
             >
                 <span class="sr-only">Twitter</span>
                 <x-icon-twitter-alt class="fill-current w-5 h-5 -translate-y-[0.5px]" />
@@ -58,7 +58,12 @@
 
                     <a href="{{ route('user-profile') }}" class="hover:bg-indigo-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
                         <x-heroicon-o-user class="h-4 translate-y-[-0.5px]" />
-                        Mon profil
+                        Mes informations
+                    </a>
+
+                    <a href="{{ route('user-password') }}" class="hover:bg-indigo-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
+                        <x-heroicon-o-lock-closed class="h-4 translate-y-[-0.5px]" />
+                        Mon mot de passe
                     </a>
 
                     <div class="bg-indigo-900/5 h-px my-2"></div>

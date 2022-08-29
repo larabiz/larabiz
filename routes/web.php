@@ -5,9 +5,10 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SearchPostsController;
 use App\Http\Controllers\ShowPreviewController;
 use App\Http\Controllers\Posts\ShowPostController;
-use App\Http\Controllers\EditUserProfileController;
 use App\Http\Controllers\Posts\ListPostsController;
+use App\Http\Controllers\User\EditUserProfileController;
 use App\Http\Controllers\Comments\StoreCommentController;
+use App\Http\Controllers\User\EditUserPasswordController;
 use App\Http\Controllers\Comments\DestroyCommentController;
 use App\Http\Controllers\Subscribers\StoreSubscriberController;
 use App\Http\Controllers\Subscribers\ConfirmSubscriberController;
@@ -26,7 +27,8 @@ Route::post('/blog/{post:random_id}/unsubscribe', UnsubscribeFromPostController:
 Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');
 Route::get('/preview/{post:random_id}', ShowPreviewController::class)->name('preview');
 
-Route::post('/posts/{post:random_id}/comments', StoreCommentController::class)->name('comments.store');
+Route::post('/blog/{post:random_id}/comments', StoreCommentController::class)->name('posts.comments.store');
 Route::delete('/comments/{comment:random_id}', DestroyCommentController::class)->name('comments.destroy');
 
 Route::get('/user/profile', EditUserProfileController::class)->name('user-profile');
+Route::get('/user/password', EditUserPasswordController::class)->name('user-password');

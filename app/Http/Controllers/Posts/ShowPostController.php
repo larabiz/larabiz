@@ -40,6 +40,7 @@ class ShowPostController extends Controller
                 ->latest()
                 ->limit(6)
                 ->get(),
+            'subscribed' => auth()->user()?->subscribedTo($post),
         ]);
     }
 }

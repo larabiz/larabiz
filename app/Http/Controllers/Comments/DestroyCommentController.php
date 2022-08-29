@@ -19,6 +19,6 @@ class DestroyCommentController extends Controller
 
         $comment->delete();
 
-        return back()->with('status', 'Votre commentaire a bien été supprimé.');
+        return back()->with('status', 'Le commentaire a bien été supprimé.');
     }
 }

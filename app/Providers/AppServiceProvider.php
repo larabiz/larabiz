@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Vite;
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
     public function register() : void
     {
         $this->app->bind(Browsershot::class, fn () => new Browsershot);
+        $this->app->bind(User::class, fn () => auth()->user());
     }
 
     public function boot() : void

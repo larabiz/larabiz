@@ -27,6 +27,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_login_at' => 'datetime',
     ];
 
+    public function scopeVerified(Builder $query) : void
+    {
+        $query->whereNotNull('email_verified_at');
+    }
+
     public function scopeMaster(Builder $query) : void
     {
         $query->where('email', 'benjamincrozat@me.com');
@@ -47,6 +52,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Subscription::class);
     }
 
+    public function subscribeTo(Post $post)
+    {
+        return $this->subscriptions()->firstOrCreate([
+            'subscribable_type' => $post->getMorphClass(),
+            'subscribable_id' => $post->id,
+        ]);
+    }
+
     public function subscribedTo(Post $post) : bool
     {
         return $this->subscriptions()->where([
@@ -54,5 +67,13 @@ class User extends Authenticatable implements MustVerifyEmail
             ['subscribable_type', $post->getMorphClass()],
             ['subscribable_id', $post->id],
         ])->exists();
+    }
+
+    public function unsubscribeFrom(Post $post) : mixed
+    {
+        return $this->subscriptions()->where([
+            ['subscribable_type', $post->getMorphClass()],
+            ['subscribable_id', $post->id],
+        ])->delete();
     }
 }

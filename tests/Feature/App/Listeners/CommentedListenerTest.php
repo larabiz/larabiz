@@ -16,28 +16,29 @@ class CommentedListenerTest extends TestCase
     {
         Notification::fake();
 
-        // Create a bunch of comments each from a different user.
+        $master = User::master()->first();
 
-        $post = Post::factory()->forUser()->published()->create();
+        // Create a post with a bunch of comments.
 
-        $comments = Comment::factory(10)->for($post)->make()->each(function (Comment $comment) {
-            $comment->user_id = User::factory()->create()->id;
-            $comment->save();
-        });
+        $post = Post::factory()->for($master)->published()->create();
 
-        $notified = $comments->map->user;
+        // Create users who will be notified about new comments.
+
+        $users = User::factory(10)->create()->each->subscribeTo($post);
 
         // Create a new comment.
 
-        $comment = Comment::factory()->forUser()->for($post)->create();
+        $comment = Comment::factory()->for($master)->for($post)->create();
 
         event(new Commented($comment));
 
-        // Excluding the commenter, every user who participated should be notified.
+        // Make sure the subscribed users are notified.
 
-        $notified->each(function (User $user) {
-            Notification::assertSentToTimes($user, NewComment::class, 1);
+        $users->each(function (User $user) {
+            Notification::assertSentTo($user, NewComment::class, 1);
         });
+
+        // Make sure the commenter is not notified.
 
         Notification::assertNotSentTo($comment->user, NewComment::class);
     }

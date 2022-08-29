@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Subscriptions;
 
 use App\Models\Post;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 
@@ -13,9 +14,9 @@ class SubscribeToPostController extends Controller
         $this->middleware('auth');
     }
 
-    public function __invoke(Post $post) : RedirectResponse
+    public function __invoke(User $user, Post $post) : RedirectResponse
     {
-        $post->subscriptions()->firstOrCreate(['user_id' => auth()->id()]);
+        $user->subscribeTo($post);
 
         return back()->with('status', 'Vous receverez désormais une notification pour chaque nouveau commentaire sur cet article.');
     }

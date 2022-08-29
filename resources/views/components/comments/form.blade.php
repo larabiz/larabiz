@@ -1,32 +1,43 @@
 <div class="mt-8 sm:mt-16 xs:mx-auto xs:max-w-screen-xs">
+    {{-- Form --}}
     <x-forms.form
         method="POST"
+        action="{{ route('posts.comments.store', $post) }}"
         id="comments-form"
         class="grid gap-8 mt-2"
-        @submit.prevent="$wire.storeComment(); window.fathom?.trackGoal('6YTIFBO7', 0)"
     >
+        {{-- Textarea --}}
         <div>
             <x-forms.textarea
                 id="content"
-                wire:model="content"
+                name="content"
                 placeholder="Votre commentaire"
+                required
                 tabindex="0"
             >{{ old('content') }}</x-forms.textarea>
 
+            {{-- Tip about Markdown --}}
             <span class="block text-center text-indigo-300 text-xs">
                 La syntaxe Markdown est supportée.
             </span>
         </div>
 
-        <div class="-mt-4" x-data="{ subscribe: @js($this->subscribed) }">
-            <input type="hidden" wire:model="subscribe" :value="subscribe" />
+        <label class="-mt-4 bg-indigo-200/20 flex items-center gap-4 px-4 py-3 rounded-md">
+            <input
+                type="checkbox"
+                name="subscribe"
+                value="1"
+                @checked($subscribed)
+                class="border-0 rounded shadow shadow-indigo-100 text-indigo-400"
+            />
 
-            <x-forms.toggle :toggled="$this->subscribed">
-                Suivre l'activité de l'article
+            <span>
+                Notifiez-moi pour chaque nouveau commentaire
                 <span class="block text-indigo-300 text-xs">Il est possible de vous désabonner à tout moment.</span>
-            </x-forms.toggle>
-        </div>
+            </span>
+        </label>
 
+        {{-- Submit button --}}
         <x-buttons.cta type="submit">
             Commenter
         </x-buttons.cta>

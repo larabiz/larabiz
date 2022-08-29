@@ -40,7 +40,7 @@
             <div class="bg-indigo-100 flex items-center gap-4 mt-8 p-4 rounded-lg text-indigo-900/75">
                 <x-heroicon-o-information-circle class="flex-shrink-0 w-5 h-5" />
 
-                <div>
+                <aside>
                     <div>
                         Quelque chose vous échappe au sujet de cet article&nbsp;? <a href="#comments" class="font-semibold text-indigo-900" @click="window.fathom?.trackGoal('SNY6VO5I', 0)">Demandez de l'aide dans les commentaires</a>.
                     </div>
@@ -48,7 +48,7 @@
                     <div class="font-bold mt-2 text-indigo-700" x-show="document.getElementById('comments').clientHeight === 0">
                         Désactivez votre bloqueur de pub sur {{ config('app.name') }}, car il semble qu'il masque la section commentaires&nbsp;!
                     </div>
-                </div>
+                </aside>
             </div>
 
             <div class="break-words prose prose-a:bg-indigo-100 prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-200 prose-blockquote:font-serif prose-blockquote:text-indigo-900/75 prose-h3:leading-tight prose-img:my-0 prose-figure:mx-auto prose-figure:text-center prose-figure:sm:w-2/3 prose-figure:md:w-1/2 prose-strong:font-bold !max-w-none mt-8">
@@ -119,7 +119,7 @@
                         Il n'y a plus qu'à confirmer votre adresse e-mail.
                     </div>
                 @elseif ($user?->hasVerifiedEmail())
-                    <livewire:comments.form :post="$post" />
+                    <x-comments.form :post="$post" :subscribed="$subscribed" />
                 @endif
             @else
                 <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 text-lg sm:text-xl">

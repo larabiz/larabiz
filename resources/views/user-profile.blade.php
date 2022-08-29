@@ -47,32 +47,5 @@
                 Modifier mes informations
             </x-buttons.cta>
         </x-forms.form>
-
-        <h2 class="border-t border-indigo-100 font-extrabold leading-tight mb-8 mt-16 pt-16 text-center">Mon mot de passe</h2>
-
-        <x-forms.form method="PUT" action="{{ route('user-password.update') }}" class="grid gap-4">
-            <div>
-                <x-forms.label for="current-password">Mot de passe actuel</x-forms.label>
-                <x-forms.input type="password" id="current-password" name="current_password" required bag="updatePassword" />
-            </div>
-
-            <div>
-                <x-forms.label for="password">Nouveau mot de passe</x-forms.label>
-                <x-forms.input type="password" id="password" name="password" required bag="updatePassword" />
-            </div>
-
-            <div>
-                <x-forms.label for="password-confirmation">Confirmation du nouveau mot de passe</x-forms.label>
-                <x-forms.input type="password" id="password-confirmation" name="password_confirmation" required bag="updatePassword" />
-            </div>
-
-            <x-buttons.cta
-                type="submit"
-                class="mt-4"
-                @click="window.fathom?.trackGoal('SPKVSTS8', 0)"
-            >
-                Modifier mon mot de passe
-            </x-buttons.cta>
-        </x-forms.form>
     </x-layout.section>
 </x-layout.app>

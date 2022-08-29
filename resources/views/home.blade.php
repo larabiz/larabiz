@@ -23,8 +23,8 @@
     <div class="bg-indigo-100" x-intersect="window.fathom?.trackGoal('ECBYPDIG', 0)">
         <x-layout.section>
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
-                Augmentez vos chances d'être&nbsp;recruté<br />
-                <span class="text-indigo-400">Développez vos compétences</span>
+                Un tas d'articles et tutoriels pour<br />
+                <span class="text-indigo-400">développer vos compétences</span>
             </x-slot>
 
             <p class="text-center sm:text-lg">
@@ -106,7 +106,7 @@
 
     <x-layout.section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
         <x-slot:title tag="h2" class="text-xl md:text-3xl">
-            {{ config('app.name') }} en quelques chiffres
+            {{ config('app.name') }} en <span class="text-indigo-400">quelques chiffres</span>
         </x-slot>
 
         <p class="mt-8 text-center sm:text-xl">
@@ -117,35 +117,35 @@
             <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
                 <x-heroicon-o-globe-alt class="inline w-12 h-12 text-indigo-700/50" />
                 <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $visits }}</span>
-                <span class="block font-semibold text-indigo-900/75">visiteurs</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs">sur les 30 derniers jours</span>
+                <span class="block font-semibold text-indigo-900/75 truncate">visiteurs</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">sur les 30 derniers jours</span>
             </div>
 
             <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
                 <x-heroicon-o-eye class="inline w-12 h-12 text-indigo-700/50" />
                 <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $pageviews }}</span>
-                <span class="block font-semibold text-indigo-900/75">pageviews</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs">sur les 30 derniers jours</span>
+                <span class="block font-semibold text-indigo-900/75 truncate">pageviews</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">sur les 30 derniers jours</span>
             </div>
 
             <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
                 <x-heroicon-o-user-group class="inline w-12 h-12 text-indigo-700/50" />
                 <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $users_count }}</span>
-                <span class="block font-semibold text-indigo-900/75">inscrits</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs">ayant passé le filtre&nbsp;anti-bots</span>
+                <span class="block font-semibold text-indigo-900/75 truncate">inscrits</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">ayant passé le filtre&nbsp;anti-bots</span>
             </div>
 
             <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
                 <x-heroicon-o-envelope class="inline w-12 h-12 text-indigo-700/50" />
                 <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $subscribers_count }}</span>
-                <span class="block font-semibold text-indigo-900/75 truncate">abonnés à la newsletter</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs">ayant passé le filtre&nbsp;anti-bots</span>
+                <span class="block font-semibold text-indigo-900/75 truncate">abonnés</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">ayant passé le filtre&nbsp;anti-bots</span>
             </div>
 
             <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
                 <x-heroicon-o-newspaper class="inline w-12 h-12 text-indigo-700/50" />
                 <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $posts_count }}</span>
-                <span class="block font-semibold text-indigo-900/75">articles</span>
+                <span class="block font-semibold text-indigo-900/75 truncate">articles</span>
             </div>
         </div>
 
