@@ -17,7 +17,7 @@ class EditUserPasswordController extends Controller
 
     public function __invoke(Request $request) : View
     {
-        return view('user-password')->with([
+        return view('user.password')->with([
             'user' => $request->user(),
         ]);
     }

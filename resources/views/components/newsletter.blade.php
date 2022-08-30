@@ -1,4 +1,4 @@
-<x-layout.section {{ $attributes }}>
+<x-section {{ $attributes }}>
     <x-slot:title
         tag="{{ $headline->attributes->get('tag') ?? 'h1' }}"
         class="font-extrabold !leading-6 md:!leading-9 text-xl md:text-3xl text-center"
@@ -14,7 +14,7 @@
         Rejoignez les @choice('<span class="font-exabold text-indigo-400">:count</span> autre abonné|<span class="font-extrabold text-indigo-400">:count</span> autres abonnés', $subscribersCount)&nbsp;!
     </p>
 
-    <x-forms.form
+    <x-form
         method="POST"
         action="{{ route('subscribers.store') }}"
         class="md:max-w-screen-sm mt-8 mx-auto"
@@ -26,7 +26,7 @@
                     E-mail :
                 </label>
 
-                <x-forms.input
+                <x-input
                     type="email"
                     id="email"
                     name="email"
@@ -37,17 +37,17 @@
                 />
             </p>
 
-            <x-buttons.cta type="submit" class="w-full sm:w-auto">
+            <x-action-btn type="submit" class="w-full sm:w-auto">
                 M'abonner
-            </x-buttons.cta>
+            </x-action-btn>
         </div>
 
-        <x-forms.error name="email" />
-    </x-forms.form>
+        <x-error name="email" />
+    </x-form>
 
     <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 text-xs">
         Pas de spam, c'est promis&nbsp;!
     </p>
 
     {{ $slot }}
-</x-layout.section>
+</x-section>

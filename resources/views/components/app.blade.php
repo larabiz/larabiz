@@ -48,21 +48,21 @@
                 <div class="container sm:text-center text-indigo-50">
                     <p class="sm:text-center">Veuillez confirmer votre adresse e-mail afin d'utiliser Larabiz à son plein potentiel.</p>
 
-                    <x-forms.form method="POST" action="{{ route('verification.send') }}" class="mt-2 text-center">
+                    <x-form method="POST" action="{{ route('verification.send') }}" class="mt-2 text-center">
                         <button type="submit" class="bg-white/20 font-normal px-3 py-1 rounded text-white">Renvoyer la confirmation</button>
-                    </x-forms.form>
+                    </x-form>
                 </div>
             </div>
         @endif
 
         <div class="flex flex-col min-h-screen">
-            <x-nav.main />
+            <x-main-navigation />
 
             <main>
                 {{ $slot }}
             </main>
 
-            <x-layout.footer class="flex-grow" />
+            <x-footer class="flex-grow" />
         </div>
 
         <x-status />

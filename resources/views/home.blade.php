@@ -1,4 +1,4 @@
-<x-layout.app
+<x-app
     title="Apprenez PHP et Laravel en français avec {{ config('app.name') }}"
     description="Apprenez PHP et Laravel en français avec des articles de qualité et plus encore sur {{ config('app.name') }}, la meilleure communauté francophone PHP et Laravel."
 >
@@ -21,7 +21,7 @@
     </x-newsletter>
 
     <div class="bg-indigo-100" x-intersect="window.fathom?.trackGoal('ECBYPDIG', 0)">
-        <x-layout.section>
+        <x-section>
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
                 Un tas d'articles et tutoriels pour<br />
                 <span class="text-indigo-400">développer vos compétences</span>
@@ -34,17 +34,17 @@
 
             <div class="grid gap-8 mt-16">
                 @foreach ($latest as $post)
-                    <x-posts.post :post="$post" />
+                    <x-post :post="$post" />
                 @endforeach
             </div>
 
-            <x-buttons.primary href="{{ route('posts.index') }}" class="mt-16 mx-auto table" @click="window.fathom?.trackGoal('QEMXBB9C', 0)">
+            <x-primary-btn href="{{ route('posts.index') }}" class="mt-16 mx-auto table" @click="window.fathom?.trackGoal('QEMXBB9C', 0)">
                 La suite sur le blog
-            </x-buttons.primary>
-        </x-layout.section>
+            </x-primary-btn>
+        </x-section>
     </div>
 
-    <x-layout.section class="lg:max-w-[1024px]" x-intersect="window.fathom?.trackGoal('0JCL9NAI', 0)">
+    <x-section class="lg:max-w-[1024px]" x-intersect="window.fathom?.trackGoal('0JCL9NAI', 0)">
         <x-slot:title tag="h2" class="text-xl md:text-3xl">
             Ne soyez pas timide<br />
             <span class="text-indigo-400">La communauté est là pour vous aider</span>
@@ -79,14 +79,14 @@
                 <span>Démarrez une nouvelle discussion sur le <a href="#" class="text-indigo-400 font-light" @click.prevent="alert('Il n\'y a rien à voir pour le moment. Mais les commentaires sur le blog sont opérationnels et n\'attendent que vous !')">forum</a> ou le <a href="{{ route('posts.index') }}" class="text-indigo-400 font-light">blog</a>.</span>
             </li>
         </ol>
-    </x-layout.section>
+    </x-section>
 
     <div class="bg-gradient-to-t from-indigo-200/50 to-indigo-100" x-intersect="window.fathom?.trackGoal('', 0)">
         <div class="-mb-2 sm:-mb-10 pt-8 sm:pt-16 px-4 text-center">
             <x-icon-lives class="max-h-[350px] inline" />
         </div>
 
-        <x-layout.section>
+        <x-section>
             <x-slot:title tag="h2" class="text-xl md:text-3xl">
                 <span class="text-indigo-400">Larabiz fait des lives</span> sur Twitter
             </x-slot>
@@ -96,15 +96,15 @@
             </p>
 
             <div class="mt-10 text-center">
-                <x-buttons.cta href="https://twitter.com/i/events/1563989004944547846" target="_blank" rel="nofollow noopener noreferrer" class="inline-flex items-center gap-2">
+                <x-action-btn href="https://twitter.com/i/events/1563989004944547846" target="_blank" rel="nofollow noopener noreferrer" class="inline-flex items-center gap-2">
                     <x-heroicon-o-play class="-ml-2 h-6 translate-y-[-.5px]" />
                     Écouter les précédents lives
-                </x-buttons.cta>
+                </x-action-btn>
             </div>
-        </x-layout.section>
+        </x-section>
     </div>
 
-    <x-layout.section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
+    <x-section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
         <x-slot:title tag="h2" class="text-xl md:text-3xl">
             {{ config('app.name') }} en <span class="text-indigo-400">quelques chiffres</span>
         </x-slot>
@@ -155,7 +155,7 @@
                 Découvrez comment et pourquoi contribuer.
             </a>
         </div>
-    </x-layout.section>
+    </x-section>
 
     @push('scripts')
         <script type="application/ld+json">
@@ -174,4 +174,4 @@
             }
         </script>
     @endpush
-</x-layout.app>
+</x-app>

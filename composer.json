@@ -1,10 +1,4 @@
 {
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
-        }
-    ],
     "require": {
         "php": "^8.1",
         "algolia/algoliasearch-client-php": "^3.3",

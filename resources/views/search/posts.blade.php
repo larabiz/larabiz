@@ -1,9 +1,15 @@
-<x-app title="Blog">
+<x-app :title='$q ? "Articles correspondant à « $q »" : "Recherche"'>
     <x-breadcrumb class="mt-16">
-        <x-breadcrumb-item>Blog</x-breadcrumb-item>
+        <x-breadcrumb-item :link="route('posts.index')">Blog</x-breadcrumb-item>
+        <x-breadcrumb-item>Recherche</x-breadcrumb-item>
+        <x-breadcrumb-item>Articles correspondant à « {{ $q }} »</x-breadcrumb-item>
     </x-breadcrumb>
 
     <x-section class="container">
+        <x-slot:title>
+            Articles correspondant à « {{ $q }} »
+        </x-slot:title>
+
         <x-posts-search-form />
 
         <div class="grid gap-8 mt-8">
@@ -25,7 +31,16 @@
                 "itemListElement": [{
                     "@type": "ListItem",
                     "position": 1,
-                    "name": "Blog"
+                    "name": "Blog",
+                    "item": "{{ route('posts.index') }}"
+                }, {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Recherche"
+                }, {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "{{ $q }}"
                 }]
             }
         </script>

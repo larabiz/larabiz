@@ -1,5 +1,5 @@
 @if ($name = $name ?? $id ?? null)
-    <x-forms.error :name="$name" :bag="$bag ?? 'default'" class="!mt-0 mb-2" />
+    <x-error :name="$name" :bag="$bag ?? 'default'" class="!mt-0 mb-2" />
 @endif
 
 <textarea

@@ -20,7 +20,7 @@ class SearchPostsController extends Controller
             'q.min' => 'Votre requête doit contenir au moins 3 caractères.',
         ]);
 
-        return view('posts-search', [
+        return view('search.posts', [
             'posts' => Post::search($request->q)
                 ->query(function (Builder $query) {
                     $query->addSelect([

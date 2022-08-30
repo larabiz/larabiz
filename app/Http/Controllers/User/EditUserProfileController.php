@@ -15,7 +15,7 @@ class EditUserProfileController extends Controller
 
     public function __invoke(Request $request) : View
     {
-        return view('user-profile')->with([
+        return view('user.profile')->with([
             'user' => $request->user(),
         ]);
     }

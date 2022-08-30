@@ -1,12 +1,12 @@
-<x-layout.app
+<x-app
     title="{{ $post->title }}"
     description="{{ $post->excerpt }}"
     image="{{ $post->preview_url }}"
 >
-    <x-breadcrumb.container class="mt-16">
-        <x-breadcrumb.item link="{{ route('posts.index') }}">Blog</x-breadcrumb.item>
-        <x-breadcrumb.item>{{ $post->title }}</x-breadcrumb.item>
-    </x-breadcrumb.container>
+    <x-breadcrumb class="mt-16">
+        <x-breadcrumb-item link="{{ route('posts.index') }}">Blog</x-breadcrumb-item>
+        <x-breadcrumb-item>{{ $post->title }}</x-breadcrumb-item>
+    </x-breadcrumb>
 
     <div class="container py-8 sm:py-16">
         <article class="pb-8 sm:pb-16">
@@ -56,7 +56,7 @@
             </div>
         </article>
 
-        <x-posts.author
+        <x-author
             :author="$post->user"
             class="border-y border-indigo-100 py-8"
         />
@@ -108,7 +108,7 @@
 
             <div class="grid gap-4">
                 @foreach ($post->comments as $comment)
-                    <x-comments.comment :comment="$comment" />
+                    <x-comment :comment="$comment" />
                 @endforeach
             </div>
 
@@ -119,7 +119,7 @@
                         Il n'y a plus qu'à confirmer votre adresse e-mail.
                     </div>
                 @elseif ($user?->hasVerifiedEmail())
-                    <x-comments.form :post="$post" :subscribed="$subscribed" />
+                    <x-comments-form :post="$post" :subscribed="$subscribed" />
                 @endif
             @else
                 <div class="mt-8 sm:mt-16 text-center text-indigo-900/75 text-lg sm:text-xl">
@@ -143,15 +143,15 @@
         </x-newsletter>
     </div>
 
-    <x-layout.section x-intersect="window.fathom?.trackGoal('XFZRYOKR', 0)">
+    <x-section x-intersect="window.fathom?.trackGoal('XFZRYOKR', 0)">
         <x-slot:title tag="h3">
             Autres articles à lire
         </x-slot>
 
         <div class="grid gap-8 mt-8">
             @foreach ($others as $post)
-                <x-posts.post :post="$post" />
+                <x-post :post="$post" />
             @endforeach
         </div>
-    </x-layout.section>
-</x-layout.app>
+    </x-section>
+</x-app>

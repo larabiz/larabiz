@@ -21,7 +21,7 @@ class SearchPostsControllerTest extends TestCase
         $response = $this
             ->get(route('search-posts', ['q' => $title]))
             ->assertOk()
-            ->assertViewIs('posts-search')
+            ->assertViewIs('search.posts')
             ->assertSee($title)
         ;
 

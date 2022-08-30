@@ -5,7 +5,7 @@ namespace Tests\Feature\App\Http\Controllers;
 use Tests\TestCase;
 use App\Models\User;
 
-class EditUserProfileControllerTest extends TestCase
+class EditUserPasswordControllerTest extends TestCase
 {
     public function test_it_works() : void
     {
@@ -13,9 +13,11 @@ class EditUserProfileControllerTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->getJson(route('user-profile'))
+            // This is how we can bypass the password.confirm middleware.
+            ->session(['auth.password_confirmed_at' => time()])
+            ->getJson(route('user-password'))
             ->assertOk()
-            ->assertViewIs('user.profile')
+            ->assertViewIs('user.password')
         ;
 
         $this->assertEquals($response->viewData('user'), $user);
@@ -25,7 +27,7 @@ class EditUserProfileControllerTest extends TestCase
     {
         $this
             ->assertGuest()
-            ->getJson(route('user-profile'))
+            ->getJson(route('user-password'))
             ->assertUnauthorized()
         ;
     }

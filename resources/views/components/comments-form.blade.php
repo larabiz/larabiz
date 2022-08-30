@@ -1,6 +1,6 @@
 <div class="mt-8 sm:mt-16 xs:mx-auto xs:max-w-screen-xs">
     {{-- Form --}}
-    <x-forms.form
+    <x-form
         method="POST"
         action="{{ route('posts.comments.store', $post) }}"
         id="comments-form"
@@ -8,13 +8,13 @@
     >
         {{-- Textarea --}}
         <div>
-            <x-forms.textarea
+            <x-textarea
                 id="content"
                 name="content"
                 placeholder="Votre commentaire"
                 required
                 tabindex="0"
-            >{{ old('content') }}</x-forms.textarea>
+            >{{ old('content') }}</x-textarea>
 
             {{-- Tip about Markdown --}}
             <span class="block text-center text-indigo-300 text-xs">
@@ -38,8 +38,8 @@
         </label>
 
         {{-- Submit button --}}
-        <x-buttons.cta type="submit">
+        <x-action-btn type="submit">
             Commenter
-        </x-buttons.cta>
-    </x-forms.form>
+        </x-action-btn>
+    </x-form>
 </div>

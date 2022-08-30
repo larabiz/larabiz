@@ -19,7 +19,7 @@
         {{-- Comment's actions --}}
         <div class="flex items-center justify-end gap-4">
             @can('delete', $comment)
-                <x-forms.form method="DELETE" action="{{ route('comments.destroy', $comment) }}">
+                <x-form method="DELETE" action="{{ route('comments.destroy', $comment) }}">
                     <button
                         type="submit"
                         class="border border-red-100 hover:bg-red-100 flex items-center justify-center rounded-full transition-colors w-8 h-8"
@@ -27,7 +27,7 @@
                         <span class="sr-only">Supprimer</span>
                         <x-heroicon-o-trash class="text-red-400 translate-y-[-1px] w-4 h-4" />
                     </button>
-                </x-forms.form>
+                </x-form>
             @endcan
         </div>
     </div>
