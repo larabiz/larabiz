@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Laravel\Nova\Auth\Impersonatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Impersonatable, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 
