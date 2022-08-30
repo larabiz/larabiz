@@ -28,6 +28,20 @@ Afin de travailler correctement en local, il vous faut de la data. Non, nous ne 
 php artisan migrate --seed
 ```
 
+### Compilation du CSS et du JavaScript
+
+Installons les packages Node dont nous avons besoin :
+
+```bash
+yarn
+```
+
+Maintenant, nous pouvons compiler, faire des changements et les voir répercutés sur le navigateur sans avoir besoin de recharger la page grâce à [Vite](https://vitejs.dev).
+
+```bash
+yarn dev
+```
+
 ## Les tests automatisés
 
 ### Organisation
