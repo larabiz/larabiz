@@ -36,7 +36,7 @@
                 @foreach ($latest as $post)
                     <x-post
                         :post="$post"
-                        class="odd:-rotate-1 odd:-translate-x-1 sm:odd:-translate-x-4 even:rotate-1 even:translate-x-1 sm:even:translate-x-4"
+                        class="sm:odd:-rotate-1 sm:odd:-translate-x-4 sm:even:rotate-1 sm:even:translate-x-4"
                     />
                 @endforeach
             </div>
