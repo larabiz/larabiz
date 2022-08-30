@@ -32,9 +32,9 @@
                 Découvrez des articles de qualité, remplis de tout plein de bonnes choses.
             </p>
 
-            <div class="grid gap-8 mt-16">
+            <div class="grid gap-4 sm:gap-8 mt-16">
                 @foreach ($latest as $post)
-                    <x-post :post="$post" />
+                    <x-post :post="$post" class="-translate-x-1 sm:odd:-translate-x-4 even:translate-x-1 sm:even:translate-x-4" />
                 @endforeach
             </div>
 
