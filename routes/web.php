@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SearchPostsController;
-use App\Http\Controllers\ShowPreviewController;
 use App\Http\Controllers\Posts\ShowPostController;
 use App\Http\Controllers\Posts\ListPostsController;
+use App\Http\Controllers\Search\SearchPostsController;
+use App\Http\Controllers\Previews\ShowPreviewController;
 use App\Http\Controllers\User\EditUserProfileController;
 use App\Http\Controllers\Comments\StoreCommentController;
 use App\Http\Controllers\User\EditUserPasswordController;

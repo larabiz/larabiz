@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Previews;
 
 use App\Models\Post;
 use Illuminate\View\View;
+use App\Http\Controllers\Controller;
 
 class ShowPreviewController extends Controller
 {
