@@ -1,3 +1,7 @@
+*👆 La table des matières est accessible ici en cliquant sur l'icône à gauche de "README.md" !*
+
+![Banner](https://user-images.githubusercontent.com/3613731/187457146-1bb62d24-19e1-4d94-b7f2-2914f30687d5.jpg)
+
 # Larabiz
 
 Bienvenu dans le code source de [Larabiz](https://larabiz.fr) !
@@ -17,6 +21,8 @@ cd larabiz
 ```
 
 ### Création et seeding de la base de données
+
+Plutôt que de passer par un client MySQL, vous pouvez tout simplement copier et coller cette commande dans votre terminal :
 
 ```bash
 mysql -u root -e "CREATE DATABASE larabiz"
