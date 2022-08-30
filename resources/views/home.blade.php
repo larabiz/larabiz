@@ -34,7 +34,10 @@
 
             <div class="grid gap-4 sm:gap-8 mt-16">
                 @foreach ($latest as $post)
-                    <x-post :post="$post" class="-translate-x-1 sm:odd:-translate-x-4 even:translate-x-1 sm:even:translate-x-4" />
+                    <x-post
+                        :post="$post"
+                        class="odd:-rotate-1 odd:-translate-x-1 sm:odd:-translate-x-4 even:rotate-1 even:translate-x-1 sm:even:translate-x-4"
+                    />
                 @endforeach
             </div>
 

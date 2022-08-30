@@ -22,7 +22,7 @@ class HomeController extends Controller
                         ->limit(1),
                 ])
                 ->latest()
-                ->limit(6)
+                ->limit(4)
                 ->get(),
             'pageviews' => $formatter->format(cache()->get('pageviews')),
             'visits' => $formatter->format(cache()->get('visits')),
