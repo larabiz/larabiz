@@ -4,7 +4,7 @@
             {{ $post->title }}
         </div>
 
-        <div class="mt-2 text-indigo-700/50">
+        <div class="line-clamp-3 sm:line-clamp-none mt-2 text-indigo-700/50">
             {{ $post->excerpt }}
         </div>
 
