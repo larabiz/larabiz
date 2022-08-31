@@ -57,5 +57,5 @@ jobs:
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
 
       - name: Deploy on production
-        run: wget ${{ secrets.DEPLOYMENT_URL }}
+        run: wget -q ${{ secrets.DEPLOYMENT_URL }}
         if: github.ref == 'refs/heads/main' && success()
