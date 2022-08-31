@@ -6,7 +6,7 @@
     <x-section>
         <div class="grid gap-4 sm:gap-8">
             @forelse ($user->subscriptions as $subscription)
-                <div class="bg-white/50 flex items-center justify-between gap-4 sm:gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-lg shadow-indigo-200/50">
+                <div class="bg-white/50 flex items-center justify-between gap-4 sm:gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-md shadow-indigo-200/50">
                     <a href="{{ route('posts.show', [$subscription->subscribable->random_id, $subscription->subscribable->slug]) }}" class="font-bold leading-tight text-indigo-900">
                         {{ $subscription->subscribable->title }}
                     </a>
