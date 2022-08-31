@@ -107,7 +107,7 @@
         </x-section>
     </div>
 
-    <x-section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
+    <x-section class="max-w-[1024px] !pb-0" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
         <x-slot:title tag="h2" class="text-xl md:text-3xl">
             {{ config('app.name') }} en <span class="text-indigo-400">quelques chiffres</span>
         </x-slot>
@@ -116,48 +116,45 @@
             Afin que ce projet devienne un succès, les chiffres <strong class="font-bold">doivent</strong> atteindre des sommets.
         </p>
 
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                <x-heroicon-o-globe-alt class="inline w-12 h-12 text-indigo-700/50" />
-                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $visits }}</span>
-                <span class="block font-semibold text-indigo-900/75 truncate">visiteurs</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">sur les 30 derniers jours</span>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-11">
+            <div class="bg-white/50 p-4 rounded">
+                <span class="block font-bold text-indigo-900/75">Visiteurs</span>
+                <span class="block font-bold text-3xl md:text-5xl text-indigo-400">{{ $visits }}</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">Sur les 30 derniers jours.</span>
             </div>
 
-            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                <x-heroicon-o-eye class="inline w-12 h-12 text-indigo-700/50" />
-                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $pageviews }}</span>
-                <span class="block font-semibold text-indigo-900/75 truncate">pageviews</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">sur les 30 derniers jours</span>
+            <div class="bg-white/50 p-4 rounded">
+                <span class="block font-bold text-indigo-900/75">Pageviews</span>
+                <span class="block font-bold text-3xl md:text-5xl text-indigo-400">{{ $pageviews }}</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">Sur les 30 derniers jours.</span>
             </div>
 
-            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                <x-heroicon-o-user-group class="inline w-12 h-12 text-indigo-700/50" />
-                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $users_count }}</span>
-                <span class="block font-semibold text-indigo-900/75 truncate">inscrits</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">ayant passé le filtre&nbsp;anti-bots</span>
+            <div class="bg-white/50 p-4 rounded">
+                <span class="block font-bold text-indigo-900/75">Inscrits</span>
+                <span class="block font-bold text-3xl md:text-5xl text-indigo-400">{{ $users_count }}</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">Ayant passé le filtre anti-bots.</span>
             </div>
 
-            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                <x-heroicon-o-envelope class="inline w-12 h-12 text-indigo-700/50" />
-                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $subscribers_count }}</span>
-                <span class="block font-semibold text-indigo-900/75 truncate">abonnés</span>
-                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">ayant passé le filtre&nbsp;anti-bots</span>
+            <div class="bg-white/50 p-4 rounded">
+                <span class="block font-bold text-indigo-900/75">Abonnés</span>
+                <span class="block font-bold text-3xl md:text-5xl text-indigo-400">{{ $subscribers_count }}</span>
+                <span class="block font-light mt-4 text-indigo-900/50 text-xs truncate">Ayant passé le filtre anti-bots.</span>
             </div>
 
-            <div class="bg-indigo-200/20 font-thin p-4 sm:px-4 sm:py-8 rounded text-center sm:text-lg md:text-xl">
-                <x-heroicon-o-newspaper class="inline w-12 h-12 text-indigo-700/50" />
-                <span class="block mt-4 text-3xl md:text-5xl text-indigo-400">{{ $posts_count }}</span>
-                <span class="block font-semibold text-indigo-900/75 truncate">articles</span>
+            <div class="bg-white/50 p-4 rounded">
+                <span class="block font-bold text-indigo-900/75">Articles</span>
+                <span class="block font-bold text-3xl md:text-5xl text-indigo-400">{{ $posts_count }}</span>
             </div>
         </div>
 
         <div class="mt-8 text-center">
-            <a href="https://larabiz.fr/blog/BKMN8C/quel-avenir-pour-larabiz" class="border border-indigo-100 inline-flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded text-indigo-400 text-sm sm:text-base">
+            <a href="https://larabiz.fr/blog/BKMN8C/quel-avenir-pour-larabiz" class="border border-indigo-100 flex sm:inline-flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded text-indigo-400 text-sm sm:text-base">
                 <x-heroicon-o-information-circle class="h-4 translate-y-[-0.5px]" />
                 Découvrez comment et pourquoi contribuer.
             </a>
         </div>
+
+        <x-icon-rocket class="h-75 mt-16" />
     </x-section>
 
     @push('scripts')
