@@ -153,8 +153,6 @@
                 Découvrez comment et pourquoi contribuer.
             </a>
         </div>
-
-        <x-icon-rocket class="h-75 mt-16" />
     </x-section>
 
     @push('scripts')
