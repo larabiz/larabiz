@@ -1,4 +1,4 @@
-<a href="{{ route('posts.show', [$post->random_id, $post->slug]) }}" {{ $attributes->merge(['class' => 'bg-white/50 flex items-center justify-between gap-4 sm:gap-6 gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-lg shadow-indigo-200/50']) }}>
+<a href="{{ route('posts.show', [$post->random_id, $post->slug]) }}" {{ $attributes->merge(['class' => 'bg-white/50 flex items-center justify-between gap-4 sm:gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-lg shadow-indigo-200/50']) }}>
     <div>
         <div class="font-bold leading-tight text-indigo-900 text-lg sm:text-xl">
             {{ $post->title }}

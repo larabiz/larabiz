@@ -14,7 +14,7 @@ class Subscription extends Model
 
     protected $guarded = [];
 
-    public function subscriptionable() : MorphTo
+    public function subscribable() : MorphTo
     {
         return $this->morphTo();
     }

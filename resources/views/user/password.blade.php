@@ -1,4 +1,8 @@
 <x-app>
+    <x-breadcrumb class="mt-16">
+        <x-breadcrumb-item>Mon mot de passe</x-breadcrumb-item>
+    </x-breadcrumb>
+
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
             Mon mot de passe

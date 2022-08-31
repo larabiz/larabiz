@@ -10,6 +10,7 @@ use App\Http\Controllers\Comments\StoreCommentController;
 use App\Http\Controllers\User\EditUserPasswordController;
 use App\Http\Controllers\Comments\DestroyCommentController;
 use App\Http\Controllers\Previews\ShowPostPreviewController;
+use App\Http\Controllers\User\ManageSubscriptionsController;
 use App\Http\Controllers\Subscribers\StoreSubscriberController;
 use App\Http\Controllers\Subscribers\ConfirmSubscriberController;
 use App\Http\Controllers\Subscriptions\SubscribeToPostController;
@@ -39,3 +40,4 @@ Route::delete('/comments/{comment:random_id}', DestroyCommentController::class)-
 // User
 Route::get('/user/profile', EditUserProfileController::class)->name('user-profile');
 Route::get('/user/password', EditUserPasswordController::class)->name('user-password');
+Route::get('/user/subscriptions', ManageSubscriptionsController::class)->name('user-subscriptions');

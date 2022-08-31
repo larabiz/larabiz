@@ -1,12 +1,12 @@
 <x-app>
+    <x-breadcrumb class="mt-16">
+        <x-breadcrumb-item>Mes informations</x-breadcrumb-item>
+    </x-breadcrumb>
+
     <x-section class="sm:max-w-screen-sm">
         <x-slot:title>
-            Mon profil
-        </x-slot:title>
-
-        <h2 class="font-extrabold leading-tight my-8 text-center">
             Mes informations
-        </h2>
+        </x-slot:title>
 
         <x-form method="PUT" action="{{ route('user-profile-information.update') }}" class="grid gap-4">
             <div>
