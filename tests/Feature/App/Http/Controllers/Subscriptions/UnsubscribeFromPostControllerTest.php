@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\App\Http\Controllers;
+namespace Tests\Feature\App\Http\Controllers\Subscriptions;
 
 use Tests\TestCase;
 use App\Models\Post;
