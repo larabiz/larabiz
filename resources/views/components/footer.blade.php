@@ -2,7 +2,7 @@
     <footer class="container">
         <div class="flex items-center justify-between">
             <a href="{{ route('home') }}">
-                <x-icon-larabiz-alt class="h-6 sm:h-7 inline" />
+                <x-icon-larabiz-alt class="h-6 md:h-7 inline" />
             </a>
 
             <ul class="flex items-center justify-center gap-2 text-gray-300">

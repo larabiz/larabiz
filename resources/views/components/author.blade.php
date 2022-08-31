@@ -14,7 +14,7 @@
 
         <div
             class="!max-w-none leading-normal prose prose-a:bg-indigo-100
-            prose-a:font-bold prose-a:no-underline prose-pre:p-0 text-indigo-400"
+            prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-pre:p-0 text-indigo-400"
         >
             {!! Illuminate\Support\Str::markdown($author->biography) !!}
         </div>
