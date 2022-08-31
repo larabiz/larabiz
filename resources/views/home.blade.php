@@ -107,7 +107,7 @@
         </x-section>
     </div>
 
-    <x-section class="max-w-[1024px] !pb-0" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
+    <x-section class="max-w-[1024px]" x-intersect="window.fathom?.trackGoal('TNPEQ1XY', 0)">
         <x-slot:title tag="h2" class="text-xl md:text-3xl">
             {{ config('app.name') }} en <span class="text-indigo-400">quelques chiffres</span>
         </x-slot>
