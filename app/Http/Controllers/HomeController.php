@@ -16,11 +16,7 @@ class HomeController extends Controller
 
         return view('home')->with([
             'latest' => Post::query()
-                ->addSelect([
-                    'username' => User::select('username')
-                        ->whereColumn('id', 'posts.user_id')
-                        ->limit(1),
-                ])
+                ->withUsername()
                 ->latest()
                 ->limit(4)
                 ->get(),

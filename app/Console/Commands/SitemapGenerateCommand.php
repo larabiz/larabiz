@@ -26,6 +26,8 @@ class SitemapGenerateCommand extends Command
 
         $sitemap->writeToFile(public_path('/sitemap.xml'));
 
+        $this->info('Sitemap successfully generated.');
+
         return Command::SUCCESS;
     }
 }

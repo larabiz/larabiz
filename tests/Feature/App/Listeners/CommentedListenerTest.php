@@ -7,8 +7,8 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
 use App\Events\Commented;
+use App\Notifications\NewComment;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\Users\Comments\NewComment;
 
 class CommentedListenerTest extends TestCase
 {

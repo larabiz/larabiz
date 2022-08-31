@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Subscriber;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\Master\Subscribers\NewSubscriber;
+use App\Notifications\Management\Subscribers\NewSubscriber;
 
 class ConfirmSubscriberControllerTest extends TestCase
 {

@@ -3,9 +3,11 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Fathom\Client;
 use Illuminate\Support\Str;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Vite;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment\Environment;
 use Torchlight\Commonmark\V2\TorchlightExtension;
@@ -24,6 +26,12 @@ class AppServiceProvider extends ServiceProvider
     public function register() : void
     {
         $this->app->bind(Browsershot::class, fn () => new Browsershot);
+        $this->app->bind(Client::class, function (Application $app) {
+            return new Client(
+                $app['config']->get('services.fathom.api_token'),
+                $app['config']->get('services.fathom.site_id'),
+            );
+        });
         $this->app->bind(User::class, fn () => auth()->user());
     }
 

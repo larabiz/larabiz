@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
+use App\Models\Traits\ManagesSubscriptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -12,7 +13,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, ManagesSubscriptions, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 
@@ -44,35 +45,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts() : HasMany
     {
         return $this->hasMany(Post::class);
-    }
-
-    public function subscriptions() : HasMany
-    {
-        return $this->hasMany(Subscription::class);
-    }
-
-    public function subscribeTo(Post $post)
-    {
-        return $this->subscriptions()->firstOrCreate([
-            'subscribable_type' => $post->getMorphClass(),
-            'subscribable_id' => $post->id,
-        ]);
-    }
-
-    public function subscribedTo(Post $post) : bool
-    {
-        return $this->subscriptions()->where([
-            ['user_id', $this->id],
-            ['subscribable_type', $post->getMorphClass()],
-            ['subscribable_id', $post->id],
-        ])->exists();
-    }
-
-    public function unsubscribeFrom(Post $post) : mixed
-    {
-        return $this->subscriptions()->where([
-            ['subscribable_type', $post->getMorphClass()],
-            ['subscribable_id', $post->id],
-        ])->delete();
     }
 }

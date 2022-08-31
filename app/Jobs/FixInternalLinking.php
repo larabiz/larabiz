@@ -9,6 +9,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
+// This job should be ran regularly to fix any broken
+// internal link and thus, prevent SEO regressions.
 class FixInternalLinking implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -27,8 +29,11 @@ class FixInternalLinking implements ShouldQueue
                 $linkToReplaceRandomId = $matches[2][$i];
                 $postFoundFromlinkToReplaceRandomId = Post::whereRandomId($linkToReplaceRandomId)->first();
 
-                $post->content = str_replace($linkToReplace, route('posts.show', [$linkToReplaceRandomId, $postFoundFromlinkToReplaceRandomId->slug]), $post->content);
-                $post->save();
+                $post->fill(['content' => str_replace(
+                    $linkToReplace,
+                    route('posts.show', [$linkToReplaceRandomId, $postFoundFromlinkToReplaceRandomId->slug]),
+                    $post->content
+                )])->save();
             }
         });
     }

@@ -20,6 +20,6 @@ class HomeControllerTest extends TestCase
         ;
 
         $this->assertInstanceOf(Collection::class, $latest = $response->viewData('latest'));
-        $this->assertCount(6, $latest);
+        $this->assertCount(4, $latest);
     }
 }

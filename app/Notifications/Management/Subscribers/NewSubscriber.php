@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Master\Subscribers;
+namespace App\Notifications\Management\Subscribers;
 
 use App\Models\Subscriber;
 use Illuminate\Bus\Queueable;

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Search;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,11 +22,7 @@ class SearchPostsController extends Controller
         return view('search.posts', [
             'posts' => Post::search($request->q)
                 ->query(function (Builder $query) {
-                    $query->addSelect([
-                        'username' => User::select('username')
-                            ->whereColumn('id', 'posts.user_id')
-                            ->limit(1),
-                    ]);
+                    $query->withUsername();
                 })
                 ->get(),
             'q' => $request->q,

@@ -22,15 +22,9 @@ class StoreCommentController extends Controller
             'content' => $request->content,
         ]);
 
-        if ($request->boolean('subscribe')) {
-            $post->subscriptions()->firstOrCreate(['user_id' => auth()->id()]);
-        } else {
-            $post->subscriptions()->where([
-                ['user_id', auth()->id()],
-                ['subscribable_type', $post->getMorphClass()],
-                ['subscribable_id', $post->id],
-            ])->delete();
-        }
+        $request->boolean('subscribe')
+            ? $request->user()->subscribeTo($post)
+            : $request->user()->unsubscribeFrom($post);
 
         event(new Commented($comment));
 

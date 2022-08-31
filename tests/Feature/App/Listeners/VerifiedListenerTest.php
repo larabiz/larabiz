@@ -6,7 +6,7 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\Master\Users\NewConfirmedUser;
+use App\Notifications\Management\Users\NewConfirmedUser;
 
 class VerifiedListenerTest extends TestCase
 {

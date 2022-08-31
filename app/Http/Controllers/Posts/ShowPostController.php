@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Posts;
 
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,11 +29,7 @@ class ShowPostController extends Controller
         return view('posts.show')->with([
             'post' => $post,
             'others' => Post::query()
-                ->addSelect([
-                    'username' => User::select('username')
-                        ->whereColumn('id', 'posts.user_id')
-                        ->limit(1),
-                ])
+                ->withUsername()
                 ->whereNotIn('random_id', [$randomId])
                 ->inRandomOrder()
                 ->latest()

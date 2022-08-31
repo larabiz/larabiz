@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Notifications\Master\Users;
+namespace App\Notifications\Management\Users;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;

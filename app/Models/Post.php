@@ -31,6 +31,15 @@ class Post extends Model
         });
     }
 
+    public function scopeWithUsername(Builder $query) : void
+    {
+        $query->addSelect([
+            'username' => User::select('username')
+                ->whereColumn('id', 'posts.user_id')
+                ->limit(1),
+        ]);
+    }
+
     public function comments() : HasMany
     {
         return $this->hasMany(Comment::class);
