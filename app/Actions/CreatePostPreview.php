@@ -18,7 +18,7 @@ class CreatePostPreview
         $filename = sha1($post->random_id . microtime(true)) . '.png';
 
         app(Browsershot::class)
-            ->setUrl(URL::signedRoute('preview', $post))
+            ->setUrl(URL::signedRoute('previews.post', $post))
             ->windowSize(600, 315)
             ->deviceScaleFactor(2)
             ->save(storage_path("app/public/previews/$filename"));
