@@ -1,0 +1,61 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - 3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          coverage: none
+          php-version: latest
+
+      - name: Setup database
+        run: mysql -u root -h 127.0.0.1 -P ${{ job.services.mysql.ports[3306] }} -e "CREATE DATABASE larabiz_test"
+
+      - name: Setup Redis
+        uses: zhulik/redis-action@1.1.0
+
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+
+      - name: Create .env file
+        run: cp .env.example .env
+
+      - name: Install back-end dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate encryption key
+        run: php artisan key:generate
+
+      - name: Install front-end dependencies
+        run: |
+          yarn
+          yarn build
+
+      - name: Run tests
+        run: php vendor/bin/phpunit
+        env:
+          DB_PORT: ${{ job.services.mysql.ports[3306] }}
+
+      - name: Deploy on production
+        run: wget ${{ secrets.DEPLOYMENT_URL }}
+        if: github.ref == 'refs/heads/main' && success()
