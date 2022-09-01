@@ -3,11 +3,11 @@
     <div class="flex items-center justify-between">
         {{-- Comment's author and date --}}
         <div class="flex items-center gap-4">
-            <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($comment->user->email) }}?s=144" width="40" height="40" class="flex-shrink-0 rounded-full translate-y-[-1px]" />
+            <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($comment->user_email) }}?s=144" width="40" height="40" class="flex-shrink-0 rounded-full translate-y-[-1px]" />
 
             <div class="text-sm">
                 <div class="font-bold">
-                    {{ $comment->user->username }}
+                    {{ $comment->username }}
                 </div>
 
                 <div class="text-blue-300">

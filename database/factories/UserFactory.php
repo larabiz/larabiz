@@ -12,7 +12,7 @@ class UserFactory extends Factory
 {
     public function definition() : array
     {
-        $username = fake()->name();
+        $username = fake()->userName();
 
         $slug = str($username)->slug('.');
 

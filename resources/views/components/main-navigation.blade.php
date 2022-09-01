@@ -14,16 +14,15 @@
 
         <li class="relative">
             <a
-                href="#"
-                class="font-semibold"
-                @click.prevent="window.fathom?.trackGoal('OCXHSBNK', 0); alert('Il n\'y a rien à voir pour le moment. Mais les commentaires sur le blog sont opérationnels et n\'attendent que vous !')"
+                href="{{ route('threads.index') }}"
+                class="font-semibold @if (Route::is('threads.index') || Route::is('threads.show')) text-indigo-400 @else hover:text-indigo-400 transition-colors @endif"
             >
-                <span class="sr-only sm:not-sr-only">Discussions</span>
+                <span class="sr-only sm:not-sr-only">Forum</span>
                 <x-heroicon-o-chat-bubble-left-right class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
             </a>
 
-            <span class="absolute -top-6 sm:-top-4 left-1/2 sm:left-auto sm:-right-4 bg-yellow-400 font-semibold leading-normal mt-1 rounded-full text-center text-xs w-[55px] -translate-x-1/2 sm:translate-x-0 scale-75">
-                Bientôt
+            <span class="absolute -top-6 sm:-top-4 left-1/2 sm:left-auto sm:-right-8 bg-yellow-400 font-semibold leading-normal mt-1 rounded-full text-center text-xs w-[75px] -translate-x-1/2 sm:translate-x-0 scale-75">
+                Nouveau !
             </span>
         </li>
 
@@ -40,9 +39,7 @@
         </li>
 
         @auth
-            <li>
-                <livewire:notifications.listing />
-            </li>
+            <li><livewire:notifications.listing /></li>
 
             <li class="relative" x-data="{ open: false }" @click.away="open = false">
                 <button class="flex items-center gap-2 font-semibold" @click="open = ! open; if (open) window.fathom?.trackGoal('1JKTOPRB', 0)">
@@ -73,7 +70,7 @@
 
                     <div class="bg-indigo-900/5 h-px my-2"></div>
 
-                    @if ($user->email === 'benjamincrozat@me.com')
+                    @if ($user->email === config('app.master_email'))
                         <a href="{{ url(config('horizon.path')) }}" class="hover:bg-purple-400 flex items-center gap-2 font-semibold px-4 py-2 hover:text-white transition-colors">
                             <x-icon-horizon class="h-4 translate-y-[-0.5px]" />
                             Horizon

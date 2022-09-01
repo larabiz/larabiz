@@ -11,11 +11,10 @@ class CommentsTableSeeder extends Seeder
 {
     public function run() : void
     {
-        Comment::factory(100)->make()->each(function (Comment $comment) {
-            $comment->fill([
-                'user_id' => User::inRandomOrder()->value('id'),
-                'post_id' => Post::inRandomOrder()->value('id'),
-            ])->save();
+        Comment::factory(mt_rand(30, 50))->make()->each(function (Comment $comment) {
+            $comment->user()->associate(User::inRandomOrder()->value('id'));
+            $comment->post()->associate(Post::inRandomOrder()->value('id'));
+            $comment->save();
         });
     }
 }

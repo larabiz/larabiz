@@ -10,10 +10,6 @@
         {{ $subheadline }}
     </p>
 
-    <p class="font-bold mt-5 text-center sm:text-lg">
-        Rejoignez les @choice('<span class="font-exabold text-indigo-400">:count</span> autre abonné|<span class="font-extrabold text-indigo-400">:count</span> autres abonnés', $subscribersCount)&nbsp;!
-    </p>
-
     <x-form
         method="POST"
         action="{{ route('subscribers.store') }}"

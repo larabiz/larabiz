@@ -142,6 +142,8 @@ return [
         // 'store'  => 'redis',
     ],
 
+    'master_email' => env('MASTER_EMAIL'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

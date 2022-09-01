@@ -1,5 +1,5 @@
 <x-app>
-    <x-breadcrumb class="mt-16">
+    <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item>Mon mot de passe</x-breadcrumb-item>
     </x-breadcrumb>
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\CachesCount;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subscriber extends Model
 {
-    use HasFactory, Notifiable, SoftDeletes;
+    use CachesCount, HasFactory, Notifiable, SoftDeletes;
 
     protected $casts = [
         'confirmed_at' => 'datetime',

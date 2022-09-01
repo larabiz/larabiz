@@ -5,7 +5,7 @@ namespace App\Models;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Laravel\Scout\Searchable;
-use App\Models\Traits\SetsStatus;
+use Spatie\ModelStatus\Status;
 use App\Models\Traits\HasRandomId;
 use Illuminate\Support\Collection;
 use Spatie\ModelStatus\HasStatuses;
@@ -21,7 +21,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model implements Feedable
 {
-    use BelongsToUser, HasFactory, HasRandomId, HasStatuses, Searchable, SetsStatus, SoftDeletes;
+    use BelongsToUser, HasFactory, HasRandomId, HasStatuses, Searchable, SoftDeletes;
+
+    protected $casts = [
+        'latest_status_created_at' => 'datetime',
+    ];
 
     protected $guarded = [];
 
@@ -32,15 +36,39 @@ class Post extends Model implements Feedable
         static::addGlobalScope('published', function (Builder $query) {
             $query->currentStatus('published');
         });
-    }
 
-    public function scopeWithUsername(Builder $query) : void
-    {
-        $query->addSelect([
-            'username' => User::select('username')
-                ->whereColumn('id', 'posts.user_id')
-                ->limit(1),
-        ]);
+        static::addGlobalScope('author', function (Builder $query) {
+            $query
+                ->addSelect([
+                    'username' => User::select('username')
+                        ->whereColumn('id', 'posts.user_id')
+                        ->limit(1),
+                ])
+                ->addSelect([
+                    'user_email' => User::select('email')
+                        ->whereColumn('id', 'posts.user_id')
+                        ->limit(1),
+                ])
+                ->addSelect([
+                    'user_biography' => User::select('biography')
+                        ->whereColumn('id', 'posts.user_id')
+                        ->limit(1),
+                ]);
+        });
+
+        static::addGlobalScope('status', function (Builder $query) {
+            $query
+                ->addSelect([
+                    'latest_status' => Status::select('name')
+                        ->whereColumn('id', 'statuses.model_id')
+                        ->limit(1),
+                ])
+                ->addSelect([
+                    'latest_status_created_at' => Status::select('created_at')
+                        ->whereColumn('id', 'statuses.model_id')
+                        ->limit(1),
+                ]);
+        });
     }
 
     public function comments() : HasMany

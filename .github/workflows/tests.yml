@@ -47,9 +47,10 @@ jobs:
         run: php artisan key:generate
 
       - name: Install front-end dependencies
-        run: |
-          yarn
-          yarn build
+        run: yarn
+
+      - name: Build CSS and JavaScript
+        run: yarn build
 
       - name: Run tests
         run: php vendor/bin/phpunit

@@ -1,25 +1,20 @@
-<div class="mt-8 sm:mt-16 xs:mx-auto xs:max-w-screen-xs">
+<div class="mt-8 sm:mt-16">
     {{-- Form --}}
     <x-form
         method="POST"
         action="{{ route('posts.comments.store', $post) }}"
         id="comments-form"
         class="grid gap-8 mt-2"
+        x-data="{ focused: false }"
     >
         {{-- Textarea --}}
-        <div>
-            <x-textarea
+        <div class="bg-white/75 mt-1 rounded shadow shadow-indigo-100 transition-colors" :class="{ 'bg-white': focused }">
+            <x-markdown
                 id="content"
                 name="content"
                 placeholder="Votre commentaire"
                 required
-                tabindex="0"
-            >{{ old('content') }}</x-textarea>
-
-            {{-- Tip about Markdown --}}
-            <span class="block text-center text-indigo-300 text-xs">
-                La syntaxe Markdown est supportée.
-            </span>
+            >{{ old('content') }}</x-markdown>
         </div>
 
         <label class="-mt-4 bg-indigo-200/20 flex items-center gap-4 p-4 rounded-md">

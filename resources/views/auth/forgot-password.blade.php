@@ -1,5 +1,5 @@
 <x-app title="Réinitialiser mon mot de passe">
-    <x-breadcrumb class="mt-16">
+    <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item>Réinitialiser mon mot de passe</x-breadcrumb-item>
     </x-breadcrumb>
 

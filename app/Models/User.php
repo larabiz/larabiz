@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\CachesCount;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Traits\ManagesSubscriptions;
@@ -13,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, ManagesSubscriptions, Notifiable, SoftDeletes;
+    use CachesCount, HasFactory, ManagesSubscriptions, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 
@@ -34,7 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeMaster(Builder $query) : void
     {
-        $query->where('email', 'benjamincrozat@me.com');
+        $query->where('email', config('app.master_email'));
     }
 
     public function comments() : HasMany
@@ -45,5 +46,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function posts() : HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function threads() : HasMany
+    {
+        return $this->hasMany(Thread::class);
+    }
+
+    public function replies() : HasMany
+    {
+        return $this->hasMany(Reply::class);
     }
 }

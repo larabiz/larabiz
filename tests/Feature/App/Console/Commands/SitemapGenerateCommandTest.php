@@ -4,6 +4,7 @@ namespace Tests\Feature\App\Console\Commands;
 
 use Tests\TestCase;
 use App\Models\Post;
+use App\Models\Thread;
 use Illuminate\Support\Facades\Artisan;
 use App\Console\Commands\SitemapGenerateCommand;
 
@@ -23,6 +24,10 @@ class SitemapGenerateCommandTest extends TestCase
 
         Post::latest()->cursor()->each(function (Post $post) use ($content) {
             $this->assertStringContainsString(route('posts.show', [$post->random_id, $post->slug]), $content);
+        });
+
+        Thread::latest()->cursor()->each(function (Thread $thread) use ($content) {
+            $this->assertStringContainsString(route('threads.show', [$thread->random_id, $thread->slug]), $content);
         });
     }
 }

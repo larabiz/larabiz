@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Fathom\Client;
 use Illuminate\Support\Str;
 use Spatie\Browsershot\Browsershot;
-use Illuminate\Support\Facades\Vite;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Environment\Environment;
@@ -48,8 +47,6 @@ class AppServiceProvider extends ServiceProvider
                 ],
             ]))->convert($string);
         });
-
-        Vite::useScriptTagAttributes(['defer']);
     }
 }
 

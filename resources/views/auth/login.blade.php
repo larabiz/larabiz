@@ -1,5 +1,5 @@
 <x-app title="Connexion">
-    <x-breadcrumb class="mt-16">
+    <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item>Connexion</x-breadcrumb-item>
     </x-breadcrumb>
 

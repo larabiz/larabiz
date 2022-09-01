@@ -1,10 +1,18 @@
-<x-app title="Blog">
-    <x-breadcrumb class="mt-16">
+@php
+$title = $q
+    ? "Articles correspondant à \"$q\""
+    : 'Blog';
+@endphp
+<x-app title="{{ $title }}">
+    <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item>Blog</x-breadcrumb-item>
     </x-breadcrumb>
 
     <x-section class="container">
-        <x-posts-search-form />
+        <x-form method="GET" :action="route('posts.index')">
+            <label for="q" class="sr-only">Rechercher</label>
+            <x-search-field :value="$q" />
+        </x-form>
 
         <div class="grid gap-8 mt-8">
             @forelse ($posts as $post)

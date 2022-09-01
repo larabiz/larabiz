@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -14,14 +13,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Auth::provider('eloquent', function ($app, array $config) {
-            return new EloquentUserProvider(
-                $app['hash'], $config['model']
-            );
-        });
-
         Gate::before(function ($user) {
-            if ('benjamincrozat@me.com' === $user->email) {
+            if (config('app.master_email') === $user->email) {
                 return true;
             }
         });

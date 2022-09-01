@@ -1,5 +1,5 @@
 <x-app :title='$q ? "Articles correspondant à « $q »" : "Recherche"'>
-    <x-breadcrumb class="mt-16">
+    <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item :link="route('posts.index')">Blog</x-breadcrumb-item>
         <x-breadcrumb-item>Recherche</x-breadcrumb-item>
         <x-breadcrumb-item>Articles correspondant à « {{ $q }} »</x-breadcrumb-item>

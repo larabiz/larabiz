@@ -1,4 +1,4 @@
-<a href="{{ route('posts.show', [$post->random_id, $post->slug]) }}" {{ $attributes->merge(['class' => 'bg-white/50 flex items-center justify-between gap-4 sm:gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-lg shadow-indigo-200/50']) }}>
+<a href="{{ route('posts.show', [$post->random_id, $post->slug]) }}" {{ $attributes->merge(['class' => 'bg-gradient-to-b from-white/50 to-white/30 flex items-center justify-between gap-4 sm:gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-lg shadow-indigo-200/50']) }}>
     <div>
         <div class="font-bold leading-tight text-indigo-900 text-lg sm:text-xl">
             {{ $post->title }}
@@ -11,7 +11,7 @@
         <div class="flex flex-wrap gap-x-6 sm:gap-x-8 gap-y-3 mt-8 text-indigo-900/50 text-sm sm:text-base">
             <div class="flex items-center gap-2">
                 <x-heroicon-o-calendar class="h-5 translate-y-[-1.5px]" />
-                <strong class="text-indigo-900">{{ $post->latestStatus()->created_at->isoFormat('ll') }}</strong>
+                <strong class="text-indigo-900">{{ $post->latest_status_created_at?->isoFormat('ll') }}</strong>
             </div>
 
             <div class="flex items-center gap-2">

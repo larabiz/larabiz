@@ -49,7 +49,7 @@ class ShowPostControllerTest extends TestCase
             ->actingAs(User::master()->first())
             ->get(route('posts.show', [$post->random_id, $post->slug]))
             ->assertOk()
-            ->assertSee('Brouillon :')
+            ->assertSee('Brouillon')
         ;
     }
 

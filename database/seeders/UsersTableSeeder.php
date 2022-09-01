@@ -11,9 +11,9 @@ class UsersTableSeeder extends Seeder
     {
         User::factory()->create([
             'username' => 'Benjamin Crozat',
-            'email' => 'benjamincrozat@me.com',
+            'email' => config('app.master_email'),
         ]);
 
-        User::factory(100)->create();
+        User::factory(mt_rand(29, 49))->create();
     }
 }

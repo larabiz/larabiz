@@ -3,7 +3,7 @@
     description="{{ $post->excerpt }}"
     image="{{ $post->preview_url }}"
 >
-    <x-breadcrumb class="mt-16">
+    <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item link="{{ route('posts.index') }}">Blog</x-breadcrumb-item>
         <x-breadcrumb-item>{{ $post->title }}</x-breadcrumb-item>
     </x-breadcrumb>
@@ -11,19 +11,19 @@
     <div class="container py-8 sm:py-16">
         <article class="pb-8 sm:pb-16">
             <h1 class="font-thin text-3xl sm:text-5xl">
-                @if ('draft' === $post->status) Brouillon : @endif {{ $post->title }}
+                @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon : @endif {{ $post->title }}
             </h1>
 
             <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
-                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user->email) }}?s=144" alt="Avatar de {{ $post->user->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
+                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user_email) }}?s=144" alt="Avatar de {{ $post->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
 
                 <div>
                     <p>
-                        @if ('draft' === $post->status) Brouillon créé le @else Publié le @endif
-                        <time datetime="{{ $post->latestStatus()?->created_at->toDateString() }}" class="font-bold">
-                            {{ $post->latestStatus()?->created_at->isoFormat('ll') }}
+                        @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon créé le @else Publié le @endif
+                        <time datetime="{{ $post->latest_status_created_at?->toDateString() }}" class="font-bold">
+                            {{ $post->latest_status_created_at?->isoFormat('ll') }}
                         </time>
-                        par <span class="font-bold">{{ $post->user->username }}</span>
+                        par <span class="font-bold">{{ $post->username }}</span>
                     </p>
 
                     <p>
@@ -57,27 +57,31 @@
         </article>
 
         <x-author
-            :author="$post->user"
+            :username="$post->username"
+            :email="$post->user_email"
+            :biography="$post->user_biography"
             class="border-y border-indigo-100 py-8"
         />
 
         @push('scripts')
-            <script type="application/ld+json">
-                {
-                    "@context": "https://schema.org",
-                    "@type": "NewsArticle",
-                    "headline": "{{ $post->title }}",
-                    "datePublished": "{{ $post->latestStatus('published')?->created_at->toIso8601String() }}",
-                    "dateModified": "{{ $post->updated_at->toIso8601String() }}",
-                    "author": [
-                        {
-                            "@type": "Person",
-                            "name": "{{ $post->user->username }}",
-                            "url": "{{ route('home') }}"
-                        }
-                    ]
-                }
-            </script>
+            @if ($post->latest_status === 'published')
+                <script type="application/ld+json">
+                    {
+                        "@context": "https://schema.org",
+                        "@type": "NewsArticle",
+                        "headline": "{{ $post->title }}",
+                        "datePublished": "{{ $post->latest_status_created_at->toIso8601String() }}",
+                        "dateModified": "{{ $post->updated_at->toIso8601String() }}",
+                        "author": [
+                            {
+                                "@type": "Person",
+                                "name": "{{ $post->username }}",
+                                "url": "{{ route('home') }}"
+                            }
+                        ]
+                    }
+                </script>
+            @endif
 
             <script type="application/ld+json">
                 {

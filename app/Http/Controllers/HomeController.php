@@ -16,15 +16,14 @@ class HomeController extends Controller
 
         return view('home')->with([
             'latest' => Post::query()
-                ->withUsername()
                 ->latest()
                 ->limit(4)
                 ->get(),
             'pageviews' => $formatter->format(cache()->get('pageviews')),
             'visits' => $formatter->format(cache()->get('visits')),
-            'users_count' => $formatter->format(User::whereNotNull('email_verified_at')->count()),
-            'subscribers_count' => $formatter->format(Subscriber::confirmed()->count()),
-            'posts_count' => $formatter->format(Post::count()),
+            'users_count' => $formatter->format(cache()->get(User::class . '_count')),
+            'subscribers_count' => $formatter->format(cache()->get(Subscriber::class . '_count')),
+            'posts_count' => $formatter->format(cache()->get(Post::class . '_count')),
         ]);
     }
 }

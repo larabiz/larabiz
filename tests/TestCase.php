@@ -16,12 +16,7 @@ abstract class TestCase extends BaseTestCase
 
         User::factory()->create([
             'username' => 'Benjamin Crozat',
-            'email' => 'benjamincrozat@me.com',
+            'email' => config('app.master_email'),
         ]);
-    }
-
-    protected function actingAsRandomUser() : static
-    {
-        return $this->actingAs(User::factory()->create());
     }
 }
