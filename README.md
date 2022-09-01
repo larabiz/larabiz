@@ -28,6 +28,20 @@ Rendez-vous ensuite dans le dossier pour la suite :
 cd larabiz
 ```
 
+### Configuration de l'environnement
+
+Créez un fichier d'environnement à partir de l'exemple et configurez-le à votre sauce :
+
+```bash
+cp .env.example .env
+```
+
+N'oubliez pas de générer la clé de chiffrement :
+
+```bash
+php artisan key:generate
+```
+
 ### Création et seeding de la base de données
 
 Plutôt que de passer par un client MySQL, vous pouvez tout simplement copier et coller cette commande dans votre terminal :
