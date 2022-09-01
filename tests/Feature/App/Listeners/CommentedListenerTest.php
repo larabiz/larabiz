@@ -12,23 +12,16 @@ use Illuminate\Support\Facades\Notification;
 
 class CommentedListenerTest extends TestCase
 {
-    public function test_it_sends_a_notification_to_master() : void
+    public function test_it_sends_a_notification_to_subscribed_users() : void
     {
         Notification::fake();
 
-        $master = User::master()->first();
-
-        // Create a post with a bunch of comments.
-
-        $post = Post::factory()->for($master)->published()->create();
+        $post = Post::factory()->forUser()->published()->create();
 
         // Create users who will be notified about new comments.
-
         $users = User::factory(10)->create()->each->subscribeTo($post);
 
-        // Create a new comment.
-
-        $comment = Comment::factory()->for($master)->for($post)->create();
+        $comment = Comment::factory()->forUser()->for($post)->create();
 
         event(new Commented($comment));
 

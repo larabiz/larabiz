@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Subscriber;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Notifications\Management\Subscribers\NewSubscriber;
+use App\Notifications\Management\NewSubscriber;
 
 class ConfirmSubscriberController extends Controller
 {

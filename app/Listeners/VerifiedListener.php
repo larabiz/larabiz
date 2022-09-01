@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
-use App\Notifications\Management\Users\NewConfirmedUser;
+use App\Notifications\Management\NewConfirmedUser;
 
 class VerifiedListener
 {

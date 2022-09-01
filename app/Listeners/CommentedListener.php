@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\User;
 use App\Events\Commented;
 use App\Models\Subscription;
 use App\Notifications\NewComment;
