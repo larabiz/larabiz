@@ -12,6 +12,7 @@
         "livewire/livewire": "^2.10",
         "sentry/sentry-laravel": "^2.13",
         "spatie/browsershot": "^3.57",
+        "spatie/laravel-feed": "^4.1",
         "spatie/laravel-google-fonts": "^1.2",
         "spatie/laravel-model-status": "^1.11",
         "spatie/laravel-ray": "^1.30",

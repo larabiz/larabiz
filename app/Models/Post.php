@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Laravel\Scout\Searchable;
 use App\Models\Traits\SetsStatus;
 use App\Models\Traits\HasRandomId;
+use Illuminate\Support\Collection;
 use Spatie\ModelStatus\HasStatuses;
 use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model
+class Post extends Model implements Feedable
 {
     use BelongsToUser, HasFactory, HasRandomId, HasStatuses, Searchable, SetsStatus, SoftDeletes;
 
@@ -78,5 +81,22 @@ class Post extends Model
             'content' => $this->content,
             'excerpt' => $this->excerpt,
         ];
+    }
+
+    public function toFeedItem() : FeedItem
+    {
+        return FeedItem::create([
+            'id' => $this->id,
+            'title' => $this->title,
+            'summary' => $this->excerpt,
+            'updated' => $this->updated_at,
+            'link' => route('posts.show', [$this->random_id, $this->slug]),
+            'authorName' => $this->username,
+        ]);
+    }
+
+    public static function getFeedItems() : Collection
+    {
+        return self::withUsername()->latest()->limit(10)->get();
     }
 }

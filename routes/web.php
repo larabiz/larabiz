@@ -41,3 +41,5 @@ Route::delete('/comments/{comment:random_id}', DestroyCommentController::class)-
 Route::get('/user/profile', EditUserProfileController::class)->name('user-profile');
 Route::get('/user/password', EditUserPasswordController::class)->name('user-password');
 Route::get('/user/subscriptions', ManageSubscriptionsController::class)->name('user-subscriptions');
+
+Route::feeds();
