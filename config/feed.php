@@ -5,8 +5,8 @@ return [
         'main' => [
             'items' => [App\Models\Post::class, 'getFeedItems'],
             'url' => '/feeds/blog',
-            'title' => 'Flux des articles',
-            'description' => 'Tout ce qui est publié sur le blog.',
+            'title' => env('APP_NAME'),
+            'description' => '',
             'language' => 'fr-FR',
             'image' => '',
             'format' => 'atom',
