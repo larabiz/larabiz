@@ -1,4 +1,4 @@
-@if (session('status'))
+@if (session('status') || request()->verified)
     <div
         class="fixed bottom-0 left-0 right-0 z-10"
         x-init="setTimeout(() => open = false, 5000)"
@@ -15,6 +15,8 @@
                         L'e-mail de confirmation a bien été renvoyé.
                     @elseif (session('status') === 'password-updated')
                         Votre mot de passe a bien été mis à jour.
+                    @elseif (request()->verified)
+                        Votre adresse e-mail est maintenant confirmée.
                     @else
                         {{ session('status') }}
                     @endif
