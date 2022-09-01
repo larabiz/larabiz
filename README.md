@@ -28,6 +28,12 @@ Rendez-vous ensuite dans le dossier pour la suite :
 cd larabiz
 ```
 
+### Installez les dépendances
+
+```bash
+composer install
+```
+
 ### Configuration de l'environnement
 
 Créez un fichier d'environnement à partir de l'exemple et configurez-le à votre sauce :
