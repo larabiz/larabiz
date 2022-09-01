@@ -62,6 +62,12 @@ Afin de travailler correctement en local, il vous faut de la data. Non, nous ne 
 php artisan migrate --seed
 ```
 
+### Rappatriez les Google Fonts
+
+```
+php artisan google-fonts:fetch
+```
+
 ### Compilation du CSS et du JavaScript
 
 Installons les packages Node dont nous avons besoin :
