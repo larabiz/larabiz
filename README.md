@@ -6,6 +6,12 @@
 
 Bienvenu dans le code source de [Larabiz](https://larabiz.fr) !
 
+## Configuration requise
+
+- PHP
+- MySQL
+- Redis
+
 ## Installation
 
 Partons du principe que vous utilisez Laravel Valet. Si ce n'est pas le cas, je vous demanderai de faire le travail de recherche vous-même et d'adapter les instructions à votre environnement favori.
