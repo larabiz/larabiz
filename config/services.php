@@ -34,4 +34,9 @@ return [
         'api_token' => env('FATHOM_API_TOKEN'),
         'site_id' => env('FATHOM_SITE_ID'),
     ],
+
+    'envoyer' => [
+        'fathom_fetch_heartbeat_url' => env('ENVOYER_FATHOM_FETCH_HEARTBEAT_URL'),
+        'sitemap_generate_heartbeat_url' => env('ENVOYER_SITEMAP_GENERATE_HEARTBEAT_URL'),
+    ],
 ];
