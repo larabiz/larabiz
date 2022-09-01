@@ -113,3 +113,7 @@ En parallèle :
 ```bash
 php artisan test --parallel
 ```
+
+## Déploiement
+
+Une fois votre PR acceptée et mergée sur la branche *main*, les GitHub Actions exécutent les tests. Si ils passent, alors le déploiement est automatiquement déclenché en production. Le meilleur dans tout ça ? Zéro down-time pour les utilisateurs et agilité maximale. 
