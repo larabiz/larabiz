@@ -6,6 +6,20 @@
 
 Bienvenu dans le code source de [Larabiz](https://larabiz.fr) !
 
+## Avant de commencer
+
+**S'il vous plait, ne passez pas trop de temps à développer de nouvelles fonctionnalités pour Larabiz. Je n'aurai probablement pas le temps de les maintenir. Ce dépôt a surtout un but pédagogique.**
+
+Ce dont Larabiz a besoin (accessoirement, car je n'ai pas réellement besoin d'aide pour le moment) :
+- Des corrections de bugs qui gênent votre utilisation du site ;
+- Des corrections au niveau du code si vous voyez un oubli ou quelque chose qui pourrait être amélioré "the Laravel-way".
+
+Ce dont Larabiz n'a pas besoin :
+- Des grosses features chronophages à passer en revue et maintenir ;
+- Des ajustements subjectifs au niveau du style de code ;
+- Des design patterns inutilement compliqués ;
+- D’autres superstitions de développeurs comme le SRP, le découplage, etc.
+
 ## Configuration requise
 
 - PHP
