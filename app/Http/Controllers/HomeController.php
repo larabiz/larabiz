@@ -2,29 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
-use App\Models\User;
-use NumberFormatter;
+use App\Contracts\PostRepositoryInterface;
+use App\Services\Metrics\HomeMetrics;
 use Illuminate\View\View;
-use App\Models\Subscriber;
 
 class HomeController extends Controller
 {
-    public function __invoke() : View
+    public function __invoke(PostRepositoryInterface $postRepository, HomeMetrics $metrics) : View
     {
-        $formatter = new NumberFormatter('fr_FR', NumberFormatter::DECIMAL);
-
-        return view('home')->with([
-            'latest' => Post::query()
-                ->withUsername()
-                ->latest()
-                ->limit(4)
-                ->get(),
-            'pageviews' => $formatter->format(cache()->get('pageviews')),
-            'visits' => $formatter->format(cache()->get('visits')),
-            'users_count' => $formatter->format(User::whereNotNull('email_verified_at')->count()),
-            'subscribers_count' => $formatter->format(Subscriber::confirmed()->count()),
-            'posts_count' => $formatter->format(Post::count()),
+        return view('home', [
+            'latest' => $postRepository->latest(),
+            'pageviews' => $metrics->pageviews(),
+            'visits' => $metrics->visits(),
+            'users_count' => $metrics->users(),
+            'subscribers_count' => $metrics->subscribers(),
+            'posts_count' => $metrics->posts(),
         ]);
     }
 }

@@ -21,3 +21,8 @@ Homestead.json
 Homestead.yaml
 phpunit.xml
 Thumbs.db
+composer.json
+composer.lock
+config/database.php
+package-lock.json
+yarn.lock

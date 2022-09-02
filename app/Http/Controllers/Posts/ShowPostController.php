@@ -2,25 +2,16 @@
 
 namespace App\Http\Controllers\Posts;
 
-use App\Models\Post;
+use App\Contracts\PostRepositoryInterface;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 
 class ShowPostController extends Controller
 {
-    public function __invoke(Request $request, string $randomId, ?string $slug = null) : View|RedirectResponse
+    public function __invoke(PostRepositoryInterface $postRepository, string $randomId, ?string $slug = null) : View|RedirectResponse
     {
-        $post = Post::query();
-
-        if ('benjamincrozat@me.com' === $request->user()?->email) {
-            $post = $post->withoutGlobalScope('published');
-        }
-
-        $post = $post
-            ->whereRandomId($randomId)
-            ->firstOrFail();
+        $post = $postRepository->find(id: $randomId);
 
         if ($slug !== $post->slug) {
             return to_route('posts.show', [$randomId, $post->slug], 301);
@@ -28,13 +19,7 @@ class ShowPostController extends Controller
 
         return view('posts.show')->with([
             'post' => $post,
-            'others' => Post::query()
-                ->withUsername()
-                ->whereNotIn('random_id', [$randomId])
-                ->inRandomOrder()
-                ->latest()
-                ->limit(6)
-                ->get(),
+            'others' => $postRepository->random(except: $randomId),
             'subscribed' => auth()->user()?->subscribedTo($post),
         ]);
     }
