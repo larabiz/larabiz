@@ -17,7 +17,7 @@ class ShowPostController extends Controller
             return to_route('posts.show', [$randomId, $post->slug], 301);
         }
 
-        return view('posts.show')->with([
+        return view('posts.show', [
             'post' => $post,
             'others' => $postRepository->random(except: $randomId),
             'subscribed' => auth()->user()?->subscribedTo($post),
