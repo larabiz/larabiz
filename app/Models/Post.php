@@ -103,7 +103,7 @@ class Post extends Model implements Feedable
     public function toSearchableArray() : array
     {
         return [
-            'author' => $this->user->username,
+            'username' => $this->user->username,
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
