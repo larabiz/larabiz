@@ -13,6 +13,10 @@ class StoreReplyController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        if (app()->isProduction()) {
+            $this->middleware('master');
+        }
     }
 
     public function __invoke(StoreReplyRequest $request, User $user, Thread $thread) : RedirectResponse

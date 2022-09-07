@@ -7,6 +7,14 @@ use App\Models\User;
 
 class AppTest extends TestCase
 {
+    public function test_it_does_not_include_fathom_analytics_outside_production() : void
+    {
+        $this
+            ->view('components.app', ['slot' => ''])
+            ->assertDontSee('https://enlightenment.larabiz.fr/script.js')
+        ;
+    }
+
     public function test_it_includes_fathom_analytics_in_production() : void
     {
         app()['env'] = 'production';
