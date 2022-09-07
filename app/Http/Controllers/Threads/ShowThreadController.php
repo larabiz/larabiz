@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 class ShowThreadController extends Controller
 {
+    public function __construct()
+    {
+        if (app()->isProduction()) {
+            $this->middleware('master');
+        }
+    }
+
     public function __invoke(string $randomId, string $slug) : View
     {
         $thread = Thread::whereRandomId($randomId)->firstOrFail();

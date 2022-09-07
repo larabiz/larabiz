@@ -10,6 +10,10 @@ class CreateThreadController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        if (app()->isProduction()) {
+            $this->middleware('master');
+        }
     }
 
     public function __invoke() : View

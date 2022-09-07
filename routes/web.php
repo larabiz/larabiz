@@ -45,12 +45,10 @@ Route::get('/user/password', EditUserPasswordController::class)->name('user-pass
 Route::get('/user/subscriptions', ManageSubscriptionsController::class)->name('user-subscriptions');
 
 // Forum
-Route::middleware('master')->group(function () {
-    Route::get('/forum', ListThreadsController::class)->name('threads.index');
-    Route::get('/forum/create', CreateThreadController::class)->name('threads.create');
-    Route::post('/forum', StoreThreadController::class)->name('threads.store');
-    Route::get('/forum/{randomId}/{slug}', ShowThreadController::class)->name('threads.show');
-    Route::post('/forum/{thread:random_id}/replies', StoreReplyController::class)->name('threads.replies.store');
-});
+Route::get('/forum', ListThreadsController::class)->name('threads.index');
+Route::get('/forum/create', CreateThreadController::class)->name('threads.create');
+Route::post('/forum', StoreThreadController::class)->name('threads.store');
+Route::get('/forum/{randomId}/{slug}', ShowThreadController::class)->name('threads.show');
+Route::post('/forum/{thread:random_id}/replies', StoreReplyController::class)->name('threads.replies.store');
 
 Route::feeds();

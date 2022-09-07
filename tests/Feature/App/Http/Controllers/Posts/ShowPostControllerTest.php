@@ -17,7 +17,6 @@ class ShowPostControllerTest extends TestCase
             ->get(route('posts.show', [$shown->random_id, $shown->slug]))
             ->assertOk()
             ->assertViewIs('posts.show')
-            ->assertSee('Publié le')
         ;
     }
 

@@ -76,7 +76,7 @@ class ListThreadsControllerTest extends TestCase
 
     public function test_it_filters_unresolved_threads() : void
     {
-        Thread::factory(5)->forUser()->create(['resolved' => true]);
+        Thread::factory(5)->forUser()->create(['resolved_by' => 1]);
 
         Thread::factory(5)->forUser()->create();
 

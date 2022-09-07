@@ -14,15 +14,15 @@
 
         <li class="relative">
             <a
-                href="{{ route('threads.index') }}"
+                href="#"
                 class="font-semibold @if (Route::is('threads.index') || Route::is('threads.show')) text-indigo-400 @else hover:text-indigo-400 transition-colors @endif"
             >
                 <span class="sr-only sm:not-sr-only">Forum</span>
                 <x-heroicon-o-chat-bubble-left-right class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
             </a>
 
-            <span class="absolute -top-6 sm:-top-4 left-1/2 sm:left-auto sm:-right-8 bg-yellow-400 font-semibold leading-normal mt-1 rounded-full text-center text-xs w-[75px] -translate-x-1/2 sm:translate-x-0 scale-75">
-                Nouveau !
+            <span class="absolute -top-6 sm:-top-4 left-1/2 sm:left-auto sm:-right-8 bg-yellow-400 font-semibold leading-normal mt-1 rounded-full text-center text-xs w-[65px] -translate-x-1/2 sm:translate-x-0 scale-75">
+                Bientôt !
             </span>
         </li>
 

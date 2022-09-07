@@ -10,6 +10,13 @@ use App\Http\Controllers\Controller;
 
 class ListThreadsController extends Controller
 {
+    public function __construct()
+    {
+        if (app()->isProduction()) {
+            $this->middleware('master');
+        }
+    }
+
     public function __invoke(Request $request, ?User $user) : View
     {
         if ($request->q) {
