@@ -40,7 +40,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="{{ secure_asset('img/apple-touch-icon.png') }}" />
 
-        @if (app()->isProduction() && config('app.master_email') !== $user?->email)
+        @if (app()->environment('production') && config('app.master_email') !== $user?->email)
             <script defer src="https://enlightenment.larabiz.fr/script.js" data-site="{{ config('services.fathom.site_id') }}"></script>
         @endif
     </head>

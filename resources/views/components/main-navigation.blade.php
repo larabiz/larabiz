@@ -14,8 +14,9 @@
 
         <li class="relative">
             <a
-                href="#"
+                @if (app()->isProduction()) href="#" @else href="{{ route('threads.index') }}" @endif
                 class="font-semibold @if (Route::is('threads.index') || Route::is('threads.show')) text-indigo-400 @else hover:text-indigo-400 transition-colors @endif"
+                @if (app()->isProduction()) @click.prevent="alert('Bientôt !')" @endif
             >
                 <span class="sr-only sm:not-sr-only">Forum</span>
                 <x-heroicon-o-chat-bubble-left-right class="sm:sr-only w-5 h-5 -translate-y-[0.5px]" />
