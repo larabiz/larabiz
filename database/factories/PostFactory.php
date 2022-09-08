@@ -15,7 +15,7 @@ class PostFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'slug' => fake()->slug(),
-            'content' => <<<'MARKDOWN'
+            'content' => app()->runningUnitTests() ? fake()->paragraph() : <<<'MARKDOWN'
 ---
 __Advertisement :)__
 
