@@ -16,7 +16,7 @@ class ListPostsController extends Controller
             : Post::latest();
 
         return view('posts.index')->with([
-            'posts' => $posts->simplePaginate(10),
+            'posts' => $posts->get(),
             'q' => $request->q,
         ]);
     }
