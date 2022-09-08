@@ -36,13 +36,10 @@ class AppServiceProvider extends ServiceProvider
         Str::macro('lightdown', fn (string $s) => (string) (new LightdownConverter)->convert($s));
 
         Str::macro('marxdown', function (string $string) {
-            // Prevents a bug with apostrophes in headings.
-            $string = htmlentities($string);
-
             return (string) (new MarxdownConverter([
                 'default_attributes' => [
                     Heading::class => ['id' => function (Heading $heading) {
-                        foreach ($heading->firstChild()->children() as $child) {
+                        foreach ($heading->children() as $child) {
                             if ($child instanceof Text) {
                                 return Str::slug($child->getLiteral());
                             }
@@ -62,7 +59,7 @@ class AppServiceProvider extends ServiceProvider
                         },
                     ],
                 ],
-            ]))->convert($string);
+            ]))->convert(htmlentities($string));
         });
     }
 }
