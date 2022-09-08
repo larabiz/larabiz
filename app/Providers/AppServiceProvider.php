@@ -10,8 +10,10 @@ use App\CommonMark\MarxdownConverter;
 use App\CommonMark\LightdownConverter;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
+use League\CommonMark\Node\Inline\Text;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +41,13 @@ class AppServiceProvider extends ServiceProvider
 
             return (string) (new MarxdownConverter([
                 'default_attributes' => [
+                    Heading::class => ['id' => function (Heading $heading) {
+                        foreach ($heading->firstChild()->children() as $child) {
+                            if ($child instanceof Text) {
+                                return Str::slug($child->getLiteral());
+                            }
+                        }
+                    }],
                     Image::class => ['loading' => 'lazy'],
                     Link::class => [
                         'rel' => function (Link $node) {
