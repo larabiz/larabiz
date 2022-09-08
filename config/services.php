@@ -38,5 +38,6 @@ return [
     'envoyer' => [
         'fathom_fetch_heartbeat_url' => env('ENVOYER_FATHOM_FETCH_HEARTBEAT_URL'),
         'sitemap_generate_heartbeat_url' => env('ENVOYER_SITEMAP_GENERATE_HEARTBEAT_URL'),
+        'counts_heartbeat_url' => env('ENVOYER_COUNTS_HEARTBEAT_URL'),
     ],
 ];

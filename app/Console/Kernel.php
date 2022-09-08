@@ -22,11 +22,14 @@ class Kernel extends ConsoleKernel
             ->daily()
             ->thenPing(config('services.envoyer.sitemap_generate_heartbeat_url'));
 
-        $schedule->call(function () {
-            cache()->forever(User::class . '_count', User::verified()->count());
-            cache()->forever(Subscriber::class . '_count', Subscriber::confirmed()->count());
-            cache()->forever(Post::class . '_count', Post::published()->count());
-        })->everyTenMinutes();
+        $schedule
+            ->call(function () {
+                cache()->forever(User::class . '_count', User::verified()->count());
+                cache()->forever(Subscriber::class . '_count', Subscriber::confirmed()->count());
+                cache()->forever(Post::class . '_count', Post::published()->count());
+            })
+            ->everyTenMinutes()
+            ->thenPing(config('services.envoyer.counts_heartbeat_url'));
     }
 
     protected function commands() : void
