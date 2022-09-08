@@ -23,9 +23,9 @@ class Kernel extends ConsoleKernel
             ->thenPing(config('services.envoyer.sitemap_generate_heartbeat_url'));
 
         $schedule->call(function () {
-            cache()->forever(User::class . '_count', User::count());
-            cache()->forever(Subscriber::class . '_count', Subscriber::count());
-            cache()->forever(Post::class . '_count', Post::count());
+            cache()->forever(User::class . '_count', User::verified()->count());
+            cache()->forever(Subscriber::class . '_count', Subscriber::confirmed()->count());
+            cache()->forever(Post::class . '_count', Post::published()->count());
         })->everyTenMinutes();
     }
 
