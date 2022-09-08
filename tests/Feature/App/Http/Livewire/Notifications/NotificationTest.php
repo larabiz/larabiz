@@ -17,7 +17,8 @@ class NotificationTest extends TestCase
         $user->notify(new DummyNotification);
 
         Livewire::test(Notification::class, [
-            'notification' => $user->unreadNotifications->first(),
-        ]);
+            'notification' => $user->notifications->first(),
+        ])
+            ->assertSet('notification', $user->notifications->first());
     }
 }

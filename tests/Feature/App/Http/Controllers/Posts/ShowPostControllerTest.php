@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 
 class ShowPostControllerTest extends TestCase
 {
-    public function test_it_shows_a_post() : void
+    public function test_it_shows_a_given_post() : void
     {
         $shown = Post::factory()->forUser()->published()->create();
 
@@ -24,20 +24,22 @@ class ShowPostControllerTest extends TestCase
     {
         Post::factory(10)->forUser()->published()->create();
 
-        $shown = Post::inRandomOrder()->first();
+        $post = Post::inRandomOrder()->first();
 
         $response = $this
-            ->get(route('posts.show', [$shown->random_id, $shown->slug]))
+            ->get(route('posts.show', [$post->random_id, $post->slug]))
             ->assertOk()
         ;
 
         /** @var \Illuminate\Support\Collection */
-        $latest = $response->viewData('others');
+        $others = $response->viewData('others');
 
-        $this->assertInstanceOf(Collection::class, $latest);
-        $this->assertCount(6, $latest);
-        $this->assertTrue($latest->doesntContain('id', $shown->id));
-        $this->assertTrue(1 !== $latest[0]->id || 2 !== $latest[1]->id || 3 !== $latest[2]->id || 4 !== $latest[3]->id || 5 !== $latest[4]->id || 6 !== $latest[5]->id);
+        $this->assertInstanceOf(Collection::class, $others);
+        $this->assertCount(6, $others);
+        // Make sure the post isn't among the recommended posts.
+        $this->assertTrue($others->doesntContain('id', $post->id));
+        // Make sure the posts are in random order.
+        $this->assertTrue(1 !== $others[0]->id || 2 !== $others[1]->id || 3 !== $others[2]->id || 4 !== $others[3]->id || 5 !== $others[4]->id || 6 !== $others[5]->id);
     }
 
     public function test_it_shows_drafts_to_master() : void
