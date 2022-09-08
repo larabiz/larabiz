@@ -27,7 +27,9 @@ class StoreCommentControllerTest extends TestCase
                 'content' => $content = fake()->paragraph(),
                 'subscribe' => true,
             ])
-            ->assertRedirect(route('home'))
+            ->assertRedirect(
+                route('posts.show', [$post->random_id, $post->slug, 'page' => 1]) . '#comments'
+            )
         ;
 
         $this->assertDatabaseHas(Comment::class, [

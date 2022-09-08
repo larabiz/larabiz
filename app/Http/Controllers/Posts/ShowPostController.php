@@ -27,6 +27,7 @@ class ShowPostController extends Controller
         }
 
         return view('posts.show')->with([
+            'comments' => $post->comments()->simplePaginate(),
             'post' => $post,
             'others' => Post::query()
                 ->whereNotIn('random_id', [$randomId])

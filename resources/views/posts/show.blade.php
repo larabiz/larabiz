@@ -110,11 +110,15 @@
                 @choice(':count commentaire|:count commentaires', $post->comments_count)
             </h2>
 
-            <div class="grid gap-4">
-                @foreach ($post->comments as $comment)
-                    <x-comment :comment="$comment" />
-                @endforeach
-            </div>
+            @if ($comments->isNotEmpty())
+                <div class="grid gap-4">
+                    @foreach ($comments as $comment)
+                        <x-comment :comment="$comment" />
+                    @endforeach
+                </div>
+
+                {{ $comments->fragment('comments')->links() }}
+            @endif
 
             @auth
                 @if (! $user?->hasVerifiedEmail())
