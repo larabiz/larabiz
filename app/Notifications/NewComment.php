@@ -24,7 +24,7 @@ class NewComment extends Notification
     public function toArray() : array
     {
         return [
-            'actionUrl' => route('posts.show', [$this->comment->post->random_id, $this->comment->post->slug]). '#comment',
+            'actionUrl' => route('posts.show', [$this->comment->post->random_id, $this->comment->post->slug]) . '#comments',
             'message' => "{$this->comment->user->username} a commenté l'article \"{$this->comment->post->title}\".",
         ];
     }
