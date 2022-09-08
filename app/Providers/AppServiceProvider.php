@@ -12,7 +12,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
-use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 
 class AppServiceProvider extends ServiceProvider
 {
