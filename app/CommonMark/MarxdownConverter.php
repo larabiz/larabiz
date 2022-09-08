@@ -8,6 +8,7 @@ use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\Extension\SmartPunct\SmartPunctExtension;
 use League\CommonMark\Extension\GithubFlavoredMarkdownExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
+use League\CommonMark\Extension\DescriptionList\DescriptionListExtension;
 use League\CommonMark\Extension\DefaultAttributes\DefaultAttributesExtension;
 
 class MarxdownConverter extends \League\CommonMark\MarkdownConverter
@@ -20,6 +21,7 @@ class MarxdownConverter extends \League\CommonMark\MarkdownConverter
         $environment = new Environment($config);
         $environment->addExtension(new CommonMarkCoreExtension);
         $environment->addExtension(new DefaultAttributesExtension);
+        $environment->addExtension(new DescriptionListExtension);
         $environment->addExtension(new GithubFlavoredMarkdownExtension);
         $environment->addExtension(new SmartPunctExtension);
         $environment->addExtension(new TableExtension);

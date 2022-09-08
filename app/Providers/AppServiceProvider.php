@@ -10,6 +10,8 @@ use App\CommonMark\MarxdownConverter;
 use App\CommonMark\LightdownConverter;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 
 class AppServiceProvider extends ServiceProvider
@@ -38,9 +40,17 @@ class AppServiceProvider extends ServiceProvider
 
             return (string) (new MarxdownConverter([
                 'default_attributes' => [
-                    Heading::class => [
-                        'id' => function (Heading $node) {
-                            return Str::slug($node->firstChild()->getLiteral());
+                    Image::class => ['loading' => 'lazy'],
+                    Link::class => [
+                        'rel' => function (Link $node) {
+                            if (! str_contains($node->getUrl(), 'larabiz.fr')) {
+                                return 'nofollow noopener noreferrer';
+                            }
+                        },
+                        'target' => function (Link $node) {
+                            if (! str_contains($node->getUrl(), 'larabiz.fr')) {
+                                return '_blank';
+                            }
                         },
                     ],
                 ],
