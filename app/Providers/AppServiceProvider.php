@@ -33,6 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Str::macro('lightdown', fn (string $s) => (string) (new LightdownConverter)->convert($s));
 
         Str::macro('marxdown', function (string $string) {
+            // Prevents a bug with apostrophes in headings.
             $string = htmlentities($string);
 
             return (string) (new MarxdownConverter([
