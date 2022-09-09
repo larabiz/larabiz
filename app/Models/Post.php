@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
 use Spatie\ModelStatus\Status;
 use App\Models\Traits\HasRandomId;
@@ -96,6 +97,40 @@ class Post extends Model implements Feedable
                 $minutes = ceil($words / 200);
 
                 return 0 === $minutes ? 1 : $minutes;
+            }
+        );
+    }
+
+    public function tableOfContents() : Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                preg_match_all('/(#{1,6}) (.*)/', $this->content, $headings);
+
+                $hierarchy = [];
+
+                for ($i = 0; $i < count($headings[0]); ++$i) {
+                    $level = strlen($headings[1][$i]);
+
+                    $hierarchy[] = [
+                        'title' => html_entity_decode(strip_tags(Str::marxdown($headings[2][$i]))),
+                        'level' => $level,
+                        'children' => [],
+                    ];
+                }
+
+                for ($i = count($hierarchy) - 1; $i >= 0; --$i) {
+                    if ($i === count($hierarchy) - 1) {
+                        continue;
+                    }
+
+                    if ($hierarchy[$i]['level'] < $hierarchy[$i + 1]['level']) {
+                        $hierarchy[$i]['children'][] = $hierarchy[$i + 1];
+                        unset($hierarchy[$i + 1]);
+                    }
+                }
+
+                return $hierarchy;
             }
         );
     }

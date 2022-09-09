@@ -8,99 +8,107 @@
         <x-breadcrumb-item>{{ $post->title }}</x-breadcrumb-item>
     </x-breadcrumb>
 
-    <div class="container py-8 sm:py-16">
-        <article class="pb-8 sm:pb-16">
-            <h1 class="font-thin text-3xl sm:text-5xl">
-                @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon : @endif {{ $post->title }}
-            </h1>
+    <div class="container max-w-[1024px] md:grid md:grid-cols-3 md:gap-16 py-8 sm:py-16">
+        <div class="col-span-2">
+            <article class="pb-8 sm:pb-16">
+                <h1 class="font-thin text-3xl sm:text-5xl">
+                    @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon : @endif {{ $post->title }}
+                </h1>
 
-            <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
-                <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user_email) }}?s=144" alt="Avatar de {{ $post->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
+                <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
+                    <img loading="lazy" src="https://www.gravatar.com/avatar/{{ md5($post->user_email) }}?s=144" alt="Avatar de {{ $post->username }}." width="42" height="42" class="relative top-[-.0625rem] rounded-full">
 
-                <div>
-                    <p>
-                        @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon créé le @else Publié le @endif
-                        <time datetime="{{ $post->latest_status_created_at?->toDateString() }}" class="font-bold">
-                            {{ $post->latest_status_created_at?->isoFormat('ll') }}
-                        </time>
-                        par <span class="font-bold">{{ $post->username }}</span>
-                    </p>
-
-                    <p>
-                        Temps de lecture estimé :
-                        <span class="font-bold">@choice(':count minute|:count minutes', $post->read_time)</span>
-                    </p>
-                </div>
-            </div>
-
-            <div class="font-light mt-6 text-indigo-400 text-xl">
-                {{ $post->excerpt }}
-            </div>
-
-            <div class="bg-indigo-100 flex items-center gap-4 mt-8 p-4 rounded-lg text-indigo-900/75">
-                <x-heroicon-o-information-circle class="flex-shrink-0 w-5 h-5" />
-
-                <aside>
                     <div>
-                        Quelque chose vous échappe au sujet de cet article&nbsp;? <a href="#comments" class="font-semibold text-indigo-900" @click="window.fathom?.trackGoal('SNY6VO5I', 0)">Demandez de l'aide dans les commentaires</a>.
+                        <p>
+                            @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon créé le @else Publié le @endif
+                            <time datetime="{{ $post->latest_status_created_at?->toDateString() }}" class="font-bold">
+                                {{ $post->latest_status_created_at?->isoFormat('ll') }}
+                            </time>
+                            par <span class="font-bold">{{ $post->username }}</span>
+                        </p>
+
+                        <p>
+                            Temps de lecture estimé :
+                            <span class="font-bold">@choice(':count minute|:count minutes', $post->read_time)</span>
+                        </p>
                     </div>
+                </div>
 
-                    <div class="font-bold mt-2 text-indigo-700" x-show="document.getElementById('comments').clientHeight === 0">
-                        Désactivez votre bloqueur de pub sur {{ config('app.name') }}, car il semble qu'il masque la section commentaires&nbsp;!
-                    </div>
-                </aside>
-            </div>
+                <div class="font-light mt-6 text-indigo-400 text-xl">
+                    {{ $post->excerpt }}
+                </div>
 
-            <div class="break-words prose prose-a:bg-indigo-100 prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-200 prose-blockquote:font-serif prose-blockquote:text-indigo-900/75 prose-h3:leading-tight prose-img:my-0 prose-figure:mx-auto prose-figure:text-center prose-figure:sm:w-2/3 prose-figure:md:w-1/2 prose-strong:font-bold !max-w-none mt-8">
-                {!! \Illuminate\Support\Str::marxdown($post->content) !!}
-            </div>
-        </article>
+                <div class="bg-indigo-100 flex items-center gap-4 mt-8 p-4 rounded-lg text-indigo-900/75">
+                    <x-heroicon-o-information-circle class="flex-shrink-0 w-5 h-5" />
 
-        <x-author
-            :username="$post->username"
-            :email="$post->user_email"
-            :biography="$post->user_biography"
-            class="border-y border-indigo-100 py-8"
-        />
+                    <aside>
+                        <div>
+                            Quelque chose vous échappe au sujet de cet article&nbsp;? <a href="#comments" class="font-semibold text-indigo-900" @click="window.fathom?.trackGoal('SNY6VO5I', 0)">Demandez de l'aide dans les commentaires</a>.
+                        </div>
 
-        @push('scripts')
-            @if ($post->latest_status === 'published')
+                        <div class="font-bold mt-2 text-indigo-700" x-show="document.getElementById('comments').clientHeight === 0">
+                            Désactivez votre bloqueur de pub sur {{ config('app.name') }}, car il semble qu'il masque la section commentaires&nbsp;!
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="break-words prose prose-a:bg-indigo-100 prose-a:font-bold prose-a:no-underline prose-a:text-indigo-400 prose-blockquote:border-l-[6px] prose-blockquote:border-indigo-200 prose-blockquote:font-serif prose-blockquote:text-indigo-900/75 prose-h3:leading-tight prose-img:my-0 prose-figure:mx-auto prose-figure:text-center prose-figure:sm:w-2/3 prose-figure:md:w-1/2 prose-strong:font-bold !max-w-none mt-8">
+                    {!! \Illuminate\Support\Str::marxdown($post->content) !!}
+                </div>
+            </article>
+
+            <x-author
+                :username="$post->username"
+                :email="$post->user_email"
+                :biography="$post->user_biography"
+                class="border-y border-indigo-100 py-8"
+            />
+
+            @push('scripts')
+                @if ($post->latest_status === 'published')
+                    <script type="application/ld+json">
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "NewsArticle",
+                            "headline": "{{ $post->title }}",
+                            "datePublished": "{{ $post->latest_status_created_at->toIso8601String() }}",
+                            "dateModified": "{{ $post->updated_at->toIso8601String() }}",
+                            "author": [
+                                {
+                                    "@type": "Person",
+                                    "name": "{{ $post->username }}",
+                                    "url": "{{ route('home') }}"
+                                }
+                            ]
+                        }
+                    </script>
+                @endif
+
                 <script type="application/ld+json">
                     {
                         "@context": "https://schema.org",
-                        "@type": "NewsArticle",
-                        "headline": "{{ $post->title }}",
-                        "datePublished": "{{ $post->latest_status_created_at->toIso8601String() }}",
-                        "dateModified": "{{ $post->updated_at->toIso8601String() }}",
-                        "author": [
-                            {
-                                "@type": "Person",
-                                "name": "{{ $post->username }}",
-                                "url": "{{ route('home') }}"
-                            }
-                        ]
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [{
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Blog",
+                            "item": "{{ route('posts.index') }}"
+                        }, {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "{{ $post->title }}"
+                        }]
                     }
                 </script>
-            @endif
+            @endpush
+        </div>
 
-            <script type="application/ld+json">
-                {
-                    "@context": "https://schema.org",
-                    "@type": "BreadcrumbList",
-                    "itemListElement": [{
-                        "@type": "ListItem",
-                        "position": 1,
-                        "name": "Blog",
-                        "item": "{{ route('posts.index') }}"
-                    }, {
-                        "@type": "ListItem",
-                        "position": 2,
-                        "name": "{{ $post->title }}"
-                    }]
-                }
-            </script>
-        @endpush
+        <div class="md:col-span-1">
+            <x-toc :post="$post" />
+        </div>
+    </div>
 
+    <div class="container py-8 sm:py-16">
         <div
             id="comments"
             class="mt-8 sm:mt-16 scroll-mt-8 sm:scroll-mt-16"

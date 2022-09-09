@@ -53,9 +53,9 @@ class AppServiceProvider extends ServiceProvider
             ]))->convert($string);
 
             return preg_replace_callback('/<h(\d)>(.*)<\/h\d>/', function ($matches) {
-                $matches[2] = html_entity_decode($matches[2]);
+                $cleanedUpStringForId = html_entity_decode(strip_tags($matches[2]));
 
-                return '<h' . $matches[1] . ' id="' . Str::slug($matches[2]) . '">' . $matches[2] . '</h' . $matches[1] . '>';
+                return '<h' . $matches[1] . ' id="' . Str::slug($cleanedUpStringForId) . '">' . $matches[2] . '</h' . $matches[1] . '>';
             }, $html);
         });
     }
