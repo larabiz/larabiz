@@ -10,10 +10,10 @@ use App\CommonMark\MarxdownConverter;
 use App\CommonMark\LightdownConverter;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
+use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
-use League\CommonMark\Node\Inline\Text;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,12 +48,12 @@ class AppServiceProvider extends ServiceProvider
                     Image::class => ['loading' => 'lazy'],
                     Link::class => [
                         'rel' => function (Link $node) {
-                            if (! str_contains($node->getUrl(), 'larabiz.fr')) {
+                            if (! str_contains($node->getUrl(), 'larabiz.fr') && ! Str::startsWith($node->getUrl(), '#')) {
                                 return 'nofollow noopener noreferrer';
                             }
                         },
                         'target' => function (Link $node) {
-                            if (! str_contains($node->getUrl(), 'larabiz.fr')) {
+                            if (! str_contains($node->getUrl(), 'larabiz.fr') && ! Str::startsWith($node->getUrl(), '#')) {
                                 return '_blank';
                             }
                         },
