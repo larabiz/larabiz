@@ -8,7 +8,7 @@
         <x-breadcrumb-item>{{ $post->title }}</x-breadcrumb-item>
     </x-breadcrumb>
 
-    <div class="container max-w-[1024px] md:grid md:grid-cols-3 md:gap-16 py-8 sm:py-16">
+    <div class="container max-w-[1280px] md:grid md:grid-cols-3 md:gap-16 py-8 sm:py-16">
         <div class="col-span-2">
             <article class="pb-8 sm:pb-16">
                 <h1 class="font-thin text-3xl sm:text-5xl">
