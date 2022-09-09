@@ -119,17 +119,6 @@ class Post extends Model implements Feedable
                     ];
                 }
 
-                for ($i = count($hierarchy) - 1; $i >= 0; --$i) {
-                    if ($i === count($hierarchy) - 1) {
-                        continue;
-                    }
-
-                    if ($hierarchy[$i]['level'] < $hierarchy[$i + 1]['level']) {
-                        $hierarchy[$i]['children'][] = $hierarchy[$i + 1];
-                        unset($hierarchy[$i + 1]);
-                    }
-                }
-
                 return $hierarchy;
             }
         );
