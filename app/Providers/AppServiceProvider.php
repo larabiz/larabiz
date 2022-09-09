@@ -10,10 +10,8 @@ use App\CommonMark\MarxdownConverter;
 use App\CommonMark\LightdownConverter;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
-use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -36,15 +34,8 @@ class AppServiceProvider extends ServiceProvider
         Str::macro('lightdown', fn (string $s) => (string) (new LightdownConverter)->convert($s));
 
         Str::macro('marxdown', function (string $string) {
-            return (string) (new MarxdownConverter([
+            $html = (string) (new MarxdownConverter([
                 'default_attributes' => [
-                    Heading::class => ['id' => function (Heading $heading) {
-                        foreach ($heading->children() as $child) {
-                            if ($child instanceof Text) {
-                                return Str::slug($child->getLiteral());
-                            }
-                        }
-                    }],
                     Image::class => ['loading' => 'lazy'],
                     Link::class => [
                         'rel' => function (Link $node) {
@@ -59,7 +50,13 @@ class AppServiceProvider extends ServiceProvider
                         },
                     ],
                 ],
-            ]))->convert(htmlentities($string));
+            ]))->convert($string);
+
+            return preg_replace_callback('/<h(\d)>(.*)<\/h\d>/', function ($matches) {
+                $matches[2] = html_entity_decode($matches[2]);
+
+                return '<h' . $matches[1] . ' id="' . Str::slug($matches[2]) . '">' . $matches[2] . '</h' . $matches[1] . '>';
+            }, $html);
         });
     }
 }
