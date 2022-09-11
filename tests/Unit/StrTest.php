@@ -34,12 +34,12 @@ class StrTest extends TestCase
     public function test_it_renders_internal_links_without_target_and_rel_attributes() : void
     {
         $this->assertStringContainsString(
-            '<a href="https://larabiz.fr">',
-            Str::marxdown('[Larabiz](https://larabiz.fr)')
+            'href="' . url('/') . '"',
+            Str::marxdown('[Larabiz](' . url('/') . ')')
         );
 
         $this->assertStringContainsString(
-            '<a href="#foo">',
+            'href="#foo"',
             Str::marxdown('[Foo](#foo)')
         );
     }
