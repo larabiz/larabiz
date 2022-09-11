@@ -21,6 +21,8 @@ class Post extends BaseModel implements Feedable
 {
     use BelongsToUser, HasRandomId, HasStatuses, Searchable;
 
+    protected $with = ['statuses'];
+
     protected $withCount = ['comments'];
 
     public static function booted() : void
