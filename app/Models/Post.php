@@ -145,6 +145,6 @@ class Post extends BaseModel implements Feedable
 
     public static function getFeedItems() : Collection
     {
-        return self::withUsername()->latest()->limit(10)->get();
+        return self::latest()->limit(10)->get();
     }
 }
