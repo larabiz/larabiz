@@ -2,12 +2,13 @@
 
 namespace App\Fathom;
 
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
 
 class Client
 {
     public function __construct(
+        protected Factory $http,
         protected string $apiToken,
         protected string $siteId,
     ) {
@@ -43,6 +44,6 @@ class Client
 
     protected function request() : PendingRequest
     {
-        return Http::withToken($this->apiToken);
+        return $this->http->withToken($this->apiToken);
     }
 }

@@ -5,13 +5,12 @@ namespace App\Providers;
 use App\Models\User;
 use App\Fathom\Client;
 use Illuminate\Support\Str;
+use Illuminate\Http\Client\Factory;
 use Spatie\Browsershot\Browsershot;
 use App\CommonMark\MarxdownConverter;
 use App\CommonMark\LightdownConverter;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Image;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind(Client::class, function (Application $app) {
             return new Client(
+                $app[Factory::class],
                 $app['config']->get('services.fathom.api_token'),
                 $app['config']->get('services.fathom.site_id'),
             );
@@ -34,23 +34,7 @@ class AppServiceProvider extends ServiceProvider
         Str::macro('lightdown', fn (string $s) => (string) (new LightdownConverter)->convert($s));
 
         Str::macro('marxdown', function (string $string) {
-            $html = (string) (new MarxdownConverter([
-                'default_attributes' => [
-                    Image::class => ['loading' => 'lazy'],
-                    Link::class => [
-                        'rel' => function (Link $node) {
-                            if (! str_contains($node->getUrl(), 'larabiz.fr') && ! Str::startsWith($node->getUrl(), '#')) {
-                                return 'nofollow noopener noreferrer';
-                            }
-                        },
-                        'target' => function (Link $node) {
-                            if (! str_contains($node->getUrl(), 'larabiz.fr') && ! Str::startsWith($node->getUrl(), '#')) {
-                                return '_blank';
-                            }
-                        },
-                    ],
-                ],
-            ]))->convert($string);
+            $html = (string) MarxdownConverter::make()->convert($string);
 
             return preg_replace_callback('/<h(\d)>(.*)<\/h\d>/', function ($matches) {
                 $cleanedUpStringForId = html_entity_decode(strip_tags($matches[2]));

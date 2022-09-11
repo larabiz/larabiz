@@ -16,7 +16,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     public function update($user, array $input) : void
     {
-        Validator::make($input, $this->updateRules($user, $input), $this->messages())->validateWithBag('updateProfileInformation');
+        Validator::make($input, $this->updateRules($user, $input), $this->messages())
+            ->validateWithBag('updateProfileInformation');
 
         if ($input['email'] !== $user->email && $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);
