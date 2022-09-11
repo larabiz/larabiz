@@ -110,12 +110,13 @@ class Post extends Model implements Feedable
                 $hierarchy = [];
 
                 for ($i = 0; $i < count($headings[0]); ++$i) {
+                    $title = html_entity_decode(strip_tags(Str::marxdown($headings[2][$i])));
                     $level = strlen($headings[1][$i]);
 
                     $hierarchy[] = [
-                        'title' => html_entity_decode(strip_tags(Str::marxdown($headings[2][$i]))),
+                        'id' => Str::slug($title),
+                        'title' => $title,
                         'level' => $level,
-                        'children' => [],
                     ];
                 }
 
