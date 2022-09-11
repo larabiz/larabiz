@@ -46,7 +46,7 @@ class ShowPostControllerTest extends TestCase
     {
         $master = User::factory()->master()->create();
 
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->forUser()->draft()->create();
 
         $this
             ->actingAs($master)

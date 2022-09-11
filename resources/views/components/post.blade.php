@@ -11,7 +11,7 @@
         <div class="flex flex-wrap gap-x-6 sm:gap-x-8 gap-y-3 mt-8 text-indigo-900/50 text-sm sm:text-base">
             <div class="flex items-center gap-2">
                 <x-heroicon-o-calendar class="h-5 translate-y-[-1.5px]" />
-                <strong class="text-indigo-900">{{ $post->latest_status_created_at?->isoFormat('ll') }}</strong>
+                <strong class="text-indigo-900">{{ $post->status()->created_at->isoFormat('ll') }}</strong>
             </div>
 
             <div class="flex items-center gap-2">

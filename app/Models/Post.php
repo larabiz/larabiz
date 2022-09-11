@@ -21,10 +21,6 @@ class Post extends BaseModel implements Feedable
 {
     use BelongsToUser, HasRandomId, HasStatuses, Searchable;
 
-    protected $casts = [
-        'latest_status_created_at' => 'datetime',
-    ];
-
     protected $withCount = ['comments'];
 
     public static function booted() : void
@@ -48,20 +44,6 @@ class Post extends BaseModel implements Feedable
                 ->addSelect([
                     'user_biography' => User::select('biography')
                         ->whereColumn('id', 'posts.user_id')
-                        ->limit(1),
-                ]);
-        });
-
-        static::addGlobalScope('status', function (Builder $query) {
-            $query
-                ->addSelect([
-                    'latest_status' => Status::select('name')
-                        ->whereColumn('id', 'statuses.model_id')
-                        ->limit(1),
-                ])
-                ->addSelect([
-                    'latest_status_created_at' => Status::select('created_at')
-                        ->whereColumn('id', 'statuses.model_id')
                         ->limit(1),
                 ]);
         });
@@ -137,7 +119,7 @@ class Post extends BaseModel implements Feedable
             'id' => $this->random_id,
             'title' => $this->title,
             'summary' => Str::marxdown($this->content),
-            'updated' => $this->latest_status_created_at,
+            'updated' => $this->status()->created_at,
             'link' => route('posts.show', [$this->random_id, $this->slug]),
             'authorName' => $this->username,
         ]);

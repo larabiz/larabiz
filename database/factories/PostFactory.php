@@ -260,4 +260,11 @@ MARKDOWN,
             $post->setStatus('published');
         });
     }
+
+    public function draft() : static
+    {
+        return $this->afterCreating(function (Post $post) {
+            $post->setStatus('draft');
+        });
+    }
 }

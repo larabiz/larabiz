@@ -8,7 +8,7 @@ use App\Models\User;
 
 class FeedTest extends TestCase
 {
-    public function test_all_feeds_work() : void
+    public function test_all_feeds_work_without_errors() : void
     {
         Post::factory(5)->forUser()->published()->create();
 

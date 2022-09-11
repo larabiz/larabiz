@@ -11,7 +11,7 @@
     <div class="container">
         <article class="py-8 sm:py-16">
             <h1 class="font-thin text-3xl sm:text-5xl">
-                @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon : @endif {{ $post->title }}
+                @if (! $post->status || 'draft' === $post->status) Brouillon : @endif {{ $post->title }}
             </h1>
 
             <div class="border-y border-indigo-100 flex items-center gap-4 mt-6 py-4 text-sm">
@@ -19,9 +19,9 @@
 
                 <div>
                     <p>
-                        @if (! $post->latest_status || 'draft' === $post->latest_status) Brouillon créé le @else Publié le @endif
-                        <time datetime="{{ $post->latest_status_created_at?->toDateString() }}" class="font-bold">
-                            {{ $post->latest_status_created_at?->isoFormat('ll') }}
+                        @if (! $post->status || 'draft' === $post->status) Brouillon créé le @else Publié le @endif
+                        <time datetime="{{ $post->status()->created_at->toDateString() }}" class="font-bold">
+                            {{ $post->status()->created_at->isoFormat('ll') }}
                         </time>
                         par <span class="font-bold">{{ $post->username }}</span>
                     </p>
@@ -67,13 +67,13 @@
     </div>
 
     @push('scripts')
-        @if ($post->latest_status === 'published')
+        @if ($post->status === 'published')
             <script type="application/ld+json">
                 {
                     "@context": "https://schema.org",
                     "@type": "NewsArticle",
                     "headline": "{{ $post->title }}",
-                    "datePublished": "{{ $post->latest_status_created_at->toIso8601String() }}",
+                    "datePublished": "{{ $post->status()->created_at->toIso8601String() }}",
                     "dateModified": "{{ $post->updated_at->toIso8601String() }}",
                     "author": [
                         {
