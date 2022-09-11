@@ -123,7 +123,7 @@ class Post extends BaseModel implements Feedable
     public function toSearchableArray() : array
     {
         return [
-            'username' => $this->user->username,
+            'username' => $this->username,
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
@@ -137,7 +137,7 @@ class Post extends BaseModel implements Feedable
             'id' => $this->random_id,
             'title' => $this->title,
             'summary' => Str::marxdown($this->content),
-            'updated' => $this->updated_at,
+            'updated' => $this->latest_status_created_at,
             'link' => route('posts.show', [$this->random_id, $this->slug]),
             'authorName' => $this->username,
         ]);
