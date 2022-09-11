@@ -11,24 +11,19 @@ use App\Models\Traits\HasRandomId;
 use Illuminate\Support\Collection;
 use Spatie\ModelStatus\HasStatuses;
 use App\Models\Traits\BelongsToUser;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model implements Feedable
+class Post extends BaseModel implements Feedable
 {
-    use BelongsToUser, HasFactory, HasRandomId, HasStatuses, Searchable, SoftDeletes;
+    use BelongsToUser, HasRandomId, HasStatuses, Searchable;
 
     protected $casts = [
         'latest_status_created_at' => 'datetime',
     ];
-
-    protected $guarded = [];
 
     protected $withCount = ['comments'];
 

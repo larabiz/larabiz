@@ -5,19 +5,14 @@ namespace App\Models;
 use Laravel\Scout\Searchable;
 use App\Models\Traits\HasRandomId;
 use App\Models\Traits\BelongsToUser;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Thread extends Model
+class Thread extends BaseModel
 {
-    use BelongsToUser, HasFactory, HasRandomId, Searchable, SoftDeletes;
+    use BelongsToUser, HasRandomId, Searchable;
 
     protected $casts = ['last_reply_created_at' => 'datetime'];
-
-    protected $guarded = [];
 
     protected $withCount = ['replies'];
 

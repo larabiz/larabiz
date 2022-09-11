@@ -3,21 +3,16 @@
 namespace App\Models;
 
 use App\Models\Traits\CachesCount;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Subscriber extends Model
+class Subscriber extends BaseModel
 {
-    use CachesCount, HasFactory, Notifiable, SoftDeletes;
+    use CachesCount, Notifiable;
 
     protected $casts = [
         'confirmed_at' => 'datetime',
     ];
-
-    protected $guarded = [];
 
     public function scopeConfirmed(Builder $query) : void
     {

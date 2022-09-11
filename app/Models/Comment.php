@@ -4,17 +4,12 @@ namespace App\Models;
 
 use App\Models\Traits\HasRandomId;
 use App\Models\Traits\BelongsToUser;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Comment extends Model
+class Comment extends BaseModel
 {
-    use BelongsToUser, HasFactory, HasRandomId, SoftDeletes;
-
-    protected $guarded = [];
+    use BelongsToUser, HasRandomId;
 
     public static function booted() : void
     {

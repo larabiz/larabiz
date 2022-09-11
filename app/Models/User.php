@@ -57,4 +57,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Reply::class);
     }
+
+    public function getMorphClass() : string
+    {
+        return static::class;
+    }
 }
