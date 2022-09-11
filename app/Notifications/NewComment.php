@@ -2,7 +2,6 @@
 
 namespace App\Notifications;
 
-use App\Models\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -12,7 +11,9 @@ class NewComment extends Notification
     use Queueable;
 
     public function __construct(
-        public Comment $comment
+        public string $postTitle,
+        public string $commentAuthorUsername,
+        public string $linkToComment
     ) {
     }
 
@@ -24,8 +25,8 @@ class NewComment extends Notification
     public function toArray() : array
     {
         return [
-            'actionUrl' => $this->actionUrl(),
-            'message' => "{$this->comment->user->username} a commenté l'article \"{$this->comment->post->title}\".",
+            'actionUrl' => $this->linkToComment,
+            'message' => "{$this->commentAuthorUsername} a commenté l'article \"{$this->postTitle}\".",
         ];
     }
 
@@ -34,12 +35,7 @@ class NewComment extends Notification
         return (new MailMessage)
             ->subject('Nouveau commentaire')
             ->greeting('Bip boop boop !')
-            ->line("Bonjour, humain. {$this->comment->user->username} a commenté l'article « {$this->comment->post->title} ».")
-            ->action('Voir le commentaire', $this->actionUrl());
-    }
-
-    public function actionUrl() : string
-    {
-        return route('posts.show', [$this->comment->post->random_id, $this->comment->post->slug]) . '#comments';
+            ->line("Bonjour, humain. {$this->commentAuthorUsername} a commenté l'article « {$this->postTitle} ».")
+            ->action('Voir le commentaire', $this->linkToComment);
     }
 }
