@@ -15,6 +15,8 @@ class ConfirmSubscriberControllerTest extends TestCase
     {
         Notification::fake();
 
+        $master = User::factory()->master()->create();
+
         $subscriber = Subscriber::factory()->create(['confirmed_at' => null]);
 
         $this
@@ -25,7 +27,7 @@ class ConfirmSubscriberControllerTest extends TestCase
 
         $this->assertNotNull($subscriber->fresh()->confirmed_at);
 
-        Notification::assertSentToTimes(User::master()->first(), NewSubscriber::class, 1);
+        Notification::assertSentToTimes($master, NewSubscriber::class, 1);
     }
 
     public function test_it_needs_a_signed_URL() : void

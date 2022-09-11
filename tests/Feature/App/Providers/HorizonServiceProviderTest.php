@@ -9,8 +9,10 @@ class HorizonServiceProviderTest extends TestCase
 {
     public function test_it_allows_some_emails() : void
     {
+        $master = User::factory()->master()->create();
+
         $this
-            ->actingAs(User::master()->first())
+            ->actingAs($master)
             ->getJson('/horizon')
             ->assertOk()
         ;

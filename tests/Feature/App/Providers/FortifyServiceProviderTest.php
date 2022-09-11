@@ -14,12 +14,13 @@ class FortifyServiceProviderTest extends TestCase
     {
         Notification::fake();
 
-        $user = User::factory()->unverified()->create();
+        $master = User::factory()->master()->create();
 
+        $user = User::factory()->unverified()->create();
         $user->markEmailAsVerified();
 
         event(new Verified($user));
 
-        Notification::assertSentToTimes(User::master()->first(), NewConfirmedUser::class, 1);
+        Notification::assertSentToTimes($master, NewConfirmedUser::class, 1);
     }
 }

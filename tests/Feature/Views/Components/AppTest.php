@@ -34,8 +34,10 @@ class AppTest extends TestCase
             ->assertSee('https://enlightenment.larabiz.fr/script.js')
         ;
 
+        $master = User::factory()->master()->create();
+
         $this
-            ->actingAs(User::master()->first())
+            ->actingAs($master)
             ->view('components.app', ['slot' => ''])
             ->assertDontSee('https://enlightenment.larabiz.fr/script.js')
         ;

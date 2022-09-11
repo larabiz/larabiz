@@ -14,10 +14,12 @@ class VerifiedListenerTest extends TestCase
     {
         Notification::fake();
 
+        $master = User::factory()->master()->create();
+
         $user = User::factory()->create();
 
         event(new Verified($user));
 
-        Notification::assertSentTo(User::master()->first(), NewConfirmedUser::class);
+        Notification::assertSentTo($master, NewConfirmedUser::class);
     }
 }

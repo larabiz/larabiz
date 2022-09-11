@@ -44,10 +44,12 @@ class ShowPostControllerTest extends TestCase
 
     public function test_it_shows_drafts_to_master() : void
     {
+        $master = User::factory()->master()->create();
+
         $post = Post::factory()->forUser()->create();
 
         $this
-            ->actingAs(User::master()->first())
+            ->actingAs($master)
             ->get(route('posts.show', [$post->random_id, $post->slug]))
             ->assertOk()
             ->assertSee('Brouillon')
