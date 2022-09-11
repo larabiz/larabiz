@@ -8,7 +8,10 @@ class LoginListener
 {
     public function handle(Login $event) : void
     {
-        $event->user->update([
+        /** @var \App\Models\User */
+        $user = $event->user;
+
+        $user->update([
             'last_login_at' => now(),
         ]);
     }
