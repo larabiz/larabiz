@@ -92,14 +92,15 @@
     @blur="focused = false"
     @focus="focused = true"
     @input="$el.style.height = '5px'; $el.style.height = `${$el.scrollHeight}px`"
-    @keydown.meta.b.prevent="bold"
-    @keydown.meta.i.prevent="italic"
-    @keydown.meta.u.prevent="underline"
-    @keydown.meta.s.prevent="strikethrough"
-    @keydown.meta.shift.period.prevent="blockquote"
-    @keydown.meta.e.prevent="code"
-    @keydown.meta.j.prevent="link"
-    @keydown.meta.7.prevent="list"
+    @resize.window="$el.style.height = '5px'; $el.style.height = `${$el.scrollHeight}px`"
+    @keydown.meta.b.prevent.stop="bold"
+    @keydown.meta.i.prevent.stop="italic"
+    @keydown.meta.u.prevent.stop="underline"
+    @keydown.meta.s.prevent.stop="strikethrough"
+    @keydown.meta.shift.period.prevent.stop="blockquote"
+    @keydown.meta.e.prevent.stop="code"
+    @keydown.meta.j.prevent.stop="link"
+    @keydown.meta.7.prevent.stop="list"
 >{{ $slot }}</textarea>
 
 <script>

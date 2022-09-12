@@ -78,7 +78,7 @@
                 <div class="bg-white/75 rounded shadow shadow-indigo-100 transition-colors" :class="{ 'bg-white': focused }">
                     <x-markdown />
 
-                    <div class="pb-4 px-4 text-right">
+                    <div class="pb-4 px-4">
                         <x-action-btn type="submit" class="shadow-md w-full">
                             Répondre
                         </x-action-btn>

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Posts\EditPostController;
 use App\Http\Controllers\Posts\ShowPostController;
 use App\Http\Controllers\Posts\ListPostsController;
+use App\Http\Controllers\Posts\UpdatePostController;
 use App\Http\Controllers\Replies\StoreReplyController;
 use App\Http\Controllers\Threads\ShowThreadController;
 use App\Http\Controllers\Threads\ListThreadsController;
@@ -31,6 +33,10 @@ Route::get('/blog', ListPostsController::class)->name('posts.index');
 Route::post('/blog/{post:random_id}/subscribe', SubscribeToPostController::class)->name('subscribe-to-post');
 Route::post('/blog/{post:random_id}/unsubscribe', UnsubscribeFromPostController::class)->name('unsubscribe-from-post');
 Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');
+
+// Posts management
+Route::get('/posts/{post}/edit', EditPostController::class)->name('posts.edit');
+Route::put('/posts/{post}', UpdatePostController::class)->name('posts.update');
 
 // Previews
 Route::get('/previews/posts/{randomId}', ShowPostPreviewController::class)->name('previews.post');
