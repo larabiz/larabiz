@@ -3,13 +3,11 @@
 namespace Tests\Feature\App\Console\Commands;
 
 use Tests\TestCase;
+use App\Models\Post;
 use App\Models\User;
-use Illuminate\Support\Facades\Http;
+use App\Models\Subscriber;
 use Illuminate\Support\Facades\Artisan;
 use App\Console\Commands\CountsFetchCommand;
-use App\Console\Commands\FathomFetchCommand;
-use App\Models\Post;
-use App\Models\Subscriber;
 
 class CountsFetchCommandTest extends TestCase
 {

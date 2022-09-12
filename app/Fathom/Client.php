@@ -2,6 +2,7 @@
 
 namespace App\Fathom;
 
+use Illuminate\Support\Collection;
 use Illuminate\Http\Client\Factory;
 use Illuminate\Http\Client\PendingRequest;
 
@@ -12,6 +13,20 @@ class Client
         protected string $apiToken,
         protected string $siteId,
     ) {
+    }
+
+    public function pageviewsCountForEachPage() : Collection
+    {
+        return $this
+            ->request()
+            ->get('https://api.usefathom.com/v1/aggregations', [
+                'aggregates' => 'pageviews',
+                'entity_id' => $this->siteId,
+                'field_grouping' => 'pathname',
+                'entity' => 'pageview',
+            ])
+            ->throw()
+            ->collect();
     }
 
     public function pageviewsCountFromLastThirtyDays() : int

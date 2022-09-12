@@ -2,11 +2,8 @@
 
 namespace App\Console;
 
-use App\Console\Commands\CountsFetchCommand;
-use App\Models\Post;
-use App\Models\User;
-use App\Models\Subscriber;
 use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\CountsFetchCommand;
 use App\Console\Commands\FathomFetchCommand;
 use App\Console\Commands\SitemapGenerateCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
