@@ -39,7 +39,7 @@ Route::get('/posts/{post}/edit', EditPostController::class)->name('posts.edit');
 Route::put('/posts/{post}', UpdatePostController::class)->name('posts.update');
 
 // Previews
-Route::get('/previews/posts/{randomId}', ShowPostPreviewController::class)->name('previews.post');
+Route::get('/previews/posts/{post:random_id}', ShowPostPreviewController::class)->name('previews.post');
 
 // Subscriptions
 Route::post('/blog/{post:random_id}/comments', StoreCommentController::class)->name('posts.comments.store');

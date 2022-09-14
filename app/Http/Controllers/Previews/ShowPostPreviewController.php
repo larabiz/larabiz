@@ -15,12 +15,8 @@ class ShowPostPreviewController extends Controller
         }
     }
 
-    public function __invoke(string $randomId) : View
+    public function __invoke(Post $post) : View
     {
-        $post = Post::withoutGlobalScope('published')
-            ->whereRandomId($randomId)
-            ->first();
-
         return view('previews.post', compact('post') + [
             'colors' => collect([
                 collect(['from-[#0f0c29]', 'via-[#302b63]', 'to-[#24243e]', 'text-blue-50']),
