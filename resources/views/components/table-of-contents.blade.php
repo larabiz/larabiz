@@ -4,8 +4,14 @@
     @if ($tableOfContents = $post->table_of_contents)
         <ol class="grid gap-4 mt-4">
             @foreach ($tableOfContents as $item)
-                <li class="flex items-center gap-3 ml-{{ $item['level'] - 1 * 4 }} text-indigo-900/75" @if ($loop->index > 5) x-show="open" @endif>
-                    <span class="bg-indigo-100/75 flex flex-shrink-0 items-center justify-center font-normal rounded-full text-xs w-6 h-6">{{ $loop->index + 1 }}</span>
+                <li
+                    class="flex items-center gap-3 ml-{{ $item['level'] - 1 * 4 }} text-indigo-900/75"
+                    style="margin-left: calc(1rem * {{ $item['level'] - 1 }})"
+                    @if ($loop->index > 5) x-show="open" @endif
+                >
+                    <span class="bg-indigo-100/75 flex flex-shrink-0 items-center justify-center font-normal rounded-full text-xs w-6 h-6">
+                        {{ $loop->index + 1 }}
+                    </span>
 
                     <a href="#{{ $item['id'] }}">
                         {{ $item['title'] }}
