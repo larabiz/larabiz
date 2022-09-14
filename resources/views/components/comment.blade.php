@@ -1,4 +1,4 @@
-<div class="bg-gradient-to-b from-white to-gray-50 px-4 py-6 sm:p-6 rounded-lg shadow shadow-indigo-100">
+<div id="comment-{{ $comment->id }}" class="bg-gradient-to-b from-white to-gray-50 px-4 py-6 sm:p-6 rounded-lg shadow shadow-indigo-100">
     {{-- Comment's header --}}
     <div class="flex items-center justify-between">
         {{-- Comment's author and date --}}
