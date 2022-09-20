@@ -30,6 +30,7 @@
                     placeholder="homer@simpson.com"
                     required
                     class="!mt-0"
+                    error-disabled="true"
                 />
             </p>
 
@@ -38,12 +39,8 @@
             </x-action-btn>
         </div>
 
-        <x-error name="email" />
+        <x-error name="email" class="!block text-center" />
     </x-form>
-
-    <p class="md:max-w-screen-sm mt-2 mx-auto text-center text-indigo-400 text-xs">
-        Pas de spam, c'est promis&nbsp;!
-    </p>
 
     {{ $slot }}
 </x-section>
