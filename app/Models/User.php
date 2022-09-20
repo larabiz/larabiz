@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\Traits\ManagesSubscriptions;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,6 +57,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function replies() : HasMany
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function name() : Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->username
+        );
     }
 
     public function getMorphClass() : string
