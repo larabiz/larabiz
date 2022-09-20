@@ -13,7 +13,7 @@ class SubscribeToPostControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $this->assertDatabaseCount(Subscription::class, 0);
 
@@ -35,7 +35,7 @@ class SubscribeToPostControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         Subscription::factory()->create([
             'user_id' => $user->id,

@@ -11,7 +11,7 @@ class ListThreadsControllerTest extends TestCase
 {
     public function test_it_works() : void
     {
-        Thread::factory(15)->forUser()->create();
+        Thread::factory(15)->create();
 
         $response = $this
             ->getJson(route('threads.index'))
@@ -28,7 +28,7 @@ class ListThreadsControllerTest extends TestCase
 
         Thread::factory(5)->for($user)->create();
 
-        Thread::factory(5)->forUser()->create();
+        Thread::factory(5)->create();
 
         $response = $this
             ->actingAs($user)
@@ -42,9 +42,9 @@ class ListThreadsControllerTest extends TestCase
 
     public function test_it_filters_threads_without_replies() : void
     {
-        Thread::factory(5)->forUser()->create();
+        Thread::factory(5)->create();
 
-        Thread::factory(5)->forUser()->has(Reply::factory()->forUser())->create();
+        Thread::factory(5)->hasReplies()->create();
 
         $response = $this
             ->getJson(route('threads.index', ['filter_by' => 'no_reply']))
@@ -57,13 +57,13 @@ class ListThreadsControllerTest extends TestCase
 
     public function test_it_filters_resolved_threads() : void
     {
-        $thread = Thread::factory()->forUser()->create();
+        $thread = Thread::factory()->create();
 
-        $reply = Reply::factory()->forUser()->for($thread)->create();
+        $reply = Reply::factory()->for($thread)->create();
 
         $thread->markAsResolved($reply);
 
-        Thread::factory()->forUser()->create();
+        Thread::factory()->create();
 
         $response = $this
             ->getJson(route('threads.index', ['filter_by' => 'resolved']))
@@ -76,9 +76,9 @@ class ListThreadsControllerTest extends TestCase
 
     public function test_it_filters_unresolved_threads() : void
     {
-        Thread::factory(5)->forUser()->create(['resolved_by' => 1]);
+        Thread::factory(5)->create(['resolved_by' => 1]);
 
-        Thread::factory(5)->forUser()->create();
+        Thread::factory(5)->create();
 
         $response = $this
             ->getJson(route('threads.index', ['filter_by' => 'unresolved']))

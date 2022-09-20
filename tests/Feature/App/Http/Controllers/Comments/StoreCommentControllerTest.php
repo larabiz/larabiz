@@ -18,7 +18,7 @@ class StoreCommentControllerTest extends TestCase
 
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $this
             ->from(route('home'))
@@ -48,7 +48,7 @@ class StoreCommentControllerTest extends TestCase
 
     public function test_it_disallows_guests_to_store_comments() : void
     {
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $this
             ->assertGuest()
@@ -63,7 +63,7 @@ class StoreCommentControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $subscription = $user->subscribeTo($post);
 

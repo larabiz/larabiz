@@ -12,7 +12,7 @@ class FathomFetchCommandTest extends TestCase
 {
     public function test_it_works() : void
     {
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         Http::fakeSequence()
             ->push([['pageviews' => 1234]])

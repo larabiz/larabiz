@@ -13,7 +13,7 @@ class UnsubscribeFromPostControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $subscription = Subscription::factory()->create([
             'user_id' => $user->id,
@@ -35,7 +35,7 @@ class UnsubscribeFromPostControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $this
             ->from(route('home'))

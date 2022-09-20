@@ -9,7 +9,7 @@ class ShowThreadController extends TestCase
 {
     public function test_it_shows_threads() : void
     {
-        $thread = Thread::factory()->forUser()->create();
+        $thread = Thread::factory()->create();
 
         $this
             ->getJson(route('threads.show', $thread))

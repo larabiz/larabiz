@@ -16,12 +16,12 @@ class CommentedListenerTest extends TestCase
     {
         Notification::fake();
 
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         // Create users who will be notified about new comments.
         $users = User::factory(10)->create()->each->subscribeTo($post);
 
-        $comment = Comment::factory()->forUser()->for($post)->create();
+        $comment = Comment::factory()->for($post)->create();
 
         event(new Commented($comment));
 

@@ -9,7 +9,7 @@ class ShowPostPreviewControllerTest extends TestCase
 {
     public function test_it_shows_a_post_preview() : void
     {
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $this
             ->getJson(route('previews.post', $post->random_id))

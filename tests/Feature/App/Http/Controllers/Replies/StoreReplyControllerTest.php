@@ -13,7 +13,7 @@ class StoreReplyControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $thread = Thread::factory()->forUser()->create();
+        $thread = Thread::factory()->create();
 
         $this->assertDatabaseCount(Reply::class, 0);
 
@@ -35,7 +35,7 @@ class StoreReplyControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $thread = Thread::factory()->forUser()->create();
+        $thread = Thread::factory()->create();
 
         $this
             ->actingAs($user)
@@ -48,7 +48,7 @@ class StoreReplyControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $thread = Thread::factory()->forUser()->create();
+        $thread = Thread::factory()->create();
 
         $this
             ->actingAs($user)

@@ -11,7 +11,7 @@ class ShowPostControllerTest extends TestCase
 {
     public function test_it_shows_a_given_post() : void
     {
-        $shown = Post::factory()->forUser()->published()->create();
+        $shown = Post::factory()->published()->create();
 
         $this
             ->get(route('posts.show', [$shown->random_id, $shown->slug]))
@@ -22,7 +22,7 @@ class ShowPostControllerTest extends TestCase
 
     public function test_it_shows_other_posts_to_read() : void
     {
-        Post::factory(10)->forUser()->published()->create();
+        Post::factory(10)->published()->create();
 
         $post = Post::inRandomOrder()->first();
 
@@ -46,7 +46,7 @@ class ShowPostControllerTest extends TestCase
     {
         $master = User::factory()->master()->create();
 
-        $post = Post::factory()->forUser()->draft()->create();
+        $post = Post::factory()->draft()->create();
 
         $this
             ->actingAs($master)
@@ -58,7 +58,7 @@ class ShowPostControllerTest extends TestCase
 
     public function test_it_does_not_show_drafts_to_guests() : void
     {
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->create();
 
         $this
             ->assertGuest()
@@ -69,7 +69,7 @@ class ShowPostControllerTest extends TestCase
 
     public function test_it_does_not_show_drafts_to_users() : void
     {
-        $post = Post::factory()->forUser()->create();
+        $post = Post::factory()->create();
 
         $this
             ->actingAs(User::factory()->create())
@@ -80,7 +80,7 @@ class ShowPostControllerTest extends TestCase
 
     public function test_it_redirects_when_slug_is_wrong() : void
     {
-        $post = Post::factory()->forUser()->published()->create();
+        $post = Post::factory()->published()->create();
 
         $this
             ->get(route('posts.show', [$post->random_id, 'foo']))

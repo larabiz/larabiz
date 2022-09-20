@@ -16,7 +16,7 @@ class UpdateUserProfileInformationTest extends TestCase
             'username' => fake()->name(),
             'github' => 'https://github.com/' . fake()->userName(),
             'linkedin' => 'https://www.linkedin.com/in/' . fake()->name(),
-            'biography' => fake()->paragraph(),
+            'biography' => fake()->sentence(),
             'email' => fake()->safeEmail(),
         ]);
 

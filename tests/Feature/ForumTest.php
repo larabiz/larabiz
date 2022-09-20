@@ -11,7 +11,7 @@ class ForumTest extends TestCase
 {
     public function test_forum_routes_are_disabled_in_production() : void
     {
-        $thread = Thread::factory()->forUser()->create();
+        $thread = Thread::factory()->create();
 
         app()['env'] = 'production';
 
