@@ -6,6 +6,7 @@ use App\Models\Traits\CachesCount;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Traits\ManagesSubscriptions;
+use Filament\Models\Contracts\FilamentUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use CachesCount, HasFactory, ManagesSubscriptions, Notifiable, SoftDeletes;
 
@@ -61,13 +62,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function name() : Attribute
     {
-        return Attribute::make(
-            get: fn () => $this->username
-        );
+        return Attribute::make(fn () => $this->username);
     }
 
     public function getMorphClass() : string
     {
         return static::class;
+    }
+
+    public function canAccessFilament() : bool
+    {
+        return $this->email === config('app.master_email');
     }
 }
