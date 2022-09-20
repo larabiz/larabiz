@@ -1,7 +1,7 @@
 @php
 $title = $q
     ? "Articles correspondant à \"$q\""
-    : 'Tout sur Laravel et son ecosystème avec Larabiz';
+    : 'Tout sur PHP, Laravel et son ecosystème';
 @endphp
 <x-app title="{{ $title }}">
     <x-breadcrumb class="container mt-8 sm:mt-16">
@@ -9,6 +9,10 @@ $title = $q
     </x-breadcrumb>
 
     <x-section class="container">
+        <x-slot:title>
+            Tout sur PHP, Laravel et son ecosystème
+        </x-slot:title>
+
         <x-form method="GET" :action="route('posts.index')">
             <label for="q" class="sr-only">Rechercher</label>
             <x-search-field :value="$q" />
