@@ -1,7 +1,7 @@
 @php
 $title = $q
     ? "Articles correspondant à \"$q\""
-    : 'Blog';
+    : 'Tout sur Laravel et son ecosystème avec Larabiz';
 @endphp
 <x-app title="{{ $title }}">
     <x-breadcrumb class="container mt-8 sm:mt-16">
