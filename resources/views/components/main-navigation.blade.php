@@ -91,6 +91,8 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
+                        <x-honeypot />
+
                         <button
                             type="submit"
                             class="hover:bg-red-400 flex items-center gap-2 font-semibold px-4 py-2 text-left text-red-400 hover:text-white transition-colors w-full"

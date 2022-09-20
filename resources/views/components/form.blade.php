@@ -7,5 +7,7 @@
         @method($method)
     @endif
 
+    <x-honeypot />
+
     {{ $slot }}
 </form>
