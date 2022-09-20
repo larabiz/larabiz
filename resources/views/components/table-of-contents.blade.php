@@ -13,7 +13,7 @@
                         {{ $loop->index + 1 }}
                     </span>
 
-                    <a href="#{{ $item['id'] }}">
+                    <a href="#{{ $item['id'] }}" @click="window.fathom?.trackGoal('V9WUVWRI', 0)">
                         {{ $item['title'] }}
                     </a>
                 </li>
@@ -21,7 +21,7 @@
         </ol>
 
         @if (count($tableOfContents) > 6)
-            <button class="flex items-center gap-2 font-normal mt-4 text-sm" @click="open = ! open">
+            <button class="flex items-center gap-2 font-normal mt-4 text-sm" @click="open = ! open; window.fathom?.trackGoal('HY42RWS8', 0)">
                 <span x-show="! open">Il y en a encore plus</span>
                 <span x-show="open">Cacher</span>
                 <x-heroicon-o-chevron-down class="w-3 h-3" x-show="! open" />
