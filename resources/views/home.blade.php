@@ -100,7 +100,8 @@
 
             <div class="mt-10 text-center">
                 <x-action-btn href="https://twitter.com/i/events/1563989004944547846" target="_blank" rel="nofollow noopener noreferrer" class="inline-flex items-center gap-2">
-                    <x-heroicon-o-play class="-ml-2 h-6 translate-y-[-.5px]" />
+                    <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="-ml-2 w-6 h-6 translate-y-[-.5px]"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" /></svg>
+
                     Écouter les précédents lives
                 </x-action-btn>
             </div>
@@ -149,7 +150,10 @@
 
         <div class="mt-8 text-center">
             <a href="https://larabiz.fr/blog/BKMN8C/quel-avenir-pour-larabiz" class="border border-indigo-100 flex sm:inline-flex items-center justify-center gap-2 font-semibold px-4 py-3 rounded text-indigo-400 text-sm sm:text-base">
-                <x-heroicon-o-information-circle class="h-4 translate-y-[-0.5px]" />
+                <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 translate-y-[-0.5px]">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                  </svg>
+
                 Découvrez comment et pourquoi contribuer.
             </a>
         </div>
