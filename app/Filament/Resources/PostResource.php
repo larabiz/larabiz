@@ -4,14 +4,12 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use App\Models\Post;
-use App\Models\User;
 use Filament\Tables;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PostResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PostResource extends Resource
 {
@@ -27,11 +25,6 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('user_id')
-                    ->label('User')
-                    ->options(User::all()->pluck('username', 'id'))
-                    ->searchable()
-                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->label('Title')
                     ->required()
@@ -48,6 +41,12 @@ class PostResource extends Resource
                     ->label('Content')
                     ->required()
                     ->maxLength(65535),
+                Forms\Components\Select::make('status')
+                    ->options([
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                    ])
+                    ->required(),
             ])
             ->columns(1);
     }
@@ -59,16 +58,17 @@ class PostResource extends Resource
                 Tables\Columns\ImageColumn::make('preview')
                     ->extraImgAttributes(['loading' => 'lazy']),
                 Tables\Columns\TextColumn::make('user.username'),
-                Tables\Columns\TextColumn::make('random_id'),
+                Tables\Columns\TextColumn::make('random_id')
+                    ->label('Random ID'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('slug'),
                 Tables\Columns\TextColumn::make('views'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->label('Created At'),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                    ->dateTime()
+                    ->label('Updated At'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
@@ -101,9 +101,6 @@ class PostResource extends Resource
 
     public static function getEloquentQuery() : Builder
     {
-        return parent::getEloquentQuery()
-            ->withoutGlobalScopes([
-                SoftDeletingScope::class,
-            ]);
+        return parent::getEloquentQuery()->withoutGlobalScopes();
     }
 }
