@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
 use Filament\Resources\Form;
@@ -25,16 +26,47 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-            ]);
+                Forms\Components\TextInput::make('username')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->unique(ignorable: auth()->user())
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('password')
+                    ->password()
+                    ->nullable(),
+                Forms\Components\TextInput::make('password_confirmation')
+                    ->password()
+                    ->nullable()
+                    ->dehydrated(false),
+                Forms\Components\TextInput::make('linkedin')
+                    ->url()
+                    ->required()
+                    ->maxLength(255)
+                    ->label('LinkedIn'),
+                Forms\Components\TextInput::make('github')
+                    ->url()
+                    ->required()
+                    ->maxLength(255)
+                    ->label('GitHub'),
+                Forms\Components\MarkdownEditor::make('biography')
+                    ->required(),
+            ])
+            ->columns(1);
     }
 
     public static function table(Table $table) : Table
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('avatar')
-                    ->rounded()
-                    ->extraImgAttributes(['loading' => 'lazy']),
+                Tables\Columns\TextColumn::make('id')
+                    ->sortable()
+                    ->label('ID'),
+                Tables\Columns\ImageColumn::make('avatar_url')
+                    ->label('Gravatar')
+                    ->rounded(),
                 Tables\Columns\TextColumn::make('username'),
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('email_verified_at')

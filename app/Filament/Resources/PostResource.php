@@ -41,12 +41,6 @@ class PostResource extends Resource
                     ->label('Content')
                     ->required()
                     ->maxLength(65535),
-                Forms\Components\Select::make('status')
-                    ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Published',
-                    ])
-                    ->required(),
             ])
             ->columns(1);
     }
@@ -55,19 +49,23 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('preview')
-                    ->extraImgAttributes(['loading' => 'lazy']),
+                Tables\Columns\TextColumn::make('id')
+                    ->sortable()
+                    ->label('ID'),
                 Tables\Columns\TextColumn::make('user.username'),
                 Tables\Columns\TextColumn::make('random_id')
                     ->label('Random ID'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\TextColumn::make('views'),
+                Tables\Columns\TextColumn::make('views')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
+                    ->sortable()
                     ->label('Created At'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
+                    ->sortable()
                     ->label('Updated At'),
             ])
             ->filters([
@@ -86,7 +84,7 @@ class PostResource extends Resource
     public static function getRelations() : array
     {
         return [
-            //
+            StatusResource\RelationManagers\StatusesRelationManager::class,
         ];
     }
 
@@ -101,6 +99,6 @@ class PostResource extends Resource
 
     public static function getEloquentQuery() : Builder
     {
-        return parent::getEloquentQuery()->withoutGlobalScopes();
+        return parent::getEloquentQuery()->withoutGlobalScopes()->latest();
     }
 }
