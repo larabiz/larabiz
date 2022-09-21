@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Thread;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Requests\StoreReplyRequest;
 
 class StoreReplyController extends Controller
@@ -17,6 +18,8 @@ class StoreReplyController extends Controller
         if (app()->isProduction()) {
             $this->middleware('master');
         }
+
+        $this->middleware(ProtectAgainstSpam::class);
     }
 
     public function __invoke(StoreReplyRequest $request, User $user, Thread $thread) : RedirectResponse

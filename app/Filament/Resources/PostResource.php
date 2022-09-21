@@ -58,7 +58,7 @@ class PostResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('preview')
                     ->extraImgAttributes(['loading' => 'lazy']),
-                Tables\Columns\TextColumn::make('user_id'),
+                Tables\Columns\TextColumn::make('user.username'),
                 Tables\Columns\TextColumn::make('random_id'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('slug'),

@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Events\Commented;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Requests\StoreCommentRequest;
 
 class StoreCommentController extends Controller
@@ -13,6 +14,8 @@ class StoreCommentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        $this->middleware(ProtectAgainstSpam::class);
     }
 
     public function __invoke(StoreCommentRequest $request, Post $post) : RedirectResponse

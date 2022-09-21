@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Threads;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Spatie\Honeypot\ProtectAgainstSpam;
 use App\Http\Requests\StoreThreadRequest;
 
 class StoreThreadController extends Controller
@@ -16,6 +17,8 @@ class StoreThreadController extends Controller
         if (app()->isProduction()) {
             $this->middleware('master');
         }
+
+        $this->middleware(ProtectAgainstSpam::class);
     }
 
     public function __invoke(StoreThreadRequest $request, User $user) : RedirectResponse
