@@ -70,6 +70,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return static::class;
     }
 
+    public function getFilamentName() : string
+    {
+        return $this->username;
+    }
+
     public function canAccessFilament() : bool
     {
         return $this->email === config('app.master_email');
