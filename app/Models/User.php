@@ -65,6 +65,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return Attribute::make(fn () => $this->username);
     }
 
+    public function avatar() : Attribute
+    {
+        return Attribute::make(fn () => 'https://www.gravatar.com/avatar/' . md5($this->email));
+    }
+
     public function getMorphClass() : string
     {
         return static::class;
