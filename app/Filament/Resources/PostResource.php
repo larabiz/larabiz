@@ -52,11 +52,9 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('id')
                     ->sortable()
                     ->label('ID'),
-                Tables\Columns\TextColumn::make('user.username'),
-                Tables\Columns\TextColumn::make('random_id')
-                    ->label('Random ID'),
+                Tables\Columns\TextColumn::make('user.username')
+                    ->label('Author'),
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('slug'),
                 Tables\Columns\TextColumn::make('views')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -69,6 +67,12 @@ class PostResource extends Resource
                     ->label('Updated At'),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('statuses.name')
+                    ->options([
+                        'draft' => 'Draft',
+                        'published' => 'Published',
+                    ])
+                    ->label('Status'),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
