@@ -1,16 +1,17 @@
 @php
 $title = $q
     ? "Articles correspondant à \"$q\""
-    : 'Tout sur PHP, Laravel et son ecosystème';
+    : 'Tout sur PHP, Laravel & son ecosystème sur le blog de Larabiz';
 @endphp
-<x-app title="{{ $title }}">
+
+<x-app :title="$title">
     <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item>Blog</x-breadcrumb-item>
     </x-breadcrumb>
 
     <x-section class="container">
         <x-slot:title>
-            Tout sur PHP, Laravel et son ecosystème
+            Tout sur PHP, Laravel & son ecosystème sur le blog de Larabiz
         </x-slot:title>
 
         <x-form method="GET" :action="route('posts.index')">
