@@ -41,8 +41,8 @@
                 @endforeach
             </div>
 
-            <x-primary-btn href="{{ route('posts.index') }}" class="mt-16 mx-auto table" @click="window.fathom?.trackGoal('QEMXBB9C', 0)">
-                La suite sur le blog
+            <x-primary-btn href="{{ route('posts.index') }}" class="mt-8 sm:mt-16 mx-auto table text-center" @click="window.fathom?.trackGoal('QEMXBB9C', 0)">
+                Progressez en PHP et Laravel grâce au blog
             </x-primary-btn>
         </x-section>
     </div>
