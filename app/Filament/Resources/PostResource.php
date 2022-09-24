@@ -25,6 +25,11 @@ class PostResource extends Resource
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('user_id')
+                    ->default(1)
+                    ->relationship('user', 'username')
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('title')
                     ->label('Title')
                     ->required()
