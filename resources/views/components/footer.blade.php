@@ -29,22 +29,6 @@
             </ul>
         </div>
 
-        <div class="text-center">
-            <p class="font-bold mt-8 text-gray-300">Retrouvez le reste de la communauté</p>
-
-            <ul class="flex flex-wrap items-center justify-center gap-2 mt-2">
-                <li><a href="https://www.youtube.com/channel/UCEvgUSS6r70F0cFcYkJ5MpQ" class="hover:text-white transition-colors">HappyToDev</a></li>
-                <li class="text-xs">•</li>
-                <li><a href="https://laravel.cm" class="hover:text-white transition-colors">Laravel Cameroun</a></li>
-                <li class="text-xs">•</li>
-                <li><a href="https://laravel-france.com" class="hover:text-white transition-colors">Laravel France</a></li>
-                <li class="text-xs">•</li>
-                <li><a href="https://nordcoders.fr" class="hover:text-white transition-colors">NordCoders</a></li>
-                <li class="text-xs">•</li>
-                <li><a href="https://www.tutomarks.fr" class="hover:text-white transition-colors">Tutomarks</a></li>
-            </ul>
-        </div>
-
         <p class="border-t border-gray-800 mt-8 pt-8 text-center">
             Site hébergé sur <a href="https://m.do.co/c/58bbdf89fc72" target="_blank" rel="nofollow noopener" class="text-gray-200 hover:text-white transition-colors">DigitalOcean</a>. Télémétrie par <a href="https://usefathom.com/ref/JTPOCN" target="_blank" rel="nofollow noopener" class="text-gray-200 hover:text-white transition-colors">Fathom&nbsp;Analytics</a>.
         </p>
