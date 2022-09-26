@@ -29,7 +29,7 @@
             </ul>
         </div>
 
-        <p class="border-t border-gray-800 mt-8 pt-8 text-center">
+        <p class="mt-8 text-center">
             Site hébergé sur <a href="https://m.do.co/c/58bbdf89fc72" target="_blank" rel="nofollow noopener" class="text-gray-200 hover:text-white transition-colors">DigitalOcean</a>. Télémétrie par <a href="https://usefathom.com/ref/JTPOCN" target="_blank" rel="nofollow noopener" class="text-gray-200 hover:text-white transition-colors">Fathom&nbsp;Analytics</a>.
         </p>
     </footer>
