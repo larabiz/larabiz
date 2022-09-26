@@ -1,16 +1,10 @@
 <a href="{{ route('posts.show', [$post->random_id, $post->slug]) }}" {{ $attributes->merge(['class' => 'bg-gradient-to-b from-white/50 to-white/30 flex items-center justify-between gap-4 sm:gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-lg shadow-indigo-200/50']) }}>
     <div>
-        <div class="font-bold leading-tight mb-3 text-indigo-900 text-lg sm:text-xl">
+        <div class="font-bold leading-tight text-indigo-900 text-lg sm:text-xl">
             {{ $post->title }}
         </div>
 
-        @if (empty($hideExcerpt))
-            <div class="-mt-1 line-clamp-3 sm:line-clamp-none mb-8 text-indigo-700/50">
-                {{ $post->excerpt }}
-            </div>
-        @endif
-
-        <div class="flex flex-wrap gap-x-6 sm:gap-x-8 gap-y-3 text-indigo-900/50 text-sm sm:text-base">
+        <div class="flex flex-wrap gap-x-6 sm:gap-x-8 gap-y-3 mt-4 text-indigo-900/50 text-sm sm:text-base">
             <div class="flex items-center gap-2">
                 <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 translate-y-[-1.5px]"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" /></svg>
 

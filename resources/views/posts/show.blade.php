@@ -162,7 +162,7 @@
 
         <div class="grid gap-8 mt-8">
             @foreach ($others as $post)
-                <x-post :post="$post" :hide-excerpt="true" />
+                <x-post :post="$post" />
             @endforeach
         </div>
     </x-section>

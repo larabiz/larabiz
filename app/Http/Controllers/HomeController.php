@@ -17,7 +17,7 @@ class HomeController extends Controller
         return view('home')->with([
             'latest' => Post::query()
                 ->latest()
-                ->limit(4)
+                ->limit(6)
                 ->get(),
             'pageviews' => $formatter->format(cache()->get('pageviews')),
             'visits' => $formatter->format(cache()->get('visits')),
