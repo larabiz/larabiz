@@ -2,8 +2,8 @@
 
 namespace App\Models\Traits;
 
-use App\Models\Post;
 use App\Models\Subscription;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait ManagesSubscriptions
@@ -13,28 +13,28 @@ trait ManagesSubscriptions
         return $this->hasMany(Subscription::class);
     }
 
-    public function subscribeTo(Post $post)
+    public function subscribeTo(Model $model)
     {
         return $this->subscriptions()->firstOrCreate([
-            'subscribable_type' => $post->getMorphClass(),
-            'subscribable_id' => $post->id,
+            'subscribable_type' => $model->getMorphClass(),
+            'subscribable_id' => $model->id,
         ]);
     }
 
-    public function subscribedTo(Post $post) : bool
+    public function subscribedTo(Model $model) : bool
     {
         return $this->subscriptions()->where([
             ['user_id', $this->id],
-            ['subscribable_type', $post->getMorphClass()],
-            ['subscribable_id', $post->id],
+            ['subscribable_type', $model->getMorphClass()],
+            ['subscribable_id', $model->id],
         ])->exists();
     }
 
-    public function unsubscribeFrom(Post $post) : mixed
+    public function unsubscribeFrom(Model $model) : mixed
     {
         return $this->subscriptions()->where([
-            ['subscribable_type', $post->getMorphClass()],
-            ['subscribable_id', $post->id],
+            ['subscribable_type', $model->getMorphClass()],
+            ['subscribable_id', $model->id],
         ])->delete();
     }
 }

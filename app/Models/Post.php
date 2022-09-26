@@ -6,7 +6,6 @@ use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Illuminate\Support\Str;
 use Laravel\Scout\Searchable;
-use Spatie\ModelStatus\Status;
 use App\Models\Traits\HasRandomId;
 use Illuminate\Support\Collection;
 use Spatie\ModelStatus\HasStatuses;
