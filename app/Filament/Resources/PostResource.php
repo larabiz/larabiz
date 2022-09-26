@@ -10,6 +10,7 @@ use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\PostResource\Pages;
+use Filament\Forms\Components\SpatieTagsInput;
 
 class PostResource extends Resource
 {
@@ -38,6 +39,9 @@ class PostResource extends Resource
                     ->label('Slug')
                     ->required()
                     ->maxLength(255),
+                SpatieTagsInput::make('tags')
+                    ->type('categories')
+                    ->label('Categories'),
                 Forms\Components\Textarea::make('excerpt')
                     ->label('Excerpt')
                     ->required()

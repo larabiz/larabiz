@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Spatie\Tags\HasTags;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
 use Illuminate\Support\Str;
@@ -18,7 +19,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Post extends BaseModel implements Feedable
 {
-    use BelongsToUser, HasRandomId, HasStatuses, Searchable;
+    use BelongsToUser, HasRandomId, HasStatuses, HasTags, Searchable;
 
     protected $with = ['statuses'];
 
