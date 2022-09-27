@@ -24,20 +24,23 @@ Route::get('/', HomeController::class)->name('home');
 
 // Subscribers
 Route::post('/subscribers', StoreSubscriberController::class)->name('subscribers.store');
-Route::get('/confirm-subscriber/{subscriber:email}', ConfirmSubscriberController::class)->name('confirm-subscriber');
+Route::get('/confirm-subscriber/{subscriber:email}', ConfirmSubscriberController::class)
+    ->name('confirm-subscriber');
 
 // Blog
 Route::get('/blog', ListPostsController::class)->name('posts.index');
-Route::post('/blog/{post:random_id}/subscribe', SubscribeToPostController::class)->name('subscribe-to-post');
-Route::post('/blog/{post:random_id}/unsubscribe', UnsubscribeFromPostController::class)->name('unsubscribe-from-post');
 Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');
+
+// Comments
+Route::post('/blog/{post:random_id}/comments', StoreCommentController::class)->name('posts.comments.store');
+Route::delete('/comments/{comment:random_id}', DestroyCommentController::class)->name('comments.destroy');
 
 // Previews
 Route::get('/previews/posts/{post:random_id}', ShowPostPreviewController::class)->name('previews.post');
 
 // Subscriptions
-Route::post('/blog/{post:random_id}/comments', StoreCommentController::class)->name('posts.comments.store');
-Route::delete('/comments/{comment:random_id}', DestroyCommentController::class)->name('comments.destroy');
+Route::post('/blog/{post:random_id}/subscribe', SubscribeToPostController::class)->name('subscribe-to-post');
+Route::post('/blog/{post:random_id}/unsubscribe', UnsubscribeFromPostController::class)->name('unsubscribe-from-post');
 
 // User
 Route::get('/user/profile', EditUserProfileController::class)->name('user-profile');
