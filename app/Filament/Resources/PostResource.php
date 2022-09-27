@@ -9,6 +9,7 @@ use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\SpatieTagsColumn;
 use App\Filament\Resources\PostResource\Pages;
 use Filament\Forms\Components\SpatieTagsInput;
 
@@ -40,7 +41,7 @@ class PostResource extends Resource
                     ->required()
                     ->maxLength(255),
                 SpatieTagsInput::make('tags')
-                    ->type('categories')
+                    ->type('category')
                     ->label('Categories'),
                 Forms\Components\Textarea::make('excerpt')
                     ->label('Excerpt')
@@ -63,6 +64,9 @@ class PostResource extends Resource
                     ->label('ID'),
                 Tables\Columns\TextColumn::make('user.username')
                     ->label('Author'),
+                SpatieTagsColumn::make('tags')
+                    ->type('category')
+                    ->label('Catégories'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('views')
                     ->sortable(),
@@ -76,12 +80,9 @@ class PostResource extends Resource
                     ->label('Updated At'),
             ])
             ->filters([
-                Tables\Filters\SelectFilter::make('statuses.name')
-                    ->options([
-                        'draft' => 'Draft',
-                        'published' => 'Published',
-                    ])
-                    ->label('Status'),
+                Tables\Filters\SelectFilter::make('tags')
+                    ->relationship('tags', 'name')
+                    ->label('Category'),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
