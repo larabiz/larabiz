@@ -92,14 +92,10 @@ class PostResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkAction::make('updateCategories')
-                    ->action(function (Collection $records, array $data) {
-                        $records->each->attachTags($data['tags'], 'category');
-                    })
+                    ->action( fn ($r, $d) => $r->each->attachTags($d['tags'], 'category') )
                     ->form([
                         Forms\Components\TagsInput::make('tags')
-                            ->suggestions(function () {
-                                return Tag::getWithType('category')->pluck('name', 'id');
-                            })
+                            ->suggestions(fn () => Tag::getWithType('category')->pluck('name', 'id'))
                             ->label('Categories'),
                     ])
                     ->label('Categories'),
