@@ -5,9 +5,11 @@ namespace App\Filament\Resources;
 use Filament\Forms;
 use App\Models\Post;
 use Filament\Tables;
+use Spatie\Tags\Tag;
 use Filament\Resources\Form;
 use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\SpatieTagsColumn;
 use App\Filament\Resources\PostResource\Pages;
@@ -66,7 +68,7 @@ class PostResource extends Resource
                     ->label('Author'),
                 SpatieTagsColumn::make('tags')
                     ->type('category')
-                    ->label('Catégories'),
+                    ->label('Categories'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('views')
                     ->sortable(),
@@ -89,6 +91,18 @@ class PostResource extends Resource
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
+                Tables\Actions\BulkAction::make('updateCategories')
+                    ->action(function (Collection $records, array $data) {
+                        $records->each->attachTags($data['tags'], 'category');
+                    })
+                    ->form([
+                        Forms\Components\TagsInput::make('tags')
+                            ->suggestions(function () {
+                                return Tag::getWithType('category')->pluck('name', 'id');
+                            })
+                            ->label('Categories'),
+                    ])
+                    ->label('Categories'),
                 Tables\Actions\DeleteBulkAction::make(),
                 Tables\Actions\RestoreBulkAction::make(),
                 Tables\Actions\ForceDeleteBulkAction::make(),
