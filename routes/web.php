@@ -55,5 +55,5 @@ Route::post('/forum/{thread:random_id}/replies', StoreReplyController::class)->n
 
 Route::feeds();
 
-Route::redirect('/blog/{randomId}/{slug?}', '/{slug}');
+Route::redirect('/blog/{randomId}/{slug?}', '/{slug}', 301);
 Route::get('/{post:slug}', ShowPostController::class)->name('posts.show');
