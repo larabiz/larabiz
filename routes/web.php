@@ -29,7 +29,6 @@ Route::get('/confirm-subscriber/{subscriber:email}', ConfirmSubscriberController
 
 // Blog
 Route::get('/blog', ListPostsController::class)->name('posts.index');
-Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');
 
 // Comments
 Route::post('/blog/{post:random_id}/comments', StoreCommentController::class)->name('posts.comments.store');
@@ -55,3 +54,6 @@ Route::get('/forum/{randomId}/{slug}', ShowThreadController::class)->name('threa
 Route::post('/forum/{thread:random_id}/replies', StoreReplyController::class)->name('threads.replies.store');
 
 Route::feeds();
+
+Route::redirect('/blog/{randomId}/{slug?}', '/{slug}');
+Route::get('/{post:slug}', ShowPostController::class)->name('posts.show');

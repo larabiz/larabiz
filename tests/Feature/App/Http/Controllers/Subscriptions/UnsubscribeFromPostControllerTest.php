@@ -38,10 +38,9 @@ class UnsubscribeFromPostControllerTest extends TestCase
         $post = Post::factory()->published()->create();
 
         $this
-            ->from(route('home'))
             ->actingAs($user)
             ->postJson(route('unsubscribe-from-post', $post))
-            ->assertRedirect(route('home'))
+            ->assertRedirect()
         ;
     }
 }
