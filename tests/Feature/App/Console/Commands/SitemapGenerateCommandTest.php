@@ -22,11 +22,11 @@ class SitemapGenerateCommandTest extends TestCase
 
         $this->assertStringContainsString(route('posts.index'), $content);
 
-        Post::latest()->cursor()->each(function (Post $post) use ($content) {
-            $this->assertStringContainsString(route('posts.show', [$post->random_id, $post->slug]), $content);
+        Post::latest()->each(function (Post $post) use ($content) {
+            $this->assertStringContainsString(route('posts.show', $post), $content);
         });
 
-        Thread::latest()->cursor()->each(function (Thread $thread) use ($content) {
+        Thread::latest()->each(function (Thread $thread) use ($content) {
             $this->assertStringContainsString(route('threads.show', [$thread->random_id, $thread->slug]), $content);
         });
     }

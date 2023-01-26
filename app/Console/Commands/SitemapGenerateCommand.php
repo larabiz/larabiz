@@ -22,7 +22,7 @@ class SitemapGenerateCommand extends Command
         $sitemap->add(route('posts.index'));
 
         Post::latest()->cursor()->each(function (Post $post) use ($sitemap) {
-            $sitemap->add(route('posts.show', [$post->random_id, $post->slug]));
+            $sitemap->add(route('posts.show', $post));
         });
 
         Thread::latest()->cursor()->each(function (Thread $thread) use ($sitemap) {
