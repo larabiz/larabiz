@@ -19,7 +19,7 @@ class CommentedListener
                     new NewComment(
                         postTitle: $event->comment->post->title,
                         commentAuthorUsername: $event->comment->user->username,
-                        linkToComment: route('posts.show', [$event->comment->post->random_id, $event->comment->post->slug]) . '#comment-' . $event->comment->id
+                        linkToComment: route('posts.show', $event->comment->post) . '#comment-' . $event->comment->id
                     )
                 );
             }

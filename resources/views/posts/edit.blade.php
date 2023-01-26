@@ -1,7 +1,7 @@
 <x-app>
     <x-breadcrumb class="container mt-8 sm:mt-16">
         <x-breadcrumb-item link="{{ route('posts.index') }}">Blog</x-breadcrumb-item>
-        <x-breadcrumb-item link="{{ route('posts.show', [$post->random_id, $post->slug]) }}" class="truncate">{{ $post->title }}</x-breadcrumb-item>
+        <x-breadcrumb-item link="{{ route('posts.show', $post) }}" class="truncate">{{ $post->title }}</x-breadcrumb-item>
         <x-breadcrumb-item style="overflow: unset; text-overflow: unset">Modifier l'article</x-breadcrumb-item>
     </x-breadcrumb>
 

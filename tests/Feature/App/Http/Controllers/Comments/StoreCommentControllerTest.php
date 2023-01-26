@@ -28,7 +28,7 @@ class StoreCommentControllerTest extends TestCase
                 'subscribe' => true,
             ])
             ->assertRedirect(
-                route('posts.show', [$post->random_id, $post->slug, 'page' => 1]) . '#comments'
+                route('posts.show', [$post, 'page' => 1]) . '#comments'
             )
         ;
 

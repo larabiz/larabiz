@@ -122,7 +122,7 @@ class Post extends BaseModel implements Feedable
             'title' => $this->title,
             'summary' => Str::marxdown($this->content),
             'updated' => $this->status()->created_at,
-            'link' => route('posts.show', [$this->random_id, $this->slug]),
+            'link' => route('posts.show', $this),
             'authorName' => $this->username,
         ]);
     }

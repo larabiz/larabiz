@@ -12,7 +12,7 @@
             <div class="grid gap-4 mt-8">
                 @foreach ($user->subscriptions as $subscription)
                     <div class="bg-gradient-to-b from-white/50 to-white/30 flex items-center justify-between gap-4 sm:gap-6 px-4 py-6 sm:p-6 rounded-lg shadow-md shadow-indigo-100">
-                        <a href="{{ route('posts.show', [$subscription->subscribable->random_id, $subscription->subscribable->slug]) }}" class="font-bold leading-tight text-indigo-900">
+                        <a href="{{ route('posts.show', $subscription->subscribable) }}" class="font-bold leading-tight text-indigo-900">
                             {{ $subscription->subscribable->title }}
                         </a>
 

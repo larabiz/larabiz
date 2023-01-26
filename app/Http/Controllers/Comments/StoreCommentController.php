@@ -33,7 +33,7 @@ class StoreCommentController extends Controller
 
         $page = $post->comments()->paginate()->lastPage();
 
-        return to_route('posts.show', [$post->random_id, $post->slug] + compact('page'))
+        return to_route('posts.show', [$post] + compact('page'))
             ->withFragment('#comments')
             ->with('status', 'Votre commentaire a bien été posté.');
     }
