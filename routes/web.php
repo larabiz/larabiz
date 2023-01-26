@@ -30,7 +30,7 @@ Route::get('/confirm-subscriber/{subscriber:email}', ConfirmSubscriberController
 Route::get('/blog', ListPostsController::class)->name('posts.index');
 Route::post('/blog/{post:random_id}/subscribe', SubscribeToPostController::class)->name('subscribe-to-post');
 Route::post('/blog/{post:random_id}/unsubscribe', UnsubscribeFromPostController::class)->name('unsubscribe-from-post');
-Route::get('/blog/{randomId}/{slug?}', ShowPostController::class)->name('posts.show');
+Route::redirect('/blog/{randomId}/{slug?}', '/{slug}');
 
 // Previews
 Route::get('/previews/posts/{post:random_id}', ShowPostPreviewController::class)->name('previews.post');
@@ -52,3 +52,5 @@ Route::get('/forum/{randomId}/{slug}', ShowThreadController::class)->name('threa
 Route::post('/forum/{thread:random_id}/replies', StoreReplyController::class)->name('threads.replies.store');
 
 Route::feeds();
+
+Route::get('/{post:slug}', ShowPostController::class)->name('posts.show');
