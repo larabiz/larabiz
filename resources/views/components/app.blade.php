@@ -32,6 +32,12 @@
 
         @vite(['resources/js/app.js'])
 
+        <script
+            defer type="text/javascript" src="https://api.pirsch.io/pirsch-extended.js"
+            id="pirschextendedjs"
+            data-code="DBfmxAKPDWVQsnJ8SUFlb7C3xf79nh3L"
+        ></script>
+
         <link rel="canonical" href="{{ $canonical ?? URL::current() }}" />
 
         <x-feed-links />
@@ -44,14 +50,14 @@
             <script defer src="https://enlightenment.larabiz.fr/script.js" data-site="{{ config('services.fathom.site_id') }}"></script>
         @endif
     </head>
-    <body class="bg-indigo-50 font-light text-gray-700" x-data>
+    <body class="font-light text-gray-700 bg-indigo-50" x-data>
         @if ($user && ! $user->hasVerifiedEmail())
             <div {{ $attributes->merge(['class' => 'bg-gradient-to-r from-indigo-400 to-indigo-300 py-3 text-sm text-white']) }}>
                 <div class="container sm:text-center text-indigo-50">
                     <p class="sm:text-center">Veuillez confirmer votre adresse e-mail afin d'utiliser Larabiz à son plein potentiel.</p>
 
                     <x-form method="POST" action="{{ route('verification.send') }}" class="mt-2 text-center">
-                        <button type="submit" class="bg-white/20 font-normal px-3 py-1 rounded text-white">Renvoyer la confirmation</button>
+                        <button type="submit" class="px-3 py-1 font-normal text-white rounded bg-white/20">Renvoyer la confirmation</button>
                     </x-form>
                 </div>
             </div>
